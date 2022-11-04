@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+namespace FGJ2022
 {
-    [SerializeField]
-    private CharacterController characterController;
-
-    private void SetTarget()
+    public class EnemyMovement : MonoBehaviour
     {
-        
+        [SerializeField]
+        private NavMeshAgent navAgent;
+
+        public void SetTarget(Vector3 target)
+        {
+            target.y = 0;
+            this.navAgent.SetDestination(target);
+        }
     }
 }

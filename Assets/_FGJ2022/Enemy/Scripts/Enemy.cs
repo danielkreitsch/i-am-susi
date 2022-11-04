@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace FGJ2022
 {
-    
+    public class Enemy : MonoBehaviour
+    {
+
+    }
 }
