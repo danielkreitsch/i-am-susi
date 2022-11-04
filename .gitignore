@@ -29,6 +29,7 @@ bld/
 
 # Visual Studio 2017 cache/options directory
 .vs/
+.vsconfig
 
 # Unity stuff
 [Ll]ibrary/
