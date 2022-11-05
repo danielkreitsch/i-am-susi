@@ -1,20 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FGJ2022
-{
-    public class Path : MonoBehaviour
-    {
-        private List<Waypoint> waypoints = new();
-        
-        public List<Waypoint> Waypoints => this.waypoints;
-        
-        private void Start()
-        {
-            foreach (Transform child in this.transform)
-            {
+namespace FGJ2022 {
+    public class Path : MonoBehaviour {
+        List<Waypoint> waypoints = new();
+
+        public List<Waypoint> Waypoints => waypoints;
+
+        void Start() {
+            foreach (Transform child in transform) {
                 var waypoint = new Waypoint(child.position);
-                this.waypoints.Add(waypoint);
+                waypoints.Add(waypoint);
                 child.GetComponent<MeshRenderer>().enabled = false;
             }
         }

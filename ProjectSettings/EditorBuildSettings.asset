@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_FGJ2022/Enemy/_Common/Scenes/EnemyPrototype.unity
     guid: 9afad9ad3d778f0419060494439af194
+  - enabled: 1
+    path: Assets/_FGJ2022/_Common/Scenes/Game.unity
+    guid: b2ff94005204fa741a5dc054f0939cf3
   m_configObjects: {}
