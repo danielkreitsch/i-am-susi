@@ -1,5 +1,6 @@
 using Game.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.Avatar {
     sealed class AvatarInput : MonoBehaviour {
@@ -30,6 +31,7 @@ namespace Game.Avatar {
 
         void Update() {
             attachedController.movementInput = controls.Avatar.Move.ReadValue<Vector2>();
+            attachedController.intendsToJump = controls.Avatar.Jump.IsPressed();
         }
     }
 }

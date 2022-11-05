@@ -55,6 +55,24 @@ namespace Game.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""f676853f-2968-4284-92d7-484a05dd4ae4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca4b11ac-7bbb-481a-80ec-4dffb6a1236f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -200,6 +218,39 @@ namespace Game.Input
                     ""action"": ""CameraPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc16462e-a513-4b93-b52e-e70038443cf9"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62f04d77-402d-4589-92be-321fe333ed42"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a57e9c1-8068-4e6a-8e47-b958bbec3b2d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -211,6 +262,8 @@ namespace Game.Input
             m_Avatar_Move = m_Avatar.FindAction("Move", throwIfNotFound: true);
             m_Avatar_CameraVelocity = m_Avatar.FindAction("CameraVelocity", throwIfNotFound: true);
             m_Avatar_CameraPosition = m_Avatar.FindAction("CameraPosition", throwIfNotFound: true);
+            m_Avatar_Jump = m_Avatar.FindAction("Jump", throwIfNotFound: true);
+            m_Avatar_Run = m_Avatar.FindAction("Run", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -273,6 +326,8 @@ namespace Game.Input
         private readonly InputAction m_Avatar_Move;
         private readonly InputAction m_Avatar_CameraVelocity;
         private readonly InputAction m_Avatar_CameraPosition;
+        private readonly InputAction m_Avatar_Jump;
+        private readonly InputAction m_Avatar_Run;
         public struct AvatarActions
         {
             private @Controls m_Wrapper;
@@ -280,6 +335,8 @@ namespace Game.Input
             public InputAction @Move => m_Wrapper.m_Avatar_Move;
             public InputAction @CameraVelocity => m_Wrapper.m_Avatar_CameraVelocity;
             public InputAction @CameraPosition => m_Wrapper.m_Avatar_CameraPosition;
+            public InputAction @Jump => m_Wrapper.m_Avatar_Jump;
+            public InputAction @Run => m_Wrapper.m_Avatar_Run;
             public InputActionMap Get() { return m_Wrapper.m_Avatar; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -298,6 +355,12 @@ namespace Game.Input
                     @CameraPosition.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraPosition;
                     @CameraPosition.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraPosition;
                     @CameraPosition.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraPosition;
+                    @Jump.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnJump;
+                    @Run.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnRun;
+                    @Run.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnRun;
+                    @Run.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnRun;
                 }
                 m_Wrapper.m_AvatarActionsCallbackInterface = instance;
                 if (instance != null)
@@ -311,6 +374,12 @@ namespace Game.Input
                     @CameraPosition.started += instance.OnCameraPosition;
                     @CameraPosition.performed += instance.OnCameraPosition;
                     @CameraPosition.canceled += instance.OnCameraPosition;
+                    @Jump.started += instance.OnJump;
+                    @Jump.performed += instance.OnJump;
+                    @Jump.canceled += instance.OnJump;
+                    @Run.started += instance.OnRun;
+                    @Run.performed += instance.OnRun;
+                    @Run.canceled += instance.OnRun;
                 }
             }
         }
@@ -320,6 +389,8 @@ namespace Game.Input
             void OnMove(InputAction.CallbackContext context);
             void OnCameraVelocity(InputAction.CallbackContext context);
             void OnCameraPosition(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
+            void OnRun(InputAction.CallbackContext context);
         }
     }
 }

@@ -84,9 +84,11 @@ namespace Game.Avatar {
 
             velocity = Vector3.SmoothDamp(velocity, dragDirection, ref dragVelocity, dragTime);
 
-            velocity += isGrounded
-                ? -groundNormal * deltaTime
-                : Physics.gravity * deltaTime;
+            velocity -= groundNormal * deltaTime;
+
+            if (!isGrounded) {
+                velocity += Physics.gravity * deltaTime;
+            }
 
             var direction = velocity.normalized;
             float distance = velocity.magnitude * deltaTime;
@@ -96,37 +98,41 @@ namespace Game.Avatar {
                 radius,
                 direction,
                 raycastHits,
-                distance,
+                distance + radius,
                 collisionLayers,
                 QueryTriggerInteraction.Ignore
             );
 
             var newPosition = position + (direction * distance);
 
-            var normalSum = Vector3.zero;
-            int groundCount = 0;
+            var normalSum = groundNormal;
+            int groundCount = 1;
 
             for (int i = 0; i < raycastCount; i++) {
                 var hit = raycastHits[i];
                 var collider = hit.collider;
 
+                if (collider.Raycast(new Ray(hit.point + hit.normal, -hit.normal), out var info, float.PositiveInfinity)) {
+                    normalSum += info.normal;
+                    groundCount++;
+                }
+
                 if (Physics.ComputePenetration(
-                    attachedCollider, newPosition, rotation,
+                    attachedCollider, newPosition, Quaternion.identity,
                     collider, collider.transform.position, collider.transform.rotation,
                     out var penetrationDirection, out float penetrationDistance)) {
-
-                    normalSum += hit.normal;
-                    groundCount++;
 
                     newPosition += penetrationDirection * penetrationDistance;
                 }
             }
 
-            isGrounded = groundCount > 0;
-            groundNormal = groundCount > 0
-                ? (normalSum / groundCount).normalized
-                : Vector3.up;
-            groundNormal = Vector3.up;
+            if (groundCount > 1) {
+                isGrounded = true;
+                groundNormal = (normalSum / groundCount).normalized;
+            } else {
+                isGrounded = false;
+                groundNormal = Vector3.up;
+            }
 
             position = newPosition;
         }

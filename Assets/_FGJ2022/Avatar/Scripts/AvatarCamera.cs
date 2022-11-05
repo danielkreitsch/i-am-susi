@@ -8,6 +8,9 @@ namespace Game.Avatar {
         [SerializeField]
         public Vector2 axisInput;
 
+        public Vector3 forward => attachedCamera.transform.forward;
+        public Vector3 right => attachedCamera.transform.right;
+
         void Awake() {
             OnValidate();
         }

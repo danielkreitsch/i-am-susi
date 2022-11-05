@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 302098217}
   - component: {fileID: 302098215}
   - component: {fileID: 302098216}
-  - component: {fileID: 5748553483243354256}
+  - component: {fileID: 6888946638104914767}
   m_Layer: 31
   m_Name: Leg_L3
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &5748553483243354256
+--- !u!120 &6888946638104914767
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 1529482868}
   - component: {fileID: 1529482867}
   - component: {fileID: 1529482866}
-  - component: {fileID: 7386403611932177008}
+  - component: {fileID: 5153469196503983242}
   m_Layer: 31
   m_Name: Leg_L1
   m_TagString: Untagged
@@ -776,7 +776,7 @@ MonoBehaviour:
   minAngle: -10
   maxAngle: 20
   weight: 1
---- !u!120 &7386403611932177008
+--- !u!120 &5153469196503983242
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1528,7 +1528,7 @@ GameObject:
   - component: {fileID: 1324680883}
   - component: {fileID: 1324680882}
   - component: {fileID: 1324680884}
-  - component: {fileID: 4034596332760963045}
+  - component: {fileID: 5018077956428019917}
   m_Layer: 31
   m_Name: Leg_R3
   m_TagString: Untagged
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &4034596332760963045
+--- !u!120 &5018077956428019917
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2125,7 +2125,7 @@ GameObject:
   - component: {fileID: 8634589292763693861}
   - component: {fileID: 6757185163653745695}
   - component: {fileID: 1173845210}
-  - component: {fileID: 5171452066805157377}
+  - component: {fileID: 4275010344560376975}
   m_Layer: 31
   m_Name: Leg_L2
   m_TagString: Untagged
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &5171452066805157377
+--- !u!120 &4275010344560376975
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2480,7 +2480,7 @@ GameObject:
   - component: {fileID: 902956908}
   - component: {fileID: 902956907}
   - component: {fileID: 902956909}
-  - component: {fileID: 8270414095052031613}
+  - component: {fileID: 876475100295944364}
   m_Layer: 31
   m_Name: Leg_L4
   m_TagString: Untagged
@@ -2634,7 +2634,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &8270414095052031613
+--- !u!120 &876475100295944364
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2892,8 +2892,8 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b15d2ab92406132498381222b959dec4, type: 3}
   m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
+  m_CullingMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -3422,7 +3422,7 @@ GameObject:
   - component: {fileID: 49142272}
   - component: {fileID: 49142271}
   - component: {fileID: 49142273}
-  - component: {fileID: 5858636336474901446}
+  - component: {fileID: 7223770798065216350}
   m_Layer: 31
   m_Name: Leg_R4
   m_TagString: Untagged
@@ -3576,7 +3576,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &5858636336474901446
+--- !u!120 &7223770798065216350
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3746,7 +3746,7 @@ GameObject:
   - component: {fileID: 8634589291851047554}
   - component: {fileID: 8634589291851047553}
   - component: {fileID: 8634589291851047552}
-  - component: {fileID: 8704124611243154858}
+  - component: {fileID: 1162412886186246568}
   m_Layer: 31
   m_Name: Leg_R2
   m_TagString: Untagged
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &8704124611243154858
+--- !u!120 &1162412886186246568
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4126,6 +4126,7 @@ GameObject:
   - component: {fileID: 6602444994393196865}
   - component: {fileID: 5356263202611163170}
   - component: {fileID: 8634589293312570790}
+  - component: {fileID: 5093029894775694886}
   m_Layer: 31
   m_Name: Spider
   m_TagString: Untagged
@@ -4163,7 +4164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a17a1cdc778704d81c6704c2446b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedCollider: {fileID: 859274437079615373}
+  attachedRigidbody: {fileID: 8634589293312570790}
+  attachedCollider: {fileID: 5093029894775694886}
   walkSpeed: 2
   runSpeed: 3
   turnSpeed: 2
@@ -4191,9 +4193,6 @@ MonoBehaviour:
   downRayLength: 1
   forwardRaySize: 0.99
   downRaySize: 0.99
-  groundInfo:
-    isGrounded: 0
-    groundNormal: {x: 0, y: 0, z: 0}
 --- !u!114 &5356263202611163170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4255,6 +4254,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!135 &5093029894775694886
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634589293312570784}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8634589293442604250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4386,7 +4398,7 @@ GameObject:
   - component: {fileID: 90793497}
   - component: {fileID: 90793496}
   - component: {fileID: 90793498}
-  - component: {fileID: 7060421004803720957}
+  - component: {fileID: 668694671119084207}
   m_Layer: 31
   m_Name: Leg_R1
   m_TagString: Untagged
@@ -4539,7 +4551,7 @@ MonoBehaviour:
   minAngle: -10
   maxAngle: 20
   weight: 1
---- !u!120 &7060421004803720957
+--- !u!120 &668694671119084207
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5468,6 +5480,11 @@ PrefabInstance:
       objectReference: {fileID: 6602444994393196865}
     - target: {fileID: 3225651313324237268, guid: a4570c9fc42f91440b1e686470895d6f,
         type: 3}
+      propertyPath: attachedCollider
+      value: 
+      objectReference: {fileID: 5093029894775694886}
+    - target: {fileID: 3225651313324237268, guid: a4570c9fc42f91440b1e686470895d6f,
+        type: 3}
       propertyPath: attachedRigidbody
       value: 
       objectReference: {fileID: 8634589293312570790}
@@ -5483,12 +5500,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4570c9fc42f91440b1e686470895d6f, type: 3}
---- !u!135 &859274437079615373 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 98189655126232829, guid: a4570c9fc42f91440b1e686470895d6f,
-    type: 3}
-  m_PrefabInstance: {fileID: 770141326902462832}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2152759925704842883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1679900711695669235, guid: a4570c9fc42f91440b1e686470895d6f,
@@ -5556,42 +5567,42 @@ PrefabInstance:
         type: 3}
       propertyPath: legs.Array.data[0].renderer
       value: 
-      objectReference: {fileID: 5171452066805157377}
+      objectReference: {fileID: 4275010344560376975}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[1].renderer
       value: 
-      objectReference: {fileID: 8704124611243154858}
+      objectReference: {fileID: 1162412886186246568}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[2].renderer
       value: 
-      objectReference: {fileID: 5748553483243354256}
+      objectReference: {fileID: 6888946638104914767}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[3].renderer
       value: 
-      objectReference: {fileID: 4034596332760963045}
+      objectReference: {fileID: 5018077956428019917}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[4].renderer
       value: 
-      objectReference: {fileID: 8270414095052031613}
+      objectReference: {fileID: 876475100295944364}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[5].renderer
       value: 
-      objectReference: {fileID: 5858636336474901446}
+      objectReference: {fileID: 7223770798065216350}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[6].renderer
       value: 
-      objectReference: {fileID: 7386403611932177008}
+      objectReference: {fileID: 5153469196503983242}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[7].renderer
       value: 
-      objectReference: {fileID: 7060421004803720957}
+      objectReference: {fileID: 668694671119084207}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[0].transform
