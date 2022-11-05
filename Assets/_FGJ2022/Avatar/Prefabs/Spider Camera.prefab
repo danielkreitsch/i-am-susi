@@ -745,12 +745,12 @@ MonoBehaviour:
   m_BindingMode: 5
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 1
-    m_Radius: 10
-  - m_Height: 4
-    m_Radius: 20
   - m_Height: 8
     m_Radius: 40
+  - m_Height: 4
+    m_Radius: 20
+  - m_Height: 2
+    m_Radius: 10
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 6426620482109594741}
@@ -768,6 +768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a24bf98008e784ca57b6bf4e791709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachedCamera: {fileID: -8226463696689904834}
+  attachedBrain: {fileID: 0}
   axisInput: {x: 0, y: 0}
 --- !u!114 &2082636661610311248
 MonoBehaviour:
@@ -782,4 +784,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedCamera: {fileID: 4447324919927550419}
-  cameraVelocity: 1
+  cameraVelocity: 0.25
