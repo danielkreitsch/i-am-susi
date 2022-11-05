@@ -23,8 +23,10 @@ namespace FGJ2022.Drone
 
             //agent.Enemy.Model.UpAngle = Mathf.Atan2(avatarPos.x - myPos.x, avatarPos.z - myPos.z) * Mathf.Rad2Deg;
             agent.Drone.Model.transform.LookAt(avatarPos);
-            
-            if (horizontalDistance < agent.OptimalDistanceToShoot)
+
+            var isOnCooldown = agent.Drone.ShootIsOnCooldown;
+            var isCloseEnough = horizontalDistance < agent.OptimalDistanceToShoot;
+            if (!isOnCooldown && isCloseEnough)
             {
                 agent.StateMachine.ChangeState(DroneStateId.Shoot);
             }

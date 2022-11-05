@@ -1,10 +1,15 @@
+using Glowdragon.VariableDisplay;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace FGJ2022.Drone
 {
     public class DroneController : MonoBehaviour
     {
+        [Inject]
+        private VariableDisplay variableDisplay;
+        
         [SerializeField]
         private NavMeshAgent navAgent;
 
@@ -12,11 +17,17 @@ namespace FGJ2022.Drone
         private Drone drone;
 
         [SerializeField]
-        private float verticalSmoothTime;
+        private float offsetY;
 
+        [SerializeField]
+        private float minY;
+        
+        [SerializeField]
+        private float verticalSmoothTime;
+        
         private float targetY;
         private float verticalVelocity;
-
+        
         public bool IsStopped
         {
             get => this.navAgent.isStopped;
@@ -25,11 +36,12 @@ namespace FGJ2022.Drone
 
         public void SetTarget(Vector3 target)
         {
-            //target.y = 0;
             this.navAgent.SetDestination(target);
-            Debug.Log("Destination: " + target);
+            this.targetY = Mathf.Max(target.y + this.offsetY, this.minY);
+        }
 
-            this.targetY = target.y;
+        private void Update()
+        {
             this.drone.Model.LocalY = Mathf.SmoothDamp(this.drone.Model.LocalY, this.targetY, ref this.verticalVelocity, this.verticalSmoothTime);
         }
     }

@@ -54,7 +54,8 @@ namespace FGJ2022.Drone
             yield return new WaitForSeconds(0.5f);
             this.model.Laser.IsDeadly = false;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.2f);
+            agent.Drone.ResetShootCooldown();
             agent.StateMachine.ChangeState(DroneStateId.FocusTarget);
         }
     }
