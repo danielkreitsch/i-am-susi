@@ -14,7 +14,7 @@ namespace Game.Effects {
         [SerializeField, ConditionalField(nameof(overrideColor))]
         ParticleSystem.MinMaxGradient colorGradient = new();
 
-        public override void Invoke(GameObject context) {
+        protected override void InvokeNow(GameObject context) {
             var particlesInstance = Instantiate(particlesPrefab, context.transform.position, particlesPrefab.transform.rotation);
 
             if (overrideColor) {

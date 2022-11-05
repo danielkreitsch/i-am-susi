@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: E_Game_ReloadCurrentScene
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000}
+  waitUntilInvoke: 1
+  waitTimer: 1
   method: 1

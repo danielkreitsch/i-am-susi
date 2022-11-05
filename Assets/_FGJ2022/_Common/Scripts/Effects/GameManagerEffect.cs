@@ -12,7 +12,7 @@ namespace Game.Effects {
         [SerializeField]
         GameMethod method;
 
-        public override void Invoke(GameObject context) {
+        protected override void InvokeNow(GameObject context) {
             switch (method) {
                 case GameMethod.ExitGame:
                     Application.Quit();
