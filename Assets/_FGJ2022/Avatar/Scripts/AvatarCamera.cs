@@ -1,6 +1,7 @@
 using Cinemachine;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Avatar {
     sealed class AvatarCamera : MonoBehaviour, AxisState.IInputAxisProvider {
@@ -10,6 +11,8 @@ namespace Game.Avatar {
         CinemachineBrain attachedBrain;
         [SerializeField]
         public Vector2 axisInput;
+        [SerializeField]
+        UnityEvent<GameObject> onTargetGone = new();
 
         public Vector3 right => attachedBrain.transform.right;
         public Vector3 up => attachedBrain.transform.up;
@@ -20,6 +23,10 @@ namespace Game.Avatar {
             set {
                 attachedCamera.Follow = value;
                 attachedCamera.LookAt = value;
+
+                if (!value) {
+                    onTargetGone.Invoke(gameObject);
+                }
             }
         }
 
