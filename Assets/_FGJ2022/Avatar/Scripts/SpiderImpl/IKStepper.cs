@@ -129,7 +129,7 @@ namespace Game.Avatar.SpiderImpl {
 
 
         public void Awake() {
-            Debug.Log("Called Awake " + name + " on IKStepper");
+            //Debug.Log("Called Awake " + name + " on IKStepper");
             ikChain = GetComponent<IKChain>();
 
             rootJoint = ikChain.getRootJoint();

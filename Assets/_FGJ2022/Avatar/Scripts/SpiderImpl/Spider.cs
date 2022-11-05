@@ -124,7 +124,7 @@ namespace Game.Avatar.SpiderImpl {
         GroundInfo grdInfo;
 
         public void Awake() {
-            Debug.Log("Called Awake " + name + " on Spider");
+            //Debug.Log("Called Awake " + name + " on Spider");
 
             //Make sure the scale is uniform, since otherwise lossy scale will not be accurate.
             float x = transform.localScale.x;

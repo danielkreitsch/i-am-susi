@@ -66,7 +66,7 @@ namespace Game.Avatar.SpiderImpl {
         Vector3 lastEndeffectorPos;
 
         public void Awake() {
-            Debug.Log("Called Awake " + name + " on IKChain");
+            //Debug.Log("Called Awake " + name + " on IKChain");
             if (chainLength == 0) {
                 initializeChainLength();
             }
