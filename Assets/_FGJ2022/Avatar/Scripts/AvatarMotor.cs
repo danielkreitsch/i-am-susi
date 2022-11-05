@@ -3,7 +3,7 @@ using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Game.Avatar {
-    sealed class SpiderMotor : MonoBehaviour {
+    sealed class AvatarMotor : MonoBehaviour {
         [SerializeField]
         Spider spider;
         [SerializeField]
@@ -13,11 +13,15 @@ namespace Game.Avatar {
         [SerializeField]
         LayerMask collisionLayers = ~0;
 
-        [Space]
+        [Header("Physics")]
         [SerializeField]
         public Vector3 velocity = Vector3.zero;
         [SerializeField]
-        public Vector3 drag = Vector3.zero;
+        public Vector3 dragDirection = Vector3.zero;
+        [SerializeField]
+        public Vector3 dragVelocity = Vector3.zero;
+        [SerializeField]
+        public float dragTime = 1;
 
         public bool isGrounded {
             get => spider.groundInfo.isGrounded;
@@ -66,7 +70,11 @@ namespace Game.Avatar {
         int raycastCount;
 
         void Move(float deltaTime) {
-            velocity -= groundNormal * deltaTime;
+            velocity = Vector3.SmoothDamp(velocity, dragDirection, ref dragVelocity, dragTime);
+
+            velocity += isGrounded
+                ? -groundNormal * deltaTime
+                : Physics.gravity * deltaTime;
 
             var direction = velocity.normalized;
             float distance = velocity.magnitude * deltaTime;

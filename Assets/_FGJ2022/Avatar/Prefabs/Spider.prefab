@@ -365,7 +365,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: 0.21448371, y: 0.10264698, z: 0.57829124}
   - {x: 0.42926437, y: 0.10170311, z: 0.5511688}
   - {x: 1.041826, y: 1.0131706, z: 0.43205857}
@@ -976,7 +975,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: 0.1317419, y: 0.049919304, z: 0.9185154}
   - {x: 0.16214767, y: 0.101652525, z: 1.1403954}
   - {x: 0.37891912, y: 0.7759374, z: 1.5871692}
@@ -1883,7 +1881,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: -0.21448377, y: 0.10264698, z: 0.57829136}
   - {x: -0.42639002, y: 0.103170946, z: 0.5339889}
   - {x: -1.0260929, y: 1.0226736, z: 0.4112613}
@@ -2481,7 +2478,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: 0.1991536, y: 0.07388751, z: 0.77213544}
   - {x: 0.39383337, y: 0.10941566, z: 0.8972696}
   - {x: 0.96660835, y: 0.87712836, z: 1.262506}
@@ -2837,7 +2833,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: 0.20243837, y: 0.1243308, z: 0.35944963}
   - {x: 0.45296317, y: 0.08931324, z: 0.25374794}
   - {x: 0.80673134, y: 1.0629106, z: -0.20385845}
@@ -3780,7 +3775,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: -0.20243832, y: 0.12433077, z: 0.35944965}
   - {x: -0.45296308, y: 0.089313194, z: 0.25374797}
   - {x: -0.80673134, y: 1.0629106, z: -0.2038585}
@@ -4105,7 +4099,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: -0.19915356, y: 0.07388749, z: 0.77213544}
   - {x: -0.4249928, y: 0.068597116, z: 0.87578815}
   - {x: -0.9453871, y: 0.8669154, z: 1.2537893}
@@ -4747,7 +4740,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
   - {x: -0.13174194, y: 0.049919352, z: 0.9185154}
   - {x: -0.17301273, y: 0.09538759, z: 1.1400124}
   - {x: -0.40764436, y: 0.7461194, z: 1.6119797}
@@ -5795,6 +5787,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3225651313324237268, guid: a4570c9fc42f91440b1e686470895d6f,
+        type: 3}
+      propertyPath: spider
+      value: 
+      objectReference: {fileID: 6602444994393196865}
+    - target: {fileID: 3225651313324237268, guid: a4570c9fc42f91440b1e686470895d6f,
+        type: 3}
+      propertyPath: attachedRigidbody
+      value: 
+      objectReference: {fileID: 8634589293312570790}
+    - target: {fileID: 4609222201972308460, guid: a4570c9fc42f91440b1e686470895d6f,
+        type: 3}
+      propertyPath: spider
+      value: 
+      objectReference: {fileID: 6602444994393196865}
+    - target: {fileID: 4609222201972308460, guid: a4570c9fc42f91440b1e686470895d6f,
+        type: 3}
+      propertyPath: attachedCamera
+      value: 
+      objectReference: {fileID: 308868170}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4570c9fc42f91440b1e686470895d6f, type: 3}
 --- !u!135 &859274437079615373 stripped
