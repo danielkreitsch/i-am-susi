@@ -499,5 +499,5 @@ namespace Game.Avatar.SpiderImpl {
             }
         }
     }
-}
 #endif
+}
