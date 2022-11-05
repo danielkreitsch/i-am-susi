@@ -1,7 +1,9 @@
 ﻿namespace FGJ2022
 {
-    public class EnemyStateId
+    public enum EnemyStateId
     {
-        
+        FocusTarget,
+        Shoot,
+        TargetKilled
     }
 }
