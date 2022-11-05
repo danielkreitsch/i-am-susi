@@ -8,9 +8,6 @@ public class OtherCameraController : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            this.cameraManager.TransitionToState(CameraState.Main);
-        }
+       
     }
 }

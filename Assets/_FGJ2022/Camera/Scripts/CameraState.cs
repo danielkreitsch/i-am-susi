@@ -1,5 +1,5 @@
 ﻿public enum CameraState
 {
-    Main,
-    Other
+    Spider,
+    Drone
 }
