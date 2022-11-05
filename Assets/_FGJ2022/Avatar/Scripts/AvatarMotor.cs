@@ -92,6 +92,7 @@ namespace Game.Avatar {
                 : Physics.gravity * deltaTime;
 
             velocity = Vector3.SmoothDamp(velocity, dragDirection, ref dragVelocity, dragTime);
+            dragDirection = Vector3.zero;
 
             var totalVelocity = velocity + movement;
             var direction = totalVelocity.normalized;
