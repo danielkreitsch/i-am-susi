@@ -438,6 +438,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1612078134162208166}
   model: {fileID: 1612078134629813177}
+  shootCooldown: 0
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 5f715c2a210f524469dd9e4b8c4e225e, type: 2}
+        m_TargetAssemblyTypeName: Game.Effects.PlayAudioEffect, Game.Common
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1612078134162208166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navAgent: {fileID: 1612078134162208164}
   drone: {fileID: 1612078134162208167}
+  offsetY: 0
+  minY: 0
   verticalSmoothTime: 1
 --- !u!114 &1612078134162208165
 MonoBehaviour:
@@ -799,9 +817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc3405618dcef64b873e15286a90942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laser: {fileID: 0}
   weaponTransform: {fileID: 1612078135242174606}
   weaponRingTransform: {fileID: 1612078135254845785}
-  laserTransform: {fileID: 399354518}
 --- !u!1 &1612078134658509256
 GameObject:
   m_ObjectHideFlags: 0

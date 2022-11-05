@@ -1,6 +1,7 @@
 using System;
 using Glowdragon.VariableDisplay;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace FGJ2022.Drone
@@ -40,5 +41,8 @@ namespace FGJ2022.Drone
                 this.variableDisplay.Set(this.gameObject.name, "Shoot CD", Mathf.Max(0, this.shootCooldown - this.shootCooldownTimer));
             }
         }
+
+        [SerializeField]
+        public UnityEvent<GameObject> OnShoot;
     }
 }
