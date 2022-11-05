@@ -1,7 +1,9 @@
 // This file is auto-generated. Modifications are not saved.
 
-namespace Game {
-    public static class Tags {
+namespace UnityConstants
+{
+    public static class Tags
+    {
         /// <summary>
         /// Name of tag 'Untagged'.
         /// </summary>
@@ -30,16 +32,22 @@ namespace Game {
         /// Name of tag 'GameController'.
         /// </summary>
         public const string GameController = "GameController";
+        /// <summary>
+        /// Name of tag 'Enemy'.
+        /// </summary>
+        public const string Enemy = "Enemy";
     }
 
-    public static class SortingLayers {
+    public static class SortingLayers
+    {
         /// <summary>
         /// ID of sorting layer 'Default'.
         /// </summary>
         public const int Default = 0;
     }
 
-    public static class Layers {
+    public static class Layers
+    {
         /// <summary>
         /// Index of layer 'Default'.
         /// </summary>
@@ -60,6 +68,18 @@ namespace Game {
         /// Index of layer 'UI'.
         /// </summary>
         public const int UI = 5;
+        /// <summary>
+        /// Index of layer 'Enemy'.
+        /// </summary>
+        public const int Enemy = 6;
+        /// <summary>
+        /// Index of layer 'LevelBorder'.
+        /// </summary>
+        public const int LevelBorder = 30;
+        /// <summary>
+        /// Index of layer 'Player'.
+        /// </summary>
+        public const int Player = 31;
 
         /// <summary>
         /// Bitmask of layer 'Default'.
@@ -81,16 +101,42 @@ namespace Game {
         /// Bitmask of layer 'UI'.
         /// </summary>
         public const int UIMask = 1 << 5;
+        /// <summary>
+        /// Bitmask of layer 'Enemy'.
+        /// </summary>
+        public const int EnemyMask = 1 << 6;
+        /// <summary>
+        /// Bitmask of layer 'LevelBorder'.
+        /// </summary>
+        public const int LevelBorderMask = 1 << 30;
+        /// <summary>
+        /// Bitmask of layer 'Player'.
+        /// </summary>
+        public const int PlayerMask = 1 << 31;
     }
 
-    public static class Scenes {
+    public static class Scenes
+    {
         /// <summary>
         /// ID of scene 'Main'.
         /// </summary>
         public const int Main = 0;
+        /// <summary>
+        /// ID of scene 'Attic Scene'.
+        /// </summary>
+        public const int Attic_Scene = 1;
+        /// <summary>
+        /// ID of scene 'EnemyPrototype'.
+        /// </summary>
+        public const int EnemyPrototype = 2;
+        /// <summary>
+        /// ID of scene 'Game'.
+        /// </summary>
+        public const int Game = 3;
     }
 
-    public static class Axes {
+    public static class Axes
+    {
         /// <summary>
         /// Input axis 'Horizontal'.
         /// </summary>
