@@ -10,8 +10,13 @@ namespace FGJ2022.Cleaner
         [SerializeField]
         private CleanerModel model;
 
+        [SerializeField]
+        private Path cleaningPath;
+
         public CleanerController Controller => this.controller;
 
         public CleanerModel Model => this.model;
+
+        public Path CleaningPath => this.cleaningPath;
     }
 }

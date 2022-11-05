@@ -10,7 +10,13 @@ namespace FGJ2022.Drone
 
         [SerializeField]
         private Drone drone;
-        
+
+        [SerializeField]
+        private float verticalSmoothTime;
+
+        private float targetY;
+        private float verticalVelocity;
+
         public bool IsStopped
         {
             get => this.navAgent.isStopped;
@@ -23,7 +29,8 @@ namespace FGJ2022.Drone
             this.navAgent.SetDestination(target);
             Debug.Log("Destination: " + target);
 
-            this.drone.Model.LocalY = 0.25f;
+            this.targetY = target.y;
+            this.drone.Model.LocalY = Mathf.SmoothDamp(this.drone.Model.LocalY, this.targetY, ref this.verticalVelocity, this.verticalSmoothTime);
         }
     }
 }
