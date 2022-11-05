@@ -17,8 +17,6 @@ public class ApplicationManager : MonoBehaviour
     
     private void Awake()
     {
-        Debug.Log("ApplicationManager just woke up");
-        this.variableDisplay.Set("Application", "Status", "Healthy");
     }
     
     public void ResetShootCooldown()

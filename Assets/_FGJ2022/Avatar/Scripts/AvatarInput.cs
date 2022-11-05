@@ -19,6 +19,7 @@ namespace Game.Avatar {
 
         void Awake() {
             OnValidate();
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         void OnValidate() {
