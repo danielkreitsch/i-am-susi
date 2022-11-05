@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Glowdragon.VariableDisplay;
+using UnityEngine;
+using Zenject;
 
 namespace FGJ2022
 {
@@ -7,10 +9,14 @@ namespace FGJ2022
         public EnemyState[] States;
         public EnemyAgent Agent;
         public EnemyStateId CurrentState;
+        
+        private VariableDisplay variableDisplay;
 
-        public EnemyStateMachine(EnemyAgent agent)
+        public EnemyStateMachine(EnemyAgent agent, VariableDisplay variableDisplay)
         {
             this.Agent = agent;
+            this.variableDisplay = variableDisplay;
+            
             int numStates = System.Enum.GetNames(typeof(EnemyStateId)).Length;
             this.States = new EnemyState[numStates];
         }
@@ -32,6 +38,7 @@ namespace FGJ2022
             Debug.Log("[Enemy] Change state from " + this.CurrentState + " to " + newState);
             this.GetState(this.CurrentState)?.Exit(this.Agent);
             this.CurrentState = newState;
+            this.variableDisplay.Set(this.Agent.gameObject.name, "State", this.CurrentState);
             this.GetState(this.CurrentState).Enter(this.Agent);
         }
 

@@ -2,6 +2,8 @@
 {
     public enum EnemyStateId
     {
-        Unknown,
+        FocusTarget,
+        Shoot,
+        TargetKilled
     }
 }
