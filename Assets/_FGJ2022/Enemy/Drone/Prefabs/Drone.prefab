@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &399354514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399354518}
+  - component: {fileID: 399354517}
+  - component: {fileID: 399354516}
+  - component: {fileID: 399354515}
+  m_Layer: 0
+  m_Name: Laser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &399354518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399354514}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 4, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1612078134629813189}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &399354517
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399354514}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &399354516
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399354514}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3421404d65c9119498b6823e1cc0d705, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &399354515
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399354514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1612078133911775945
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +109,7 @@ GameObject:
   - component: {fileID: 1612078133911775949}
   - component: {fileID: 1612078133911775948}
   - component: {fileID: 1612078133911775951}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +206,7 @@ GameObject:
   - component: {fileID: 1612078133937644694}
   - component: {fileID: 1612078133937644689}
   - component: {fileID: 1612078133937644688}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +303,7 @@ GameObject:
   - component: {fileID: 1612078134047637794}
   - component: {fileID: 1612078134047637805}
   - component: {fileID: 1612078134047637804}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +401,7 @@ GameObject:
   - component: {fileID: 1612078134162208166}
   - component: {fileID: 1612078134162208165}
   - component: {fileID: 1612078134162208164}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navAgent: {fileID: 1612078134162208164}
   drone: {fileID: 1612078134162208167}
+  verticalSmoothTime: 1
 --- !u!114 &1612078134162208165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +468,7 @@ MonoBehaviour:
   drone: {fileID: 1612078134162208167}
   avatar: {fileID: 0}
   initialState: 0
-  optimalDistanceToShoot: 1
+  optimalDistanceToShoot: 100
 --- !u!195 &1612078134162208164
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -380,8 +478,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 1612078134162208163}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
-  m_Speed: 1
+  m_Radius: 7.5
+  m_Speed: 100
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -389,7 +487,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 150
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -405,7 +503,7 @@ GameObject:
   - component: {fileID: 1612078134568126880}
   - component: {fileID: 1612078134568126883}
   - component: {fileID: 1612078134568126882}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +600,7 @@ GameObject:
   - component: {fileID: 1612078134628934582}
   - component: {fileID: 1612078134628934577}
   - component: {fileID: 1612078134628934576}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +698,7 @@ GameObject:
   - component: {fileID: 1612078134629813179}
   - component: {fileID: 1612078134629813178}
   - component: {fileID: 1612078134629813177}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,12 +713,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612078134629813188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1612078135242174606}
   - {fileID: 1612078135254845785}
+  - {fileID: 399354518}
   m_Father: {fileID: 1612078134162208160}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -702,6 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponTransform: {fileID: 1612078135242174606}
   weaponRingTransform: {fileID: 1612078135254845785}
+  laserTransform: {fileID: 399354518}
 --- !u!1 &1612078134658509256
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +814,7 @@ GameObject:
   - component: {fileID: 1612078134658509260}
   - component: {fileID: 1612078134658509263}
   - component: {fileID: 1612078134658509262}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +911,7 @@ GameObject:
   - component: {fileID: 1612078134667247389}
   - component: {fileID: 1612078134667247388}
   - component: {fileID: 1612078134667247391}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +1008,7 @@ GameObject:
   - component: {fileID: 1612078134898466488}
   - component: {fileID: 1612078134898466491}
   - component: {fileID: 1612078134898466490}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1105,7 @@ GameObject:
   - component: {fileID: 1612078135102731531}
   - component: {fileID: 1612078135102731530}
   - component: {fileID: 1612078135102731541}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1102,7 +1202,7 @@ GameObject:
   - component: {fileID: 1612078135242174605}
   - component: {fileID: 1612078135242174604}
   - component: {fileID: 1612078135242174607}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1612078135254845785}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1344,7 @@ GameObject:
   - component: {fileID: 1612078135292658420}
   - component: {fileID: 1612078135292658423}
   - component: {fileID: 1612078135292658422}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1341,7 +1441,7 @@ GameObject:
   - component: {fileID: 1612078135539382066}
   - component: {fileID: 1612078135539382077}
   - component: {fileID: 1612078135539382076}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1538,7 @@ GameObject:
   - component: {fileID: 1612078135563184767}
   - component: {fileID: 1612078135563184766}
   - component: {fileID: 1612078135563184761}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1535,7 +1635,7 @@ GameObject:
   - component: {fileID: 1612078135608753172}
   - component: {fileID: 1612078135608753175}
   - component: {fileID: 1612078135608753174}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1632,7 +1732,7 @@ GameObject:
   - component: {fileID: 1612078135715936509}
   - component: {fileID: 1612078135715936508}
   - component: {fileID: 1612078135715936511}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sphere (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
