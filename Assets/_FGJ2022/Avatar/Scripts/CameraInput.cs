@@ -1,4 +1,3 @@
-using Game.Avatar.SpiderImpl;
 using Game.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Game.Avatar {
     sealed class CameraInput : MonoBehaviour {
         [SerializeField]
-        CameraAbstract attachedCamera;
+        AvatarCamera attachedCamera;
         [SerializeField]
         float cameraVelocity = 1;
 

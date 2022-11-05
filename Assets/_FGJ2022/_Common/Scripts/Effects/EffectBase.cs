@@ -1,7 +1,7 @@
 using MyBox;
 using UnityEngine;
 
-namespace AssemblyCSharp {
+namespace Game.Effects {
     abstract class EffectBase : ScriptableObject {
         [SerializeField, ReadOnly]
         EffectBase asset = default;

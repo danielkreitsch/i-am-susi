@@ -22,6 +22,8 @@ namespace Game.Avatar {
         public Vector3 dragVelocity = Vector3.zero;
         [SerializeField]
         public float dragTime = 1;
+        [SerializeField]
+        public Quaternion targetRotation = Quaternion.identity;
 
         public bool isGrounded {
             get => spider.groundInfo.isGrounded;
@@ -31,16 +33,24 @@ namespace Game.Avatar {
             get => spider.groundInfo.groundNormal;
             set => spider.groundInfo.groundNormal = value;
         }
-        Vector3 position3D {
+        Vector3 position {
             get => attachedRigidbody.position;
             set => attachedRigidbody.position = value;
         }
-        Quaternion rotation3D {
+        public Quaternion rotation {
             get => attachedRigidbody.rotation;
             set => attachedRigidbody.rotation = value;
         }
         Vector3 center => attachedCollider.center;
         float radius => attachedCollider.radius;
+
+        public Vector3 right => spider.transform.right;
+        public Vector3 up => spider.transform.up;
+        public Vector3 forward => spider.transform.forward;
+
+        public Vector3 TranslateMovement(Vector3 movement) {
+            return movement;
+        }
 
         void Awake() {
             OnValidate();
@@ -70,6 +80,8 @@ namespace Game.Avatar {
         int raycastCount;
 
         void Move(float deltaTime) {
+            rotation = targetRotation;
+
             velocity = Vector3.SmoothDamp(velocity, dragDirection, ref dragVelocity, dragTime);
 
             velocity += isGrounded
@@ -80,7 +92,7 @@ namespace Game.Avatar {
             float distance = velocity.magnitude * deltaTime;
 
             raycastCount = Physics.SphereCastNonAlloc(
-                position3D + center,
+                position + center,
                 radius,
                 direction,
                 raycastHits,
@@ -89,7 +101,7 @@ namespace Game.Avatar {
                 QueryTriggerInteraction.Ignore
             );
 
-            var newPosition = position3D + (direction * distance);
+            var newPosition = position + (direction * distance);
 
             var normalSum = Vector3.zero;
             int groundCount = 0;
@@ -99,7 +111,7 @@ namespace Game.Avatar {
                 var collider = hit.collider;
 
                 if (Physics.ComputePenetration(
-                    attachedCollider, newPosition, rotation3D,
+                    attachedCollider, newPosition, rotation,
                     collider, collider.transform.position, collider.transform.rotation,
                     out var penetrationDirection, out float penetrationDistance)) {
 
@@ -112,10 +124,11 @@ namespace Game.Avatar {
 
             isGrounded = groundCount > 0;
             groundNormal = groundCount > 0
-                ? normalSum / groundCount
+                ? (normalSum / groundCount).normalized
                 : Vector3.up;
+            groundNormal = Vector3.up;
 
-            position3D = newPosition;
+            position = newPosition;
         }
     }
 }
