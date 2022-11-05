@@ -44,6 +44,8 @@ namespace Game.Avatar.SpiderImpl {
         public float rotationSpeed;
 
         [Header("Sensitivity")]
+        [SerializeField]
+        public Vector2 axisInput;
         [Range(1, 5)]
         public float XSensitivity;
         [Range(1, 5)]
@@ -124,8 +126,9 @@ namespace Game.Avatar.SpiderImpl {
         * This allows the inheriting classes to implement their own camera target manipulation.
         */
         protected virtual void Update() {
-            RotateCameraHorizontal(Input.GetAxis("Mouse X") * XSensitivity, false);
-            RotateCameraVertical(-Input.GetAxis("Mouse Y") * YSensitivity, false);
+            RotateCameraHorizontal(axisInput.x * XSensitivity, false);
+            RotateCameraVertical(-axisInput.y * YSensitivity, false);
+            axisInput = Vector2.zero;
 
             if (!cam.enabled) {
                 return; // I hope this only returns for this function and not the whole new update implementation of a inheriting class.

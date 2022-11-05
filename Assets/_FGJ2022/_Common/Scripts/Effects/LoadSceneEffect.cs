@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
-namespace AssemblyCSharp {
+namespace Game.Effects {
     [CreateAssetMenu]
     sealed class LoadSceneEffect : EffectBase {
         [SerializeField]

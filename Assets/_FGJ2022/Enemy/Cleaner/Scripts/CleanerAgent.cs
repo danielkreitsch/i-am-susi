@@ -32,6 +32,7 @@ namespace FGJ2022.Cleaner
         private void Start()
         {
             this.StateMachine = new CleanerStateMachine(this, this.variableDisplay);
+            this.StateMachine.RegisterState(new CleanRoomState());
             this.StateMachine.RegisterState(new FocusTargetState());
             this.StateMachine.RegisterState(new ShootState());
             this.StateMachine.RegisterState(new TargetKilledState());

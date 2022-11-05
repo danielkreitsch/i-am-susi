@@ -1,14 +1,10 @@
-using Game.Avatar.SpiderImpl.Raycasting;
 /* 
  * This file is part of Unity-Procedural-IK-Wall-Walking-Spider on github.com/PhilS94
  * Copyright (C) 2020 Philipp Schofield - All Rights Reserved
  */
-
+using System;
+using Game.Avatar.SpiderImpl.Raycasting;
 using UnityEngine;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Game.Avatar.SpiderImpl {
     /*
@@ -24,8 +20,9 @@ namespace Game.Avatar.SpiderImpl {
 
     [DefaultExecutionOrder(0)] // Any controller of this spider should have default execution -1
     sealed class Spider : MonoBehaviour {
-
-        Rigidbody rb;
+        public event Action<float> onMove;
+        [SerializeField]
+        public SphereCollider attachedCollider;
 
         [Header("Movement")]
         [Range(1, 10)]
@@ -38,7 +35,6 @@ namespace Game.Avatar.SpiderImpl {
         public float walkDrag;
 
         [Header("Grounding")]
-        public CapsuleCollider capsuleCollider;
         [Range(1, 10)]
         public float gravityMultiplier;
         [Range(1, 10)]
@@ -106,22 +102,21 @@ namespace Game.Avatar.SpiderImpl {
         public SphereCast forwardRay { get; private set; }
         RaycastHit hitInfo;
 
-        enum RayType { None, ForwardRay, DownRay };
-        struct GroundInfo {
+        [Serializable]
+        public struct GroundInfo {
+            [SerializeField]
             public bool isGrounded;
+            [SerializeField]
             public Vector3 groundNormal;
-            public float distanceToGround;
-            public RayType rayType;
 
-            public GroundInfo(bool isGrd, Vector3 normal, float dist, RayType m_rayType) {
+            public GroundInfo(bool isGrd, Vector3 normal) {
                 isGrounded = isGrd;
                 groundNormal = normal;
-                distanceToGround = dist;
-                rayType = m_rayType;
             }
         }
 
-        GroundInfo grdInfo;
+        [SerializeField]
+        public GroundInfo groundInfo;
 
         public void Awake() {
             //Debug.Log("Called Awake " + name + " on Spider");
@@ -134,16 +129,10 @@ namespace Game.Avatar.SpiderImpl {
                 Debug.LogWarning("The xyz scales of the Spider are not equal. Please make sure they are. The scale of the spider is defaulted to be the Y scale and a lot of values depend on this scale.");
             }
 
-            rb = GetComponent<Rigidbody>();
-
             //Find all childed IKChains
             legs = GetComponentsInChildren<IKChain>();
 
             //Initialize the two Sphere Casts
-            downRayRadius = downRaySize * getColliderRadius();
-            float forwardRayRadius = forwardRaySize * getColliderRadius();
-            downRay = new SphereCast(transform.position, -transform.up, downRayLength * getColliderLength(), downRayRadius, transform, transform);
-            forwardRay = new SphereCast(transform.position, transform.forward, forwardRayLength * getColliderLength(), forwardRayRadius, transform, transform);
 
             //Initialize the bodyupLocal as the spiders transform.up parented to the body. Initialize the breathePivot as the body position parented to the spider
             bodyY = root.transform.InverseTransformDirection(transform.up);
@@ -153,23 +142,19 @@ namespace Game.Avatar.SpiderImpl {
         }
 
         void FixedUpdate() {
+            onMove?.Invoke(Time.deltaTime);
+        }
+
+        void OldFixedUpdate() {
             //** Ground Check **//
-            grdInfo = GroundCheck();
+            groundInfo = GroundCheck();
 
-            //** Rotation to normal **// 
-            float normalAdjustSpeed = (grdInfo.rayType == RayType.ForwardRay) ? forwardNormalAdjustSpeed : groundNormalAdjustSpeed;
-
-            var slerpNormal = Vector3.Slerp(transform.up, grdInfo.groundNormal, 0.02f * normalAdjustSpeed);
+            var slerpNormal = Vector3.Slerp(transform.up, groundInfo.groundNormal, 0.02f * forwardNormalAdjustSpeed);
             var goalrotation = getLookRotation(Vector3.ProjectOnPlane(transform.right, slerpNormal), slerpNormal);
 
             //Apply the rotation to the spider
             if (Quaternion.Angle(transform.rotation, goalrotation) > Mathf.Epsilon) {
                 transform.rotation = goalrotation;
-            }
-
-            // Dont apply gravity if close enough to ground
-            if (grdInfo.distanceToGround > getGravityOffDistance()) {
-                rb.AddForce(-grdInfo.groundNormal * gravityMultiplier * 0.0981f * getScale()); //Important using the groundnormal and not the lerping normal here!
             }
         }
 
@@ -203,7 +188,7 @@ namespace Game.Avatar.SpiderImpl {
 
             if (breathing) {
                 float t = (Time.time * 2 * Mathf.PI / breathePeriod) % (2 * Mathf.PI);
-                float amplitude = breatheMagnitude * getColliderRadius();
+                float amplitude = breatheMagnitude;
                 var direction = root.TransformDirection(bodyY);
 
                 root.transform.position = bodyCentroid + amplitude * (Mathf.Sin(t) + 1f) * direction;
@@ -282,14 +267,14 @@ namespace Game.Avatar.SpiderImpl {
         GroundInfo GroundCheck() {
             if (groundCheckOn) {
                 if (forwardRay.castRay(out hitInfo, walkableLayer)) {
-                    return new GroundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(capsuleCollider.center), hitInfo.point) - getColliderRadius(), RayType.ForwardRay);
+                    return new GroundInfo(true, hitInfo.normal.normalized);
                 }
 
                 if (downRay.castRay(out hitInfo, walkableLayer)) {
-                    return new GroundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(capsuleCollider.center), hitInfo.point) - getColliderRadius(), RayType.DownRay);
+                    return new GroundInfo(true, hitInfo.normal.normalized);
                 }
             }
-            return new GroundInfo(false, Vector3.up, float.PositiveInfinity, RayType.None);
+            return new GroundInfo(false, Vector3.up);
         }
 
         //** Helper methods**//
@@ -385,35 +370,27 @@ namespace Game.Avatar.SpiderImpl {
             return currentVelocity;
         }
         public Vector3 getGroundNormal() {
-            return grdInfo.groundNormal;
+            return groundInfo.groundNormal;
         }
 
         public float getColliderRadius() {
-            return getScale() * capsuleCollider.radius;
+            return getScale() * attachedCollider.radius;
         }
 
         public float getNonScaledColliderRadius() {
-            return capsuleCollider.radius;
-        }
-
-        public float getColliderLength() {
-            return getScale() * capsuleCollider.height;
+            return attachedCollider.radius;
         }
 
         public Vector3 getColliderCenter() {
-            return transform.TransformPoint(capsuleCollider.center);
+            return transform.TransformPoint(attachedCollider.center);
         }
 
         public Vector3 getColliderBottomPoint() {
-            return transform.TransformPoint(capsuleCollider.center - capsuleCollider.radius * new Vector3(0, 1, 0));
+            return transform.TransformPoint(attachedCollider.center - attachedCollider.radius * new Vector3(0, 1, 0));
         }
 
         public Vector3 getDefaultCentroid() {
             return transform.TransformPoint(bodyDefaultCentroid);
-        }
-
-        public float getGravityOffDistance() {
-            return gravityOffDistance * getColliderRadius();
         }
 
         //** Setters **//
@@ -421,136 +398,4 @@ namespace Game.Avatar.SpiderImpl {
             groundCheckOn = b;
         }
     }
-
-
-#if UNITY_EDITOR
-    [CustomEditor(typeof(Spider))]
-    sealed class SpiderEditor : Editor {
-
-        Spider spider;
-
-        static bool showDebug = true;
-
-        static float debugIconScale = 0.05f;
-        static bool showRaycasts = true;
-        static bool showGravityOffDistance = true;
-        static bool showOrientations = true;
-        static bool showCentroid = true;
-
-        public void OnEnable() {
-            spider = (Spider)target;
-            if (showDebug && !EditorApplication.isPlaying) {
-                spider.Awake();
-            }
-        }
-
-        public override void OnInspectorGUI() {
-            if (spider == null) {
-                return;
-            }
-
-            EditorDrawing.DrawHorizontalLine(Color.gray);
-            EditorGUILayout.LabelField("Debug Drawing", EditorStyles.boldLabel);
-            showDebug = EditorGUILayout.Toggle("Show Debug Drawings", showDebug);
-            if (showDebug) {
-                EditorGUI.indentLevel++;
-                debugIconScale = EditorGUILayout.Slider("Drawing Scale", debugIconScale, 0.01f, 0.1f);
-                showRaycasts = EditorGUILayout.Toggle("Draw Raycasts", showRaycasts);
-                showGravityOffDistance = EditorGUILayout.Toggle("Draw Gravity Off Distance", showGravityOffDistance);
-                showOrientations = EditorGUILayout.Toggle("Draw Orienations", showOrientations);
-                showCentroid = EditorGUILayout.Toggle("Draw Centroid", showCentroid);
-                EditorGUI.indentLevel--;
-            }
-            EditorDrawing.DrawHorizontalLine();
-
-            base.OnInspectorGUI();
-
-            EditorDrawing.DrawHorizontalLine();
-
-            EditorGUILayout.LabelField("Found IK Legs", EditorStyles.boldLabel);
-            GUI.enabled = false;
-            for (int i = 0; i < spider.legs.Length; i++) {
-                EditorGUILayout.ObjectField(spider.legs[i], typeof(IKChain), false);
-            }
-            GUI.enabled = true;
-
-            EditorDrawing.DrawHorizontalLine();
-
-            if (showDebug && !EditorApplication.isPlaying) {
-                spider.Awake();
-            }
-        }
-
-        void OnSceneGUI() {
-            if (!showDebug || spider == null) {
-                return;
-            }
-
-            //Draw the two Sphere Rays
-            if (showRaycasts) {
-                var origindown = spider.downRay.getOrigin();
-                var enddown = spider.downRay.getEnd();
-                var downdir = spider.downRay.getDirection().normalized;
-                var originforward = spider.forwardRay.getOrigin();
-                var endforward = spider.forwardRay.getEnd();
-                var forwarddir = spider.forwardRay.getDirection().normalized;
-                float t = 5f * debugIconScale;
-
-                Handles.color = Color.green;
-                Handles.DrawDottedLine(origindown, enddown, 2);
-                Handles.RadiusHandle(spider.transform.rotation, enddown, spider.downRay.getRadius(), false);
-                EditorDrawing.DrawText(enddown, "Downwards Ray", Color.green);
-                Handles.ArrowHandleCap(0, enddown - downdir * t, Quaternion.LookRotation(downdir), t, EventType.Repaint);
-
-                Handles.color = Color.blue;
-                Handles.DrawDottedLine(originforward, endforward, 2);
-                Handles.RadiusHandle(spider.transform.rotation, endforward, spider.forwardRay.getRadius(), false);
-                EditorDrawing.DrawText(endforward, "Forwards Ray", Color.blue);
-                Handles.ArrowHandleCap(0, endforward - forwarddir * t, Quaternion.LookRotation(forwarddir), t, EventType.Repaint);
-            }
-
-            //Draw the Gravity off distance
-            if (showGravityOffDistance) {
-                var borderpoint = spider.getColliderBottomPoint();
-                var endpoint = borderpoint + spider.getGravityOffDistance() * -spider.transform.up;
-                Handles.color = Color.magenta;
-                Handles.DrawDottedLine(borderpoint, endpoint, 2);
-                EditorDrawing.DrawText(endpoint, "Gravity Off\nDistance", Color.magenta);
-            }
-
-            //Draw the current transform.up and the bodys current Y orientation
-            if (showOrientations) {
-                var end = spider.transform.position + 2f * spider.getColliderRadius() * spider.transform.up;
-                var endLocal = spider.transform.position + 2f * spider.getColliderRadius() * spider.root.TransformDirection(spider.bodyY);
-
-                Handles.color = Color.blue;
-                Handles.DrawLine(spider.transform.position, endLocal);
-                EditorDrawing.DrawText(endLocal, "Body\nOrientation", Color.blue);
-
-                Handles.color = Color.green;
-                Handles.DrawLine(spider.transform.position, end);
-                EditorDrawing.DrawText(end, "Controller\nOrientation", Color.green);
-            }
-
-            //Draw the Centroids 
-            if (showCentroid) {
-                var centroid = spider.getDefaultCentroid();
-                var legcentroid = spider.getLegsCentroid();
-                var colbottom = spider.getColliderBottomPoint();
-
-                Handles.color = Color.magenta;
-                Handles.DrawWireCube(centroid, debugIconScale * Vector3.one);
-                EditorDrawing.DrawText(centroid, "Body\nCentroid", Color.magenta);
-
-                Handles.color = Color.red;
-                Handles.DrawWireCube(legcentroid, debugIconScale * Vector3.one);
-                EditorDrawing.DrawText(legcentroid, "Legs\nCentroid", Color.red);
-
-                Handles.color = Color.cyan;
-                Handles.DrawWireCube(colbottom, debugIconScale * Vector3.one);
-                EditorDrawing.DrawText(colbottom, "Collider\nBottom", Color.cyan);
-            }
-        }
-    }
-#endif
 }

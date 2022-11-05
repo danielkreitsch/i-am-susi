@@ -37,6 +37,24 @@ namespace Game.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraVelocity"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d69ec418-6bd8-4311-81dc-72cf48b371e9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d2a8f6bd-92c4-49e8-b734-5a5c74e6f3d5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -105,6 +123,83 @@ namespace Game.Input
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c82e6e5-9b3a-470b-82f0-486e2286ae7b"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""482818b9-47bf-45ca-8011-e5efb56a50b9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraVelocity"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bc92d218-0bb9-40e2-adcc-7afb2025a9f6"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""59ae55a6-0d40-4a1b-b75c-987ed5c94d92"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""293f148e-ec6c-4171-b0fb-feb8b6456820"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""283eb54d-4847-4ec4-96b8-8075445afe82"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a7d95dc-44db-49b9-ae51-66dc22daf96d"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -114,6 +209,8 @@ namespace Game.Input
             // Avatar
             m_Avatar = asset.FindActionMap("Avatar", throwIfNotFound: true);
             m_Avatar_Move = m_Avatar.FindAction("Move", throwIfNotFound: true);
+            m_Avatar_CameraVelocity = m_Avatar.FindAction("CameraVelocity", throwIfNotFound: true);
+            m_Avatar_CameraPosition = m_Avatar.FindAction("CameraPosition", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -174,11 +271,15 @@ namespace Game.Input
         private readonly InputActionMap m_Avatar;
         private IAvatarActions m_AvatarActionsCallbackInterface;
         private readonly InputAction m_Avatar_Move;
+        private readonly InputAction m_Avatar_CameraVelocity;
+        private readonly InputAction m_Avatar_CameraPosition;
         public struct AvatarActions
         {
             private @Controls m_Wrapper;
             public AvatarActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Avatar_Move;
+            public InputAction @CameraVelocity => m_Wrapper.m_Avatar_CameraVelocity;
+            public InputAction @CameraPosition => m_Wrapper.m_Avatar_CameraPosition;
             public InputActionMap Get() { return m_Wrapper.m_Avatar; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -191,6 +292,12 @@ namespace Game.Input
                     @Move.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnMove;
                     @Move.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnMove;
                     @Move.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnMove;
+                    @CameraVelocity.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraVelocity;
+                    @CameraVelocity.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraVelocity;
+                    @CameraVelocity.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraVelocity;
+                    @CameraPosition.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraPosition;
+                    @CameraPosition.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraPosition;
+                    @CameraPosition.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnCameraPosition;
                 }
                 m_Wrapper.m_AvatarActionsCallbackInterface = instance;
                 if (instance != null)
@@ -198,6 +305,12 @@ namespace Game.Input
                     @Move.started += instance.OnMove;
                     @Move.performed += instance.OnMove;
                     @Move.canceled += instance.OnMove;
+                    @CameraVelocity.started += instance.OnCameraVelocity;
+                    @CameraVelocity.performed += instance.OnCameraVelocity;
+                    @CameraVelocity.canceled += instance.OnCameraVelocity;
+                    @CameraPosition.started += instance.OnCameraPosition;
+                    @CameraPosition.performed += instance.OnCameraPosition;
+                    @CameraPosition.canceled += instance.OnCameraPosition;
                 }
             }
         }
@@ -205,6 +318,8 @@ namespace Game.Input
         public interface IAvatarActions
         {
             void OnMove(InputAction.CallbackContext context);
+            void OnCameraVelocity(InputAction.CallbackContext context);
+            void OnCameraPosition(InputAction.CallbackContext context);
         }
     }
 }

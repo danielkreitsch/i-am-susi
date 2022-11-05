@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Game.Avatar.SpiderImpl {
@@ -11,18 +12,14 @@ namespace Game.Avatar.SpiderImpl {
     sealed class GeneralSettings : MonoBehaviour {
         void Awake() {
             // Lock Cursor in Build
+#if !UNITY_EDITOR
             Cursor.lockState = CursorLockMode.Locked;
-
-            //Unlock Cursor in Editor
-#if UNITY_EDITOR
-            Cursor.lockState = CursorLockMode.None;
 #endif
         }
 
         void Update() {
             //On Press reset scene
-
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame) {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }

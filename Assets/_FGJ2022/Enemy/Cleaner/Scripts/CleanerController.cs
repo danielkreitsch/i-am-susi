@@ -16,12 +16,12 @@ namespace FGJ2022.Cleaner
             get => this.navAgent.isStopped;
             set => this.navAgent.isStopped = value;
         }
-
+        
         public void SetTarget(Vector3 target)
         {
             //target.y = 0;
             this.navAgent.SetDestination(target);
-            Debug.Log("Destination: " + target);
+            //Debug.Log("Destination: " + target);
         }
     }
 }
