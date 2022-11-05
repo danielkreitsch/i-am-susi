@@ -5,15 +5,20 @@ namespace FGJ2022.Drone
     public class DroneModel : MonoBehaviour
     {
         [SerializeField]
+        private Laser laser;
+        
+        [SerializeField]
         private Transform weaponTransform;
 
         [SerializeField]
         private Transform weaponRingTransform;
-
+        
         private float _localY;
         private float _upAngle;
         private float _weaponPosition;
         private float _weaponRingAngle;
+
+        public Laser Laser => this.laser;
 
         public float LocalY
         {
