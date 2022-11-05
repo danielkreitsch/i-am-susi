@@ -33,6 +33,10 @@ namespace FGJ2022.Drone
             this.shootCooldownTimer = 0;
         }
 
+        private void Start() {
+            onStart.Invoke(gameObject);
+        }
+
         private void Update()
         {
             if (this.shootCooldownTimer < this.shootCooldown)
@@ -43,6 +47,9 @@ namespace FGJ2022.Drone
         }
 
         [SerializeField]
-        public UnityEvent<GameObject> OnShoot;
+        public UnityEvent<GameObject> onStart = new();
+
+        [SerializeField]
+        public UnityEvent<GameObject> onShoot = new();
     }
 }

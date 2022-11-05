@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca2e0bf1e589e749b239e2166f15f3d, type: 3}
-  m_Name: E_LoadScene_Spider
+  m_Name: E_LoadScene_Game
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000}
   scene:
-    Scene: {fileID: 102900000, guid: 4f83bec358932784cba30dfc1f57dd0f, type: 3}
-    SceneName: Attic Scene
-    sceneIndex: 1
+    Scene: {fileID: 102900000, guid: b2ff94005204fa741a5dc054f0939cf3, type: 3}
+    SceneName: Game
+    sceneIndex: 3
     sceneEnabled: 1
   loadSceneMode: 0

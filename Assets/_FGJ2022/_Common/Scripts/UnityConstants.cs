@@ -1,8 +1,7 @@
 // This file is auto-generated. Modifications are not saved.
 
 namespace Game {
-    public static class Tags
-    {
+    public static class Tags {
         /// <summary>
         /// Name of tag 'Untagged'.
         /// </summary>
@@ -33,16 +32,14 @@ namespace Game {
         public const string GameController = "GameController";
     }
 
-    public static class SortingLayers
-    {
+    public static class SortingLayers {
         /// <summary>
         /// ID of sorting layer 'Default'.
         /// </summary>
         public const int Default = 0;
     }
 
-    public static class Layers
-    {
+    public static class Layers {
         /// <summary>
         /// Index of layer 'Default'.
         /// </summary>
@@ -86,16 +83,14 @@ namespace Game {
         public const int UIMask = 1 << 5;
     }
 
-    public static class Scenes
-    {
+    public static class Scenes {
         /// <summary>
         /// ID of scene 'Main'.
         /// </summary>
         public const int Main = 0;
     }
 
-    public static class Axes
-    {
+    public static class Axes {
         /// <summary>
         /// Input axis 'Horizontal'.
         /// </summary>
