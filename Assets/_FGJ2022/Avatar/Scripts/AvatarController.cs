@@ -3,7 +3,7 @@ using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Game.Avatar {
-    sealed class AvatarController : MonoBehaviour {
+    sealed class AvatarController : MonoBehaviour, ILaserTarget {
         [SerializeField]
         Spider spider;
         [SerializeField]
@@ -63,5 +63,7 @@ namespace Game.Avatar {
         Vector3 TranslateGroundInput(Vector2 input) {
             return input.SwizzleXZ();
         }
+
+        public void ReceiveLaser(GameObject laser) => throw new System.NotImplementedException();
     }
 }

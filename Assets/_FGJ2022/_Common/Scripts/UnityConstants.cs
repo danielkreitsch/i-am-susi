@@ -1,7 +1,6 @@
 // This file is auto-generated. Modifications are not saved.
 
-namespace UnityConstants
-{
+namespace Game {
     public static class Tags
     {
         /// <summary>

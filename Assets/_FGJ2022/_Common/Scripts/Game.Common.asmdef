@@ -1,12 +1,8 @@
 {
-    "name": "Game.Avatar",
+    "name": "Game.Common",
     "rootNamespace": "",
     "references": [
-        "GUID:507d80cf36f8258488bde8c39deefd3a",
-        "GUID:48c9f6afdac61634db0e0f241c7d4d51",
-        "GUID:021243f48ab02d04e828c78827078f28",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:61ce32637ec70e940b630a75acde50a6"
+        "GUID:48c9f6afdac61634db0e0f241c7d4d51"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
