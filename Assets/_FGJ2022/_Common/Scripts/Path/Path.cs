@@ -15,7 +15,7 @@ namespace FGJ2022
             {
                 var waypoint = new Waypoint(child.position);
                 this.waypoints.Add(waypoint);
-                Debug.Log("Waypoint: " + waypoint.Position);
+                child.GetComponent<MeshRenderer>().enabled = false;
             }
         }
     }

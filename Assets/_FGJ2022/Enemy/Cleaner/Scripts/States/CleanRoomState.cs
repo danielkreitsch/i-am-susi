@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Game.Utility;
 using UnityEngine;
 
 namespace FGJ2022.Cleaner
 {
     public class CleanRoomState : CleanerState
     {
-        private List<Waypoint> waypoints;
         private Waypoint currentWaypoint;
         
         public CleanerStateId GetId()
@@ -19,18 +20,17 @@ namespace FGJ2022.Cleaner
 
         public void Update(CleanerAgent agent)
         {
+            var myPos = agent.Cleaner.transform.position;
             var path = agent.Cleaner.CleaningPath;
             
             if (this.currentWaypoint == null)
             {
-                this.currentWaypoint = path.Waypoints[0];
+                this.currentWaypoint = path.Waypoints.OrderBy(w => w.Position.FlatDistanceTo(myPos)).First();
             }
 
-            var distanceToWaypoint = Vector2.Distance(
-                new Vector2(agent.Cleaner.transform.position.x, agent.Cleaner.transform.position.z),
-                new Vector2(this.currentWaypoint.Position.x, this.currentWaypoint.Position.z));
+            var distanceToWaypoint = myPos.FlatDistanceTo(this.currentWaypoint.Position);
 
-            if (distanceToWaypoint < 1)
+            if (distanceToWaypoint < 10)
             {
                 this.currentWaypoint = path.Waypoints[(path.Waypoints.IndexOf(this.currentWaypoint) + 1) % path.Waypoints.Count];
             }

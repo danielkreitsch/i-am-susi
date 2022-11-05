@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2520278269949936837}
   - component: {fileID: 1934496528612152860}
   - component: {fileID: 8018329966707826220}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: VacuumTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805152845987370413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8018329966707826220
 MonoBehaviour:
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 2252142569512170676}
   - component: {fileID: 2252142569512170677}
   - component: {fileID: 2252142569512170678}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Vacuum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 8250378962570302105}
   - component: {fileID: 4891565916125384881}
   - component: {fileID: 2252142570579685789}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,6 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4891565916125384881}
   model: {fileID: 5625225759839978341}
+  cleaningPath: {fileID: 0}
 --- !u!114 &8250378962570302105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,10 +246,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 20
-  m_Speed: 10
-  m_Acceleration: 8
+  m_Speed: 50
+  m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 50
+  m_AngularSpeed: 100
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -269,7 +270,8 @@ GameObject:
   - component: {fileID: 2252142570913042305}
   - component: {fileID: 2252142570913042306}
   - component: {fileID: 5625225759839978341}
-  m_Layer: 7
+  - component: {fileID: 763250894}
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2252142570913042429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 5, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -356,3 +358,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponTransform: {fileID: 2252142569512170679}
+--- !u!64 &763250894
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252142570913042429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
