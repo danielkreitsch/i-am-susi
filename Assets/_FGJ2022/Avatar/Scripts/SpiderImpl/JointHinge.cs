@@ -67,7 +67,7 @@ namespace Game.Avatar.SpiderImpl {
         float currentAngle = 0;
 
         public void Awake() {
-            Debug.Log("Called Awake " + name + " on JointHinge");
+            //Debug.Log("Called Awake " + name + " on JointHinge");
             setupValues();
         }
 

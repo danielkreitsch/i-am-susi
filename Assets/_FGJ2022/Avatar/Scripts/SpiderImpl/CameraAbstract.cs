@@ -83,7 +83,7 @@ namespace Game.Avatar.SpiderImpl {
         ShadowCastingMode[] camObstructionsCastingMode;
 
         protected virtual void Awake() {
-            Debug.Log("Called Awake " + name + " on CameraAbstract");
+            //Debug.Log("Called Awake " + name + " on CameraAbstract");
             cam = GetComponent<Camera>();
             setupCamTarget();
             initializeRayCasting();
