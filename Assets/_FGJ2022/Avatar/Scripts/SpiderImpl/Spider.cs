@@ -107,13 +107,13 @@ namespace Game.Avatar.SpiderImpl {
         RaycastHit hitInfo;
 
         enum RayType { None, ForwardRay, DownRay };
-        struct groundInfo {
+        struct GroundInfo {
             public bool isGrounded;
             public Vector3 groundNormal;
             public float distanceToGround;
             public RayType rayType;
 
-            public groundInfo(bool isGrd, Vector3 normal, float dist, RayType m_rayType) {
+            public GroundInfo(bool isGrd, Vector3 normal, float dist, RayType m_rayType) {
                 isGrounded = isGrd;
                 groundNormal = normal;
                 distanceToGround = dist;
@@ -121,7 +121,7 @@ namespace Game.Avatar.SpiderImpl {
             }
         }
 
-        groundInfo grdInfo;
+        GroundInfo grdInfo;
 
         public void Awake() {
             Debug.Log("Called Awake " + name + " on Spider");
@@ -279,17 +279,17 @@ namespace Game.Avatar.SpiderImpl {
         }
 
         //** Ground Check Method **//
-        groundInfo GroundCheck() {
+        GroundInfo GroundCheck() {
             if (groundCheckOn) {
                 if (forwardRay.castRay(out hitInfo, walkableLayer)) {
-                    return new groundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(capsuleCollider.center), hitInfo.point) - getColliderRadius(), RayType.ForwardRay);
+                    return new GroundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(capsuleCollider.center), hitInfo.point) - getColliderRadius(), RayType.ForwardRay);
                 }
 
                 if (downRay.castRay(out hitInfo, walkableLayer)) {
-                    return new groundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(capsuleCollider.center), hitInfo.point) - getColliderRadius(), RayType.DownRay);
+                    return new GroundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(capsuleCollider.center), hitInfo.point) - getColliderRadius(), RayType.DownRay);
                 }
             }
-            return new groundInfo(false, Vector3.up, float.PositiveInfinity, RayType.None);
+            return new GroundInfo(false, Vector3.up, float.PositiveInfinity, RayType.None);
         }
 
         //** Helper methods**//
