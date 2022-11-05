@@ -1,22 +1,18 @@
 using Game;
 using UnityEngine;
 
-namespace FGJ2022.Cleaner
-{
-    public class VacuumTrigger : MonoBehaviour
-    {
-        private void OnTriggerStay(Collider other)
-        {
-            var vacuumTarget = other.GetComponent<IVacuumTarget>();
-            
-            if (vacuumTarget == null)
-            {
-                return;
-            }
+namespace FGJ2022.Cleaner {
+    sealed class VacuumTrigger : MonoBehaviour {
+        [SerializeField]
+        AnimationCurve strengthOverDistance = AnimationCurve.Linear(0, 1, 0, 0);
 
-            var pullDirection = (this.transform.position - other.transform.position).normalized;
-            var strength = 1;
-            vacuumTarget.Apply(this.gameObject, pullDirection, strength);
+        void OnTriggerStay(Collider other) {
+            if (other.TryGetComponent<IVacuumTarget>(out var target)) {
+                var pullDirection = (transform.position - other.transform.position).normalized;
+                float pullDistance = Vector3.Distance(transform.position, other.transform.position);
+
+                target.Apply(gameObject, pullDirection, strengthOverDistance.Evaluate(pullDistance));
+            }
         }
     }
 }

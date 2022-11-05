@@ -76,7 +76,17 @@ namespace Game.Avatar {
             if (!attachedCamera) {
                 attachedCamera = FindObjectOfType<AvatarCamera>();
             }
+            if (spider && attachedCamera) {
+                attachedCamera.cameraTarget = spider.transform;
+            }
         }
+        void OnEnable() {
+            attachedCamera.cameraTarget = spider.transform;
+        }
+        void OnDisable() {
+            attachedCamera.cameraTarget = null;
+        }
+
         [SerializeField]
         Vector3 cameraInput;
         [SerializeField]

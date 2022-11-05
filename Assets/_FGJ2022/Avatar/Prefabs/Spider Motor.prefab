@@ -52,12 +52,12 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 1073741879
-  dragTime: 1
-  turnSpeed: 1
+  dragTime: 0.2
+  turnSpeed: 5
   movement: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  dragDirection: {x: 0, y: 0, z: 0}
   dragVelocity: {x: 0, y: 0, z: 0}
+  dragAcceleration: {x: 0, y: 0, z: 0}
   targetRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &4609222201972308460
 MonoBehaviour:

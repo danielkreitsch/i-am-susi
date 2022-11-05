@@ -10,6 +10,9 @@ namespace Game.Avatar {
         [SerializeField]
         UnityEvent<GameObject> onReceiveLaser = new();
 
+        [SerializeField]
+        float pullStrength = 1;
+
         void Awake() {
             OnValidate();
         }
@@ -22,13 +25,11 @@ namespace Game.Avatar {
         }
 
         public void ReceiveLaser(GameObject laser) {
-            Debug.Log($"Got hit by laser {laser}!");
             onReceiveLaser.Invoke(gameObject);
         }
 
         public void Apply(GameObject vacuum, Vector3 pullDirection, float strength) {
-            Debug.Log($"Got hit by vacuum {vacuum}!");
-            attachedMotor.dragDirection += pullDirection.normalized * strength;
+            attachedMotor.dragVelocity += pullStrength * strength * pullDirection.normalized;
         }
     }
 }

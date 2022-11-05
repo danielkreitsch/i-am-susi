@@ -5,13 +5,23 @@ using UnityEngine;
 namespace Game.Avatar {
     sealed class AvatarCamera : MonoBehaviour, AxisState.IInputAxisProvider {
         [SerializeField]
-        CinemachineBrain attachedCamera;
+        CinemachineVirtualCameraBase attachedCamera;
+        [SerializeField]
+        CinemachineBrain attachedBrain;
         [SerializeField]
         public Vector2 axisInput;
 
         public Vector3 right => attachedCamera.transform.right;
         public Vector3 up => attachedCamera.transform.up;
         public Vector3 forward => attachedCamera.transform.forward;
+
+        public Transform cameraTarget {
+            get => attachedCamera.Follow;
+            set {
+                attachedCamera.Follow = value;
+                attachedCamera.LookAt = value;
+            }
+        }
 
         void Awake() {
             OnValidate();
@@ -20,7 +30,10 @@ namespace Game.Avatar {
         [ContextMenu(nameof(OnValidate))]
         void OnValidate() {
             if (!attachedCamera) {
-                attachedCamera = FindObjectOfType<CinemachineBrain>();
+                TryGetComponent(out attachedCamera);
+            }
+            if (!attachedBrain) {
+                attachedBrain = FindObjectOfType<CinemachineBrain>();
             }
         }
 
