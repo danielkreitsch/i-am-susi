@@ -2,6 +2,7 @@
 {
     public enum CleanerStateId
     {
+        CleanRoom,
         FocusTarget,
         Shoot,
         TargetKilled
