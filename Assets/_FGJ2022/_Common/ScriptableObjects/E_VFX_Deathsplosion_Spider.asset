@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f8062f901950ba4ab6d3c3b795801d0, type: 3}
-  m_Name: E_VFX_Deathsplosion
+  m_Name: E_VFX_Deathsplosion_Spider
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000}
   particlesPrefab: {fileID: 7113385406692969221, guid: 9835a92f14df5ec4a80e7150269fffa0,

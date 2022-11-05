@@ -113,20 +113,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3850177049283004617}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1169868340
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4156816346286208408}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 3cf398eced1fd7a4fba07f4f57fb354f, type: 3}
 --- !u!54 &4334910197001863057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -143,6 +129,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!64 &1169868340
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156816346286208408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 3cf398eced1fd7a4fba07f4f57fb354f, type: 3}
 --- !u!114 &3665075878746671518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   onReceiveLaser:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9a5e86c426c628e46aa5413bd8c59c1f, type: 2}
+      - m_Target: {fileID: 11400000, guid: fb2c87a10b520b5489afe3d204ddcbd3, type: 2}
         m_TargetAssemblyTypeName: Game.Effects.InstantiateParticlesEffect, Game.Common
         m_MethodName: Invoke
         m_Mode: 0
