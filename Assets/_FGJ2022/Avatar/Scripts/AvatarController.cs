@@ -17,8 +17,6 @@ namespace Game.Avatar {
         [SerializeField]
         float movementTime = 1;
         [SerializeField]
-        float turnSpeed = 5;
-        [SerializeField]
         float jumpSpeed = 5;
 
         [Header("Input")]
@@ -50,8 +48,8 @@ namespace Game.Avatar {
         bool m_intendsToJumpStart;
 
         Vector3 velocity {
-            get => attachedMotor.velocity;
-            set => attachedMotor.velocity = value;
+            get => attachedMotor.movement;
+            set => attachedMotor.movement = value;
         }
 
         void Awake() {
@@ -70,9 +68,30 @@ namespace Game.Avatar {
                 attachedCamera = FindObjectOfType<AvatarCamera>();
             }
         }
+        [SerializeField]
+        Vector3 cameraInput;
+        [SerializeField]
+        Vector3 motorInput;
+
+        void OnDrawGizmos() {
+            Gizmos.color = Color.red.WithAlpha(0.5f);
+            DrawVector3(cameraInput * 10);
+            Gizmos.color = Color.green.WithAlpha(0.5f);
+            DrawVector3(motorInput * 10);
+            Gizmos.color = Color.blue.WithAlpha(0.5f);
+            DrawVector3(velocity);
+        }
+        void DrawVector3(in Vector3 direction) {
+            Gizmos.DrawLine(transform.position, transform.position + direction);
+        }
+
         void FixedUpdate() {
-            var cameraInput = attachedCamera.TranslateInput(movementInput);
-            var motorInput = attachedMotor.TranslateMovement(cameraInput);
+            attachedMotor.targetRotation = Quaternion.FromToRotation(Vector3.up, attachedMotor.groundNormal);
+
+            cameraInput = attachedCamera.TranslateInput(movementInput);
+
+            motorInput = attachedMotor.TranslateMovement(cameraInput);
+
             var movement = motorInput * movementSpeed;
 
             velocity = Vector3.SmoothDamp(velocity, movement, ref movementAcceleration, movementTime);
@@ -83,16 +102,10 @@ namespace Game.Avatar {
                     velocity += attachedMotor.groundNormal * jumpSpeed;
                 }
             }
-
-            if (cameraInput != Vector3.zero) {
-                attachedMotor.targetRotation = TranslateRotation(cameraInput);
-            }
         }
 
         Quaternion TranslateRotation(Vector3 goalForward) {
-            goalForward = Vector3.ProjectOnPlane(goalForward, attachedMotor.groundNormal).normalized;
-
-            return Quaternion.RotateTowards(attachedMotor.targetRotation, Quaternion.LookRotation(goalForward, attachedMotor.up), turnSpeed);
+            return Quaternion.FromToRotation(Vector3.up, goalForward.normalized);
         }
 
         public void ReceiveLaser(GameObject laser) {

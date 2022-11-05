@@ -115,6 +115,7 @@ namespace Game.Avatar.SpiderImpl {
         RaycastHit hitInfo;
 
         public enum RayType { None, ForwardRay, DownRay };
+        [Serializable]
         public struct GroundInfo {
             public bool isGrounded;
             public Vector3 groundNormal;
@@ -128,7 +129,6 @@ namespace Game.Avatar.SpiderImpl {
                 rayType = m_rayType;
             }
         }
-
         public GroundInfo groundInfo;
 
         public void Awake() {

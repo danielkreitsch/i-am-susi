@@ -1,6 +1,5 @@
 using Game.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Game.Avatar {
     sealed class AvatarInput : MonoBehaviour {
