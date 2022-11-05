@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace FGJ2022
+namespace FGJ2022.Drone
 {
-    public class EnemyController : MonoBehaviour
+    public class DroneController : MonoBehaviour
     {
         [SerializeField]
         private NavMeshAgent navAgent;
 
         [SerializeField]
-        private Enemy enemy;
+        private Drone drone;
         
         public bool IsStopped
         {
@@ -23,7 +23,7 @@ namespace FGJ2022
             this.navAgent.SetDestination(target);
             Debug.Log("Destination: " + target);
 
-            this.enemy.Model.LocalY = 0.25f;
+            this.drone.Model.LocalY = 0.25f;
         }
     }
 }

@@ -2,37 +2,37 @@
 using DigitalRuby.Tween;
 using UnityEngine;
 
-namespace FGJ2022
+namespace FGJ2022.Drone
 {
-    public class ShootState : EnemyState
+    public class ShootState : DroneState
     {
-        public EnemyStateId GetId()
+        public DroneStateId GetId()
         {
-            return EnemyStateId.Shoot;
+            return DroneStateId.Shoot;
         }
 
-        public void Enter(EnemyAgent agent)
+        public void Enter(DroneAgent agent)
         {
             agent.StartCoroutine(this.Shoot_Coroutine(agent));
         }
 
-        public void Update(EnemyAgent agent)
+        public void Update(DroneAgent agent)
         {
             
         }
 
-        public void Exit(EnemyAgent agent)
+        public void Exit(DroneAgent agent)
         {
-            agent.Enemy.Controller.IsStopped = false;
+            agent.Drone.Controller.IsStopped = false;
         }
 
-        private IEnumerator Shoot_Coroutine(EnemyAgent agent)
+        private IEnumerator Shoot_Coroutine(DroneAgent agent)
         {
-            agent.Enemy.Controller.IsStopped = true;
+            agent.Drone.Controller.IsStopped = true;
 
             agent.gameObject.Tween("Shoot", 0f, 1f, 1f, TweenScaleFunctions.Linear, t =>
             {
-                var model = agent.Enemy.Model;
+                var model = agent.Drone.Model;
                 model.WeaponPosition = 0.37f + 0.2f * t.CurrentValue;
                 model.WeaponRingAngle = t.CurrentValue * 360 * 3;
             });
@@ -40,7 +40,7 @@ namespace FGJ2022
 
 
             yield return new WaitForSeconds(2f);
-            agent.StateMachine.ChangeState(EnemyStateId.FocusTarget);
+            agent.StateMachine.ChangeState(DroneStateId.FocusTarget);
         }
     }
 }

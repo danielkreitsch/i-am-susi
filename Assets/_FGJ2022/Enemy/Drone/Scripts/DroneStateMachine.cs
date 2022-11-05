@@ -1,41 +1,40 @@
 ﻿using Glowdragon.VariableDisplay;
 using UnityEngine;
-using Zenject;
 
-namespace FGJ2022
+namespace FGJ2022.Drone
 {
-    public class EnemyStateMachine
+    public class DroneStateMachine
     {
-        public EnemyState[] States;
-        public EnemyAgent Agent;
-        public EnemyStateId CurrentState;
+        public DroneState[] States;
+        public DroneAgent Agent;
+        public DroneStateId CurrentState;
         
         private VariableDisplay variableDisplay;
 
-        public EnemyStateMachine(EnemyAgent agent, VariableDisplay variableDisplay)
+        public DroneStateMachine(DroneAgent agent, VariableDisplay variableDisplay)
         {
             this.Agent = agent;
             this.variableDisplay = variableDisplay;
             
-            int numStates = System.Enum.GetNames(typeof(EnemyStateId)).Length;
-            this.States = new EnemyState[numStates];
+            int numStates = System.Enum.GetNames(typeof(DroneStateId)).Length;
+            this.States = new DroneState[numStates];
         }
 
-        public void RegisterState(EnemyState state)
+        public void RegisterState(DroneState state)
         {
             int index = (int)state.GetId();
             this.States[index] = state;
         }
 
-        public EnemyState GetState(EnemyStateId stateId)
+        public DroneState GetState(DroneStateId stateId)
         {
             int index = (int)stateId;
             return this.States[index];
         }
 
-        public void ChangeState(EnemyStateId newState)
+        public void ChangeState(DroneStateId newState)
         {
-            Debug.Log("[Enemy] Change state from " + this.CurrentState + " to " + newState);
+            Debug.Log("[" + this.Agent.gameObject.name + "] Change state from " + this.CurrentState + " to " + newState);
             this.GetState(this.CurrentState)?.Exit(this.Agent);
             this.CurrentState = newState;
             this.variableDisplay.Set(this.Agent.gameObject.name, "State", this.CurrentState);

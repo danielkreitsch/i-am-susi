@@ -2,36 +2,36 @@ using Glowdragon.VariableDisplay;
 using UnityEngine;
 using Zenject;
 
-namespace FGJ2022
+namespace FGJ2022.Drone
 {
-    public class EnemyAgent : MonoBehaviour
+    public class DroneAgent : MonoBehaviour
     {
         [Inject]
         private VariableDisplay variableDisplay;
         
         [SerializeField]
-        private Enemy enemy;
+        private Drone drone;
 
         [SerializeField]
         private GameObject avatar;
         
         [SerializeField]
-        private EnemyStateId initialState;
+        private DroneStateId initialState;
 
         [SerializeField]
         private float optimalDistanceToShoot;
 
-        public Enemy Enemy => this.enemy;
+        public Drone Drone => this.drone;
 
         public GameObject Avatar => this.avatar;
 
         public float OptimalDistanceToShoot => this.optimalDistanceToShoot;
 
-        public EnemyStateMachine StateMachine { get; private set; }
+        public DroneStateMachine StateMachine { get; private set; }
 
         private void Start()
         {
-            this.StateMachine = new EnemyStateMachine(this, this.variableDisplay);
+            this.StateMachine = new DroneStateMachine(this, this.variableDisplay);
             this.StateMachine.RegisterState(new FocusTargetState());
             this.StateMachine.RegisterState(new ShootState());
             this.StateMachine.RegisterState(new TargetKilledState());
