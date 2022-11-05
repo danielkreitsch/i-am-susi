@@ -113,6 +113,7 @@ namespace Game.Avatar {
             }
 
             if (canDash && TryConsumeDashStart()) {
+                canDash = false;
                 velocity += motorInput == Vector3.zero
                     ? spider.transform.forward * dashSpeed
                     : motorInput.normalized * dashSpeed;
