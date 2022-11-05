@@ -2,7 +2,7 @@
 
 namespace FGJ2022
 {
-    public class FocusTargetState: EnemyState
+    public class FocusTargetState : EnemyState
     {
         public EnemyStateId GetId()
         {
@@ -11,7 +11,6 @@ namespace FGJ2022
 
         public void Enter(EnemyAgent agent)
         {
-            
         }
 
         public void Update(EnemyAgent agent)
@@ -19,15 +18,20 @@ namespace FGJ2022
             var avatarPos = agent.Avatar.transform.position;
             var myPos = agent.Enemy.transform.position;
             var horizontalDistance = Vector2.Distance(new Vector2(myPos.x, myPos.z), new Vector2(avatarPos.x, avatarPos.z));
-            var moveTarget = myPos + (myPos - avatarPos).normalized * (1 - horizontalDistance);
+            var moveTarget = avatarPos;//myPos + (myPos - avatarPos);//.normalized * (1 - horizontalDistance);
             agent.Enemy.Controller.SetTarget(moveTarget);
 
-            agent.Enemy.UpAngle = Mathf.Atan2(avatarPos.x - myPos.x, avatarPos.z - myPos.z) * Mathf.Rad2Deg;
+            //agent.Enemy.Model.UpAngle = Mathf.Atan2(avatarPos.x - myPos.x, avatarPos.z - myPos.z) * Mathf.Rad2Deg;
+            agent.Enemy.Model.transform.LookAt(avatarPos);
+            
+            if (horizontalDistance < agent.OptimalDistanceToShoot)
+            {
+                agent.StateMachine.ChangeState(EnemyStateId.Shoot);
+            }
         }
 
         public void Exit(EnemyAgent agent)
         {
-         
         }
     }
 }

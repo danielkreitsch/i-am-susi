@@ -18,10 +18,15 @@ namespace FGJ2022
         [SerializeField]
         private EnemyStateId initialState;
 
+        [SerializeField]
+        private float optimalDistanceToShoot;
+
         public Enemy Enemy => this.enemy;
 
         public GameObject Avatar => this.avatar;
-        
+
+        public float OptimalDistanceToShoot => this.optimalDistanceToShoot;
+
         public EnemyStateMachine StateMachine { get; private set; }
 
         private void Start()
