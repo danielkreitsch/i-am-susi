@@ -4193,6 +4193,11 @@ MonoBehaviour:
   downRayLength: 1
   forwardRaySize: 0.99
   downRaySize: 0.99
+  groundInfo:
+    isGrounded: 0
+    groundNormal: {x: 0, y: 0, z: 0}
+    distanceToGround: 0
+    rayType: 0
 --- !u!114 &5356263202611163170
 MonoBehaviour:
   m_ObjectHideFlags: 0

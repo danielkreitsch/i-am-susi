@@ -48,7 +48,7 @@ namespace Game.Avatar.SpiderImpl {
         }
 
         bool isJumping => controls.Avatar.Jump.IsPressed();
-        bool isRunning => controls.Avatar.Run.IsPressed();
+        bool isRunning => controls.Avatar.Dash.IsPressed();
         Vector2 movement => controls.Avatar.Move.ReadValue<Vector2>();
 
         void FixedUpdate() {
