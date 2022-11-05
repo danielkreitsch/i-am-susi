@@ -19,13 +19,23 @@ namespace Game.Avatar.SpiderImpl {
 
         Spider spider;
 
-        [Header("Camera")]
-        public SmoothCamera smoothCam;
+        [SerializeField]
+        AvatarCamera attachedCamera;
 
         Controls controls;
 
         void Awake() {
-            spider = GetComponent<Spider>();
+            OnValidate();
+        }
+
+        [ContextMenu(nameof(OnValidate))]
+        void OnValidate() {
+            if (!spider) {
+                TryGetComponent(out spider);
+            }
+            if (!attachedCamera) {
+                attachedCamera = FindObjectOfType<AvatarCamera>();
+            }
         }
 
         void OnEnable() {
@@ -51,11 +61,11 @@ namespace Game.Avatar.SpiderImpl {
                 spider.walk(input);
             }
 
-            var tempCamTargetRotation = smoothCam.camTarget.rotation;
-            var tempCamTargetPosition = smoothCam.camTarget.position;
+            //var tempCamTargetRotation = smoothCam.camTarget.rotation;
+            //var tempCamTargetPosition = smoothCam.camTarget.position;
             spider.turn(input);
-            smoothCam.setTargetRotation(tempCamTargetRotation);
-            smoothCam.setTargetPosition(tempCamTargetPosition);
+            //smoothCam.setTargetRotation(tempCamTargetRotation);
+            //smoothCam.setTargetPosition(tempCamTargetPosition);
         }
 
         void Update() {
@@ -66,7 +76,7 @@ namespace Game.Avatar.SpiderImpl {
         Vector3 getInput() {
             var up = spider.transform.up;
             var right = spider.transform.right;
-            var input = Vector3.ProjectOnPlane(smoothCam.camTarget.forward, up).normalized * movement.y + (Vector3.ProjectOnPlane(smoothCam.camTarget.right, up).normalized * movement.x);
+            var input = Vector3.ProjectOnPlane(attachedCamera.forward, up).normalized * movement.y + (Vector3.ProjectOnPlane(attachedCamera.right, up).normalized * movement.x);
             var fromTo = Quaternion.AngleAxis(Vector3.SignedAngle(up, spider.getGroundNormal(), right), right);
             input = fromTo * input;
             float magnitude = input.magnitude;

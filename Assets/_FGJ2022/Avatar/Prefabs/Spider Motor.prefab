@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679900711695669235}
-  - component: {fileID: 98189655126232829}
   - component: {fileID: 3225651313324237268}
   - component: {fileID: 4609222201972308460}
   - component: {fileID: 7552389560940117609}
@@ -35,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &98189655126232829
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504201926171066385}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &3225651313324237268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spider: {fileID: 0}
   attachedRigidbody: {fileID: 0}
-  attachedCollider: {fileID: 98189655126232829}
+  attachedCollider: {fileID: 0}
   collisionLayers:
     serializedVersion: 2
     m_Bits: 1073741879

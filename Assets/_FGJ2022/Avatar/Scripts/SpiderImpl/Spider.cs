@@ -21,15 +21,27 @@ namespace Game.Avatar.SpiderImpl {
     [DefaultExecutionOrder(0)] // Any controller of this spider should have default execution -1
     sealed class Spider : MonoBehaviour {
         public event Action<float> onMove;
+
         [SerializeField]
-        public SphereCollider attachedCollider;
+        Rigidbody attachedRigidbody;
+        [SerializeField]
+        SphereCollider attachedCollider;
+
+        void OnValidate() {
+            if (!attachedRigidbody) {
+                TryGetComponent(out attachedRigidbody);
+            }
+            if (!attachedCollider) {
+                TryGetComponent(out attachedCollider);
+            }
+        }
 
         [Header("Movement")]
-        [Range(1, 10)]
+        [Range(1, 1000)]
         public float walkSpeed;
-        [Range(1, 10)]
+        [Range(1, 1000)]
         public float runSpeed;
-        [Range(1, 5)]
+        [Range(1, 500)]
         public float turnSpeed;
         [Range(0.001f, 1)]
         public float walkDrag;
@@ -102,24 +114,25 @@ namespace Game.Avatar.SpiderImpl {
         public SphereCast forwardRay { get; private set; }
         RaycastHit hitInfo;
 
-        [Serializable]
+        public enum RayType { None, ForwardRay, DownRay };
         public struct GroundInfo {
-            [SerializeField]
             public bool isGrounded;
-            [SerializeField]
             public Vector3 groundNormal;
+            public float distanceToGround;
+            public RayType rayType;
 
-            public GroundInfo(bool isGrd, Vector3 normal) {
+            public GroundInfo(bool isGrd, Vector3 normal, float dist, RayType m_rayType) {
                 isGrounded = isGrd;
                 groundNormal = normal;
+                distanceToGround = dist;
+                rayType = m_rayType;
             }
         }
 
-        [SerializeField]
         public GroundInfo groundInfo;
 
         public void Awake() {
-            //Debug.Log("Called Awake " + name + " on Spider");
+            // Debug.Log("Called Awake " + name + " on Spider");
 
             //Make sure the scale is uniform, since otherwise lossy scale will not be accurate.
             float x = transform.localScale.x;
@@ -129,10 +142,16 @@ namespace Game.Avatar.SpiderImpl {
                 Debug.LogWarning("The xyz scales of the Spider are not equal. Please make sure they are. The scale of the spider is defaulted to be the Y scale and a lot of values depend on this scale.");
             }
 
+            attachedRigidbody = GetComponent<Rigidbody>();
+
             //Find all childed IKChains
             legs = GetComponentsInChildren<IKChain>();
 
             //Initialize the two Sphere Casts
+            downRayRadius = downRaySize * getColliderRadius();
+            float forwardRayRadius = forwardRaySize * getColliderRadius();
+            downRay = new SphereCast(transform.position, -transform.up, downRayLength * getColliderLength(), downRayRadius, transform, transform);
+            forwardRay = new SphereCast(transform.position, transform.forward, forwardRayLength * getColliderLength(), forwardRayRadius, transform, transform);
 
             //Initialize the bodyupLocal as the spiders transform.up parented to the body. Initialize the breathePivot as the body position parented to the spider
             bodyY = root.transform.InverseTransformDirection(transform.up);
@@ -149,12 +168,20 @@ namespace Game.Avatar.SpiderImpl {
             //** Ground Check **//
             groundInfo = GroundCheck();
 
-            var slerpNormal = Vector3.Slerp(transform.up, groundInfo.groundNormal, 0.02f * forwardNormalAdjustSpeed);
+            //** Rotation to normal **// 
+            float normalAdjustSpeed = (groundInfo.rayType == RayType.ForwardRay) ? forwardNormalAdjustSpeed : groundNormalAdjustSpeed;
+
+            var slerpNormal = Vector3.Slerp(transform.up, groundInfo.groundNormal, 0.02f * normalAdjustSpeed);
             var goalrotation = getLookRotation(Vector3.ProjectOnPlane(transform.right, slerpNormal), slerpNormal);
 
             //Apply the rotation to the spider
             if (Quaternion.Angle(transform.rotation, goalrotation) > Mathf.Epsilon) {
                 transform.rotation = goalrotation;
+            }
+
+            // Dont apply gravity if close enough to ground
+            if (groundInfo.distanceToGround > getGravityOffDistance()) {
+                attachedRigidbody.AddForce(-groundInfo.groundNormal * gravityMultiplier * 0.0981f * getScale()); //Important using the groundnormal and not the lerping normal here!
             }
         }
 
@@ -188,7 +215,7 @@ namespace Game.Avatar.SpiderImpl {
 
             if (breathing) {
                 float t = (Time.time * 2 * Mathf.PI / breathePeriod) % (2 * Mathf.PI);
-                float amplitude = breatheMagnitude;
+                float amplitude = breatheMagnitude * getColliderRadius();
                 var direction = root.TransformDirection(bodyY);
 
                 root.transform.position = bodyCentroid + amplitude * (Mathf.Sin(t) + 1f) * direction;
@@ -264,17 +291,17 @@ namespace Game.Avatar.SpiderImpl {
         }
 
         //** Ground Check Method **//
-        GroundInfo GroundCheck() {
+        public GroundInfo GroundCheck() {
             if (groundCheckOn) {
                 if (forwardRay.castRay(out hitInfo, walkableLayer)) {
-                    return new GroundInfo(true, hitInfo.normal.normalized);
+                    return new GroundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(attachedCollider.center), hitInfo.point) - getColliderRadius(), RayType.ForwardRay);
                 }
 
                 if (downRay.castRay(out hitInfo, walkableLayer)) {
-                    return new GroundInfo(true, hitInfo.normal.normalized);
+                    return new GroundInfo(true, hitInfo.normal.normalized, Vector3.Distance(transform.TransformPoint(attachedCollider.center), hitInfo.point) - getColliderRadius(), RayType.DownRay);
                 }
             }
-            return new GroundInfo(false, Vector3.up);
+            return new GroundInfo(false, Vector3.up, float.PositiveInfinity, RayType.None);
         }
 
         //** Helper methods**//
@@ -381,6 +408,10 @@ namespace Game.Avatar.SpiderImpl {
             return attachedCollider.radius;
         }
 
+        public float getColliderLength() {
+            return getScale() * attachedCollider.radius;
+        }
+
         public Vector3 getColliderCenter() {
             return transform.TransformPoint(attachedCollider.center);
         }
@@ -393,9 +424,15 @@ namespace Game.Avatar.SpiderImpl {
             return transform.TransformPoint(bodyDefaultCentroid);
         }
 
+        public float getGravityOffDistance() {
+            return gravityOffDistance * getColliderRadius();
+        }
+
         //** Setters **//
         public void setGroundcheck(bool b) {
             groundCheckOn = b;
         }
     }
+
+
 }
