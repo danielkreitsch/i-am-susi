@@ -232,6 +232,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Graphy
       objectReference: {fileID: 0}
+    - target: {fileID: 7557178270022474437, guid: 984c2261406fdc14e85aee122f12d65a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7557178270033754871, guid: 984c2261406fdc14e85aee122f12d65a,
         type: 3}
       propertyPath: m_Pivot.x

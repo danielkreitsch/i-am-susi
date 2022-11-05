@@ -1,6 +1,6 @@
-﻿namespace FGJ2022
+﻿namespace FGJ2022.Drone
 {
-    public enum EnemyStateId
+    public enum DroneStateId
     {
         FocusTarget,
         Shoot,
