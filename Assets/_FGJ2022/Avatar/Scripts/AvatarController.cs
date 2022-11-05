@@ -1,6 +1,8 @@
 using Game.Avatar.SpiderImpl;
+using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Avatar {
     sealed class AvatarController : MonoBehaviour, ILaserTarget, IVacuumTarget {
@@ -17,9 +19,9 @@ namespace Game.Avatar {
         [SerializeField]
         float movementTime = 1;
         [SerializeField]
-        float turnSpeed = 5;
-        [SerializeField]
         float jumpSpeed = 5;
+        [SerializeField]
+        float dashSpeed = 5;
 
         [Header("Input")]
         [SerializeField]
@@ -27,31 +29,36 @@ namespace Game.Avatar {
         [SerializeField]
         Vector3 movementAcceleration = Vector3.zero;
 
-        public bool intendsToJump {
-            get => m_intendsToJump;
-            set {
-                if (value) {
-                    m_intendsToJump = true;
-                    intendsToJumpStart = true;
-                } else {
-                    m_intendsToJump = false;
-                    intendsToJumpStart = false;
-                }
+        [SerializeField, ReadOnly]
+        public bool intendsJump = false;
+        [SerializeField, ReadOnly]
+        public bool intendsJumpStart = false;
+        bool canJump => attachedMotor.isGrounded;
+        public bool TryConsumeJumpStart() {
+            if (intendsJumpStart) {
+                intendsJumpStart = false;
+                return true;
             }
+            return false;
         }
-        [SerializeField]
-        bool m_intendsToJump;
 
-        public bool intendsToJumpStart {
-            get => m_intendsToJumpStart;
-            set => m_intendsToJumpStart = value;
+        [SerializeField, ReadOnly]
+        bool canDash = false;
+        [SerializeField, ReadOnly]
+        public bool intendsDash = false;
+        [SerializeField, ReadOnly]
+        public bool intendsDashStart = false;
+        public bool TryConsumeDashStart() {
+            if (intendsDashStart) {
+                intendsDashStart = false;
+                return true;
+            }
+            return false;
         }
-        [SerializeField]
-        bool m_intendsToJumpStart;
 
         Vector3 velocity {
-            get => attachedMotor.velocity;
-            set => attachedMotor.velocity = value;
+            get => attachedMotor.movement;
+            set => attachedMotor.movement = value;
         }
 
         void Awake() {
@@ -70,29 +77,60 @@ namespace Game.Avatar {
                 attachedCamera = FindObjectOfType<AvatarCamera>();
             }
         }
+        [SerializeField]
+        Vector3 cameraInput;
+        [SerializeField]
+        Vector3 motorInput;
+
+        [Header("Events")]
+        [SerializeField]
+        UnityEvent<GameObject> onJump = new();
+        [SerializeField]
+        UnityEvent<GameObject> onDash = new();
+
+        void OnDrawGizmos() {
+            Gizmos.color = Color.red.WithAlpha(0.5f);
+            DrawVector3(cameraInput * 10);
+            Gizmos.color = Color.green.WithAlpha(0.5f);
+            DrawVector3(motorInput * 10);
+            Gizmos.color = Color.blue.WithAlpha(0.5f);
+            DrawVector3(velocity);
+        }
+        void DrawVector3(in Vector3 direction) {
+            Gizmos.DrawLine(transform.position, transform.position + direction);
+        }
+
         void FixedUpdate() {
-            var cameraInput = attachedCamera.TranslateInput(movementInput);
-            var motorInput = attachedMotor.TranslateMovement(cameraInput);
+            attachedMotor.targetRotation = Quaternion.FromToRotation(Vector3.up, attachedMotor.groundNormal);
+
+            cameraInput = attachedCamera.TranslateInput(movementInput);
+
+            motorInput = attachedMotor.TranslateMovement(cameraInput);
+
             var movement = motorInput * movementSpeed;
 
             velocity = Vector3.SmoothDamp(velocity, movement, ref movementAcceleration, movementTime);
 
-            if (intendsToJumpStart) {
-                intendsToJumpStart = false;
-                if (attachedMotor.isGrounded) {
-                    velocity += attachedMotor.groundNormal * jumpSpeed;
-                }
+            if (attachedMotor.isGrounded) {
+                canDash = true;
             }
 
-            if (cameraInput != Vector3.zero) {
-                attachedMotor.targetRotation = TranslateRotation(cameraInput);
+            if (canJump && TryConsumeJumpStart()) {
+                velocity += attachedMotor.groundNormal * jumpSpeed;
+                onJump.Invoke(gameObject);
+            }
+
+            if (canDash && TryConsumeDashStart()) {
+                canDash = false;
+                velocity += motorInput == Vector3.zero
+                    ? spider.transform.forward * dashSpeed
+                    : motorInput.normalized * dashSpeed;
+                onDash.Invoke(gameObject);
             }
         }
 
         Quaternion TranslateRotation(Vector3 goalForward) {
-            goalForward = Vector3.ProjectOnPlane(goalForward, attachedMotor.groundNormal).normalized;
-
-            return Quaternion.RotateTowards(attachedMotor.targetRotation, Quaternion.LookRotation(goalForward, attachedMotor.up), turnSpeed);
+            return Quaternion.FromToRotation(Vector3.up, goalForward.normalized);
         }
 
         public void ReceiveLaser(GameObject laser) {

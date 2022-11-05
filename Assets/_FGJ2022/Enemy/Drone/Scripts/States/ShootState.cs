@@ -38,6 +38,8 @@ namespace FGJ2022.Drone
             this.model.Laser.IsDeadly = false;
             this.controller.IsStopped = true;
 
+            agent.Drone.OnShoot.Invoke(agent.gameObject);
+
             agent.gameObject.Tween("Shoot", 0f, 1f, 1f, TweenScaleFunctions.Linear, t =>
             {
                 this.model.WeaponPosition = 0.37f + 0.2f * t.CurrentValue;

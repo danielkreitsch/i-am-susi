@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Game.Avatar {
     sealed class AvatarMotor : MonoBehaviour {
+        [Header("Settings")]
         [SerializeField]
         Spider spider;
         [SerializeField]
@@ -13,15 +14,21 @@ namespace Game.Avatar {
         [SerializeField]
         LayerMask collisionLayers = ~0;
 
+        [Space]
+        [SerializeField]
+        public float dragTime = 1;
+        [SerializeField]
+        public float turnSpeed = 1;
+
         [Header("Physics")]
+        [SerializeField]
+        public Vector3 movement = Vector3.zero;
         [SerializeField]
         public Vector3 velocity = Vector3.zero;
         [SerializeField]
         public Vector3 dragDirection = Vector3.zero;
         [SerializeField]
         public Vector3 dragVelocity = Vector3.zero;
-        [SerializeField]
-        public float dragTime = 1;
         [SerializeField]
         public Quaternion targetRotation = Quaternion.identity;
 
@@ -48,8 +55,8 @@ namespace Game.Avatar {
         public Vector3 up => spider.transform.up;
         public Vector3 forward => spider.transform.forward;
 
-        public Vector3 TranslateMovement(Vector3 movement) {
-            return movement;
+        public Vector3 TranslateMovement(in Vector3 movement) {
+            return targetRotation * movement;
         }
 
         void Awake() {
@@ -80,33 +87,30 @@ namespace Game.Avatar {
         int raycastCount;
 
         void Move(float deltaTime) {
-            rotation = targetRotation;
+            velocity += isGrounded
+                ? Physics.gravity.magnitude * deltaTime * -groundNormal
+                : Physics.gravity * deltaTime;
 
             velocity = Vector3.SmoothDamp(velocity, dragDirection, ref dragVelocity, dragTime);
 
-            velocity -= groundNormal * deltaTime;
-
-            if (!isGrounded) {
-                velocity += Physics.gravity * deltaTime;
-            }
-
-            var direction = velocity.normalized;
-            float distance = velocity.magnitude * deltaTime;
+            var totalVelocity = velocity + movement;
+            var direction = totalVelocity.normalized;
+            float distance = totalVelocity.magnitude * deltaTime;
 
             raycastCount = Physics.SphereCastNonAlloc(
-                position + center,
+                position + center - direction,
                 radius,
                 direction,
                 raycastHits,
-                distance + radius,
+                distance + radius + 1,
                 collisionLayers,
                 QueryTriggerInteraction.Ignore
             );
 
             var newPosition = position + (direction * distance);
 
-            var normalSum = groundNormal;
-            int groundCount = 1;
+            var normalSum = Vector3.zero;
+            int groundCount = 0;
 
             for (int i = 0; i < raycastCount; i++) {
                 var hit = raycastHits[i];
@@ -126,15 +130,17 @@ namespace Game.Avatar {
                 }
             }
 
-            if (groundCount > 1) {
+            if (groundCount > 0) {
                 isGrounded = true;
                 groundNormal = (normalSum / groundCount).normalized;
+                velocity = Vector3.zero;
             } else {
                 isGrounded = false;
                 groundNormal = Vector3.up;
             }
 
             position = newPosition;
+            rotation = Quaternion.RotateTowards(rotation, targetRotation, turnSpeed);
         }
     }
 }

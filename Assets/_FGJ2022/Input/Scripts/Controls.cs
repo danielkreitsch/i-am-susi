@@ -66,7 +66,7 @@ namespace Game.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""ca4b11ac-7bbb-481a-80ec-4dffb6a1236f"",
                     ""expectedControlType"": ""Button"",
@@ -243,12 +243,56 @@ namespace Game.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""47af0f6c-9779-4e15-adff-57f04d936b40"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f4cb2f3-378c-4597-b4fa-b28c6c877ac1"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cc7e2b1-b6ea-407b-ba5f-022d48166c17"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fcf2f88-a0f9-4686-8172-d45b78579ca1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""7a57e9c1-8068-4e6a-8e47-b958bbec3b2d"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -263,7 +307,7 @@ namespace Game.Input
             m_Avatar_CameraVelocity = m_Avatar.FindAction("CameraVelocity", throwIfNotFound: true);
             m_Avatar_CameraPosition = m_Avatar.FindAction("CameraPosition", throwIfNotFound: true);
             m_Avatar_Jump = m_Avatar.FindAction("Jump", throwIfNotFound: true);
-            m_Avatar_Run = m_Avatar.FindAction("Run", throwIfNotFound: true);
+            m_Avatar_Dash = m_Avatar.FindAction("Dash", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -327,7 +371,7 @@ namespace Game.Input
         private readonly InputAction m_Avatar_CameraVelocity;
         private readonly InputAction m_Avatar_CameraPosition;
         private readonly InputAction m_Avatar_Jump;
-        private readonly InputAction m_Avatar_Run;
+        private readonly InputAction m_Avatar_Dash;
         public struct AvatarActions
         {
             private @Controls m_Wrapper;
@@ -336,7 +380,7 @@ namespace Game.Input
             public InputAction @CameraVelocity => m_Wrapper.m_Avatar_CameraVelocity;
             public InputAction @CameraPosition => m_Wrapper.m_Avatar_CameraPosition;
             public InputAction @Jump => m_Wrapper.m_Avatar_Jump;
-            public InputAction @Run => m_Wrapper.m_Avatar_Run;
+            public InputAction @Dash => m_Wrapper.m_Avatar_Dash;
             public InputActionMap Get() { return m_Wrapper.m_Avatar; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -358,9 +402,9 @@ namespace Game.Input
                     @Jump.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnJump;
                     @Jump.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnJump;
                     @Jump.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnJump;
-                    @Run.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnRun;
-                    @Run.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnRun;
-                    @Run.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnRun;
+                    @Dash.started -= m_Wrapper.m_AvatarActionsCallbackInterface.OnDash;
+                    @Dash.performed -= m_Wrapper.m_AvatarActionsCallbackInterface.OnDash;
+                    @Dash.canceled -= m_Wrapper.m_AvatarActionsCallbackInterface.OnDash;
                 }
                 m_Wrapper.m_AvatarActionsCallbackInterface = instance;
                 if (instance != null)
@@ -377,9 +421,9 @@ namespace Game.Input
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
-                    @Run.started += instance.OnRun;
-                    @Run.performed += instance.OnRun;
-                    @Run.canceled += instance.OnRun;
+                    @Dash.started += instance.OnDash;
+                    @Dash.performed += instance.OnDash;
+                    @Dash.canceled += instance.OnDash;
                 }
             }
         }
@@ -390,7 +434,7 @@ namespace Game.Input
             void OnCameraVelocity(InputAction.CallbackContext context);
             void OnCameraPosition(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
-            void OnRun(InputAction.CallbackContext context);
+            void OnDash(InputAction.CallbackContext context);
         }
     }
 }

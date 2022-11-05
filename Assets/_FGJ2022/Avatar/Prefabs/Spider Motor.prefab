@@ -52,10 +52,12 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 1073741879
+  dragTime: 1
+  turnSpeed: 1
+  movement: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   dragDirection: {x: 0, y: 0, z: 0}
   dragVelocity: {x: 0, y: 0, z: 0}
-  dragTime: 1
   targetRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &4609222201972308460
 MonoBehaviour:
@@ -74,12 +76,47 @@ MonoBehaviour:
   attachedCamera: {fileID: 0}
   movementSpeed: 15
   movementTime: 0.2
-  turnSpeed: 5
   jumpSpeed: 40
+  dashSpeed: 60
   movementInput: {x: 0, y: 0}
   movementAcceleration: {x: 0, y: 0, z: 0}
-  m_intendsToJump: 0
-  m_intendsToJumpStart: 0
+  intendsJump: 0
+  intendsJumpStart: 0
+  canDash: 0
+  intendsDash: 0
+  intendsDashStart: 0
+  cameraInput: {x: 0, y: 0, z: 0}
+  motorInput: {x: 0, y: 0, z: 0}
+  onJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c093a455c1a73794ea738ba517bff79b, type: 2}
+        m_TargetAssemblyTypeName: Game.Effects.PlayAudioEffect, Game.Common
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDash:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: fa0200c17777c3a44937db976319c545, type: 2}
+        m_TargetAssemblyTypeName: Game.Effects.PlayAudioEffect, Game.Common
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7552389560940117609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,3 +130,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedController: {fileID: 4609222201972308460}
+  jumpBufferDuration: 0.2
+  dashBufferDuration: 0.2
