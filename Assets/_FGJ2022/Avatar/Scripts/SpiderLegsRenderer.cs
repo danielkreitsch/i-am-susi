@@ -24,10 +24,13 @@ namespace Game.Avatar {
             }
 
             public void Dispose() {
-                if (Application.isPlaying) {
-                    Destroy(renderer);
-                } else {
-                    DestroyImmediate(renderer);
+                if (renderer) {
+                    if (Application.isPlaying) {
+                        Destroy(renderer);
+                    } else {
+                        DestroyImmediate(renderer);
+                    }
+                    renderer = null;
                 }
             }
         }
@@ -50,7 +53,13 @@ namespace Game.Avatar {
             if (!spider) {
                 transform.TryGetComponentInParent(out spider);
             }
+        }
 
+        [SerializeField, ReadOnly]
+        Leg[] legs = Array.Empty<Leg>();
+
+
+        void OnEnable() {
             if (spider) {
                 legs = spider
                     .GetComponentsInChildren<IKChain>()
@@ -61,10 +70,7 @@ namespace Game.Avatar {
             }
         }
 
-        [SerializeField, ReadOnly]
-        Leg[] legs = Array.Empty<Leg>();
-
-        void OnDestroy() {
+        void OnDisable() {
             foreach (var leg in legs) {
                 leg.Dispose();
             }
@@ -84,7 +90,7 @@ namespace Game.Avatar {
                 var positions = leg.chain
                     .joints
                     .Select(joint => joint.transform.position)
-                    .Prepend(spider.transform.position)
+                    //.Prepend(spider.transform.position)
                     .ToArray();
                 leg.renderer.positionCount = positions.Length;
                 leg.renderer.SetPositions(positions);
