@@ -2,6 +2,7 @@ using Game.Avatar.SpiderImpl;
 using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Avatar {
     sealed class AvatarController : MonoBehaviour, ILaserTarget, IVacuumTarget {
@@ -81,6 +82,12 @@ namespace Game.Avatar {
         [SerializeField]
         Vector3 motorInput;
 
+        [Header("Events")]
+        [SerializeField]
+        UnityEvent<GameObject> onJump = new();
+        [SerializeField]
+        UnityEvent<GameObject> onDash = new();
+
         void OnDrawGizmos() {
             Gizmos.color = Color.red.WithAlpha(0.5f);
             DrawVector3(cameraInput * 10);
@@ -110,6 +117,7 @@ namespace Game.Avatar {
 
             if (canJump && TryConsumeJumpStart()) {
                 velocity += attachedMotor.groundNormal * jumpSpeed;
+                onJump.Invoke(gameObject);
             }
 
             if (canDash && TryConsumeDashStart()) {
@@ -117,6 +125,7 @@ namespace Game.Avatar {
                 velocity += motorInput == Vector3.zero
                     ? spider.transform.forward * dashSpeed
                     : motorInput.normalized * dashSpeed;
+                onDash.Invoke(gameObject);
             }
         }
 
