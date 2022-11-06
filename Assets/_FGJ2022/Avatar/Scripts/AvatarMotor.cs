@@ -8,7 +8,7 @@ namespace Game.Avatar {
         [SerializeField]
         Spider spider;
         [SerializeField]
-        Rigidbody attachedRigidbody;
+        public Rigidbody attachedRigidbody;
         [SerializeField]
         SphereCollider attachedCollider;
         [SerializeField]
@@ -87,6 +87,10 @@ namespace Game.Avatar {
         int raycastCount;
 
         void Move(float deltaTime) {
+            if (!attachedRigidbody.isKinematic) {
+                return;
+            }
+
             velocity += isGrounded
                 ? Physics.gravity.magnitude * deltaTime * -groundNormal
                 : Physics.gravity * deltaTime;
