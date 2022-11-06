@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2520278269949936837}
   - component: {fileID: 1934496528612152860}
   - component: {fileID: 8018329966707826220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VacuumTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2252142569512170676}
   - component: {fileID: 2252142569512170677}
   - component: {fileID: 2252142569512170678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Vacuum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 8250378962570302105}
   - component: {fileID: 4891565916125384881}
   - component: {fileID: 2252142570579685789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleaner: {fileID: 3187437627581845171}
-  avatar: {fileID: 0}
   initialState: 0
   optimalDistanceToShoot: 0.5
 --- !u!114 &4891565916125384881
@@ -298,7 +297,7 @@ GameObject:
   - component: {fileID: 2252142570913042306}
   - component: {fileID: 5625225759839978341}
   - component: {fileID: 763250894}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +408,7 @@ GameObject:
   - component: {fileID: 8422204964007800850}
   - component: {fileID: 383862631589490992}
   - component: {fileID: 5212574715171209382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DeathTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
