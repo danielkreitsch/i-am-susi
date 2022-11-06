@@ -571,8 +571,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8929789375435492306}
-  m_LocalRotation: {x: 0.117014244, y: -0.00000003417636, z: 0.000000004026784, w: 0.99313027}
-  m_LocalPosition: {x: 36.6, y: 115.5, z: 262.1}
+  m_LocalRotation: {x: 0.08042035, y: -0, z: -0, w: 0.996761}
+  m_LocalPosition: {x: 36.6, y: 115.5, z: 255.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -709,6 +709,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8929789374402758946}
     m_Modifications:
+    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
+        type: 3}
+      propertyPath: m_YAxis.Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4447324919927550419, guid: 586256901ddee7d479d48793d3dcf2e4,
         type: 3}
       propertyPath: attachedBrain
@@ -732,7 +737,7 @@ PrefabInstance:
     - target: {fileID: 9070160006394363484, guid: 586256901ddee7d479d48793d3dcf2e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 261.81052
+      value: 254.81052
       objectReference: {fileID: 0}
     - target: {fileID: 9070160006394363484, guid: 586256901ddee7d479d48793d3dcf2e4,
         type: 3}
