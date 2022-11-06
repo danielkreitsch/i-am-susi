@@ -65,7 +65,7 @@ namespace Game.Avatar {
             set => attachedMotor.movement = value;
         }
 
-        bool dashIsOnCooldown => lastDashTime + dashCooldown < Time.realtimeSinceStartup;
+        bool dashIsOnCooldown => lastDashTime + dashCooldown > Time.realtimeSinceStartup;
 
         void Awake() {
             OnValidate();
@@ -127,7 +127,7 @@ namespace Game.Avatar {
 
             velocity = Vector3.SmoothDamp(velocity, movement, ref movementAcceleration, movementTime);
 
-            if (attachedMotor.isGrounded && dashIsOnCooldown) {
+            if (attachedMotor.isGrounded && !dashIsOnCooldown) {
                 canDash = true;
             }
 

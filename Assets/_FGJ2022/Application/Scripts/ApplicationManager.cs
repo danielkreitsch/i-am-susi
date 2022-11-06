@@ -1,4 +1,3 @@
-using System;
 using Glowdragon.VariableDisplay;
 using UnityEngine;
 using Zenject;
@@ -11,25 +10,12 @@ public class ApplicationManager : MonoBehaviour
     [SerializeField]
     private float globalShootCooldown;
 
-    private float globalShootCooldownTimer;
+    private float lastShoot;
 
-    public bool ShootIsOnGlobalCooldown => this.globalShootCooldownTimer < this.globalShootCooldown;
-    
-    private void Awake()
-    {
-    }
-    
+    public bool ShootIsOnGlobalCooldown => this.lastShoot + this.globalShootCooldown > Time.realtimeSinceStartup;
+
     public void ResetShootCooldown()
     {
-        this.globalShootCooldownTimer = 0;
-    }
-
-    private void Update()
-    {
-        if (this.globalShootCooldownTimer < this.globalShootCooldown)
-        {
-            this.globalShootCooldownTimer += Time.deltaTime;
-            this.variableDisplay.Set("Global", "Shoot CD", Mathf.Max(0, this.globalShootCooldown - this.globalShootCooldownTimer));
-        }
+        this.lastShoot = Time.realtimeSinceStartup;
     }
 }

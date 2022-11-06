@@ -36,6 +36,10 @@ namespace UnityConstants
         /// Name of tag 'Enemy'.
         /// </summary>
         public const string Enemy = "Enemy";
+        /// <summary>
+        /// Name of tag 'Cover'.
+        /// </summary>
+        public const string Cover = "Cover";
     }
 
     public static class SortingLayers
