@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000}
   waitUntilInvoke: 0
-  waitTimer: 1
-  particlesPrefab: {fileID: 7113385406692969221, guid: 9835a92f14df5ec4a80e7150269fffa0,
+  waitTimer: 0
+  particlesPrefab: {fileID: 7113385406692969221, guid: bdba50c1e5d40684db555d194f674003,
     type: 3}
+  parentToContext: 1
   overrideColor: 1
   colorGradient:
     m_Mode: 2

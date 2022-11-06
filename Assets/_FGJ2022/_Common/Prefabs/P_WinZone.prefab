@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4696023517523995151}
   - component: {fileID: -7782402860098128726}
   - component: {fileID: 6184913453861242699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P_WinZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
