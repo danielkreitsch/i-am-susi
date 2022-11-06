@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Game.Avatar {
-    sealed class AvatarController : MonoBehaviour, ILaserTarget, IVacuumTarget {
+    sealed class AvatarController : MonoBehaviour {
         [SerializeField]
         Spider spider;
         [SerializeField]
@@ -76,7 +76,17 @@ namespace Game.Avatar {
             if (!attachedCamera) {
                 attachedCamera = FindObjectOfType<AvatarCamera>();
             }
+            if (spider && attachedCamera) {
+                attachedCamera.cameraTarget = spider.transform;
+            }
         }
+        void OnEnable() {
+            attachedCamera.cameraTarget = spider.transform;
+        }
+        void OnDisable() {
+            attachedCamera.cameraTarget = null;
+        }
+
         [SerializeField]
         Vector3 cameraInput;
         [SerializeField]
@@ -122,7 +132,7 @@ namespace Game.Avatar {
 
             if (canDash && TryConsumeDashStart()) {
                 canDash = false;
-                velocity += motorInput == Vector3.zero
+                velocity = motorInput == Vector3.zero
                     ? spider.transform.forward * dashSpeed
                     : motorInput.normalized * dashSpeed;
                 onDash.Invoke(gameObject);
@@ -131,13 +141,6 @@ namespace Game.Avatar {
 
         Quaternion TranslateRotation(Vector3 goalForward) {
             return Quaternion.FromToRotation(Vector3.up, goalForward.normalized);
-        }
-
-        public void ReceiveLaser(GameObject laser) {
-            Debug.Log($"Got hit by laser {laser}!");
-        }
-        public void Apply(GameObject vacuum, Vector3 pullDirection, float strength) {
-            Debug.Log($"Got hit by vacuum {vacuum}!");
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 302098217}
   - component: {fileID: 302098215}
   - component: {fileID: 302098216}
-  - component: {fileID: 6888946638104914767}
+  - component: {fileID: 673585981224941133}
   m_Layer: 31
   m_Name: Leg_L3
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &6888946638104914767
+--- !u!120 &673585981224941133
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 1529482868}
   - component: {fileID: 1529482867}
   - component: {fileID: 1529482866}
-  - component: {fileID: 5153469196503983242}
+  - component: {fileID: 2545822753188039267}
   m_Layer: 31
   m_Name: Leg_L1
   m_TagString: Untagged
@@ -776,7 +776,7 @@ MonoBehaviour:
   minAngle: -10
   maxAngle: 20
   weight: 1
---- !u!120 &5153469196503983242
+--- !u!120 &2545822753188039267
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1528,7 +1528,7 @@ GameObject:
   - component: {fileID: 1324680883}
   - component: {fileID: 1324680882}
   - component: {fileID: 1324680884}
-  - component: {fileID: 5018077956428019917}
+  - component: {fileID: 2115843169188200530}
   m_Layer: 31
   m_Name: Leg_R3
   m_TagString: Untagged
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &5018077956428019917
+--- !u!120 &2115843169188200530
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2125,7 +2125,7 @@ GameObject:
   - component: {fileID: 8634589292763693861}
   - component: {fileID: 6757185163653745695}
   - component: {fileID: 1173845210}
-  - component: {fileID: 4275010344560376975}
+  - component: {fileID: 9086694942697656742}
   m_Layer: 31
   m_Name: Leg_L2
   m_TagString: Untagged
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &4275010344560376975
+--- !u!120 &9086694942697656742
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2480,7 +2480,7 @@ GameObject:
   - component: {fileID: 902956908}
   - component: {fileID: 902956907}
   - component: {fileID: 902956909}
-  - component: {fileID: 876475100295944364}
+  - component: {fileID: 3605543583982044379}
   m_Layer: 31
   m_Name: Leg_L4
   m_TagString: Untagged
@@ -2634,7 +2634,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &876475100295944364
+--- !u!120 &3605543583982044379
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3422,7 +3422,7 @@ GameObject:
   - component: {fileID: 49142272}
   - component: {fileID: 49142271}
   - component: {fileID: 49142273}
-  - component: {fileID: 7223770798065216350}
+  - component: {fileID: 1997127768735878891}
   m_Layer: 31
   m_Name: Leg_R4
   m_TagString: Untagged
@@ -3576,7 +3576,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &7223770798065216350
+--- !u!120 &1997127768735878891
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3746,7 +3746,7 @@ GameObject:
   - component: {fileID: 8634589291851047554}
   - component: {fileID: 8634589291851047553}
   - component: {fileID: 8634589291851047552}
-  - component: {fileID: 1162412886186246568}
+  - component: {fileID: 936776386982009764}
   m_Layer: 31
   m_Name: Leg_R2
   m_TagString: Untagged
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   minAngle: -20
   maxAngle: 20
   weight: 1
---- !u!120 &1162412886186246568
+--- !u!120 &936776386982009764
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4127,6 +4127,7 @@ GameObject:
   - component: {fileID: 5356263202611163170}
   - component: {fileID: 8634589293312570790}
   - component: {fileID: 5093029894775694886}
+  - component: {fileID: 2833739788806918990}
   m_Layer: 31
   m_Name: Spider
   m_TagString: Untagged
@@ -4272,6 +4273,47 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &2833739788806918990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634589293312570784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db664c90369fa34d9f6051d78e836aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedMotor: {fileID: 2770777770113378468}
+  onReceiveLaser:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9a5e86c426c628e46aa5413bd8c59c1f, type: 2}
+        m_TargetAssemblyTypeName: Game.Effects.InstantiateParticlesEffect, Game.Common
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8634589293312570784}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  pullStrength: 10
 --- !u!1 &8634589293442604250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4403,7 +4445,7 @@ GameObject:
   - component: {fileID: 90793497}
   - component: {fileID: 90793496}
   - component: {fileID: 90793498}
-  - component: {fileID: 668694671119084207}
+  - component: {fileID: 7078810485567738715}
   m_Layer: 31
   m_Name: Leg_R1
   m_TagString: Untagged
@@ -4556,7 +4598,7 @@ MonoBehaviour:
   minAngle: -10
   maxAngle: 20
   weight: 1
---- !u!120 &668694671119084207
+--- !u!120 &7078810485567738715
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5511,6 +5553,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 770141326902462832}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2770777770113378468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3225651313324237268, guid: a4570c9fc42f91440b1e686470895d6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 770141326902462832}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56bfbdccf478a14fb698ac95807c8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5737117825905054394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5572,42 +5626,42 @@ PrefabInstance:
         type: 3}
       propertyPath: legs.Array.data[0].renderer
       value: 
-      objectReference: {fileID: 4275010344560376975}
+      objectReference: {fileID: 9086694942697656742}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[1].renderer
       value: 
-      objectReference: {fileID: 1162412886186246568}
+      objectReference: {fileID: 936776386982009764}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[2].renderer
       value: 
-      objectReference: {fileID: 6888946638104914767}
+      objectReference: {fileID: 673585981224941133}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[3].renderer
       value: 
-      objectReference: {fileID: 5018077956428019917}
+      objectReference: {fileID: 2115843169188200530}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[4].renderer
       value: 
-      objectReference: {fileID: 876475100295944364}
+      objectReference: {fileID: 3605543583982044379}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[5].renderer
       value: 
-      objectReference: {fileID: 7223770798065216350}
+      objectReference: {fileID: 1997127768735878891}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[6].renderer
       value: 
-      objectReference: {fileID: 5153469196503983242}
+      objectReference: {fileID: 2545822753188039267}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[7].renderer
       value: 
-      objectReference: {fileID: 668694671119084207}
+      objectReference: {fileID: 7078810485567738715}
     - target: {fileID: -6805188219061522891, guid: 62caf31c0bc1a1c469b31f7312d4ba0f,
         type: 3}
       propertyPath: legs.Array.data[0].transform

@@ -7,7 +7,7 @@ namespace Game.Effects {
         [SerializeField]
         EventReference soundEvent = new();
 
-        public override void Invoke(GameObject context) {
+        protected override void InvokeNow(GameObject context) {
             if (soundEvent.IsNull) {
                 return;
             }

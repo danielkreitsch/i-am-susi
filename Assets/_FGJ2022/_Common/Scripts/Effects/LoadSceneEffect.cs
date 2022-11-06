@@ -11,7 +11,7 @@ namespace Game.Effects {
         [SerializeField]
         LoadSceneMode loadSceneMode = LoadSceneMode.Single;
 
-        public override void Invoke(GameObject context) {
+        protected override void InvokeNow(GameObject context) {
             Assert.IsTrue(scene.IsAssigned, $"Scene has not been assigned to asset {this}!");
             scene.LoadScene(loadSceneMode);
         }

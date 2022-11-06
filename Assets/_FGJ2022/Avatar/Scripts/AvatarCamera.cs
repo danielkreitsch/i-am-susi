@@ -1,17 +1,34 @@
 using Cinemachine;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Avatar {
     sealed class AvatarCamera : MonoBehaviour, AxisState.IInputAxisProvider {
         [SerializeField]
-        CinemachineBrain attachedCamera;
+        CinemachineVirtualCameraBase attachedCamera;
+        [SerializeField]
+        CinemachineBrain attachedBrain;
         [SerializeField]
         public Vector2 axisInput;
+        [SerializeField]
+        UnityEvent<GameObject> onTargetGone = new();
 
-        public Vector3 right => attachedCamera.transform.right;
-        public Vector3 up => attachedCamera.transform.up;
-        public Vector3 forward => attachedCamera.transform.forward;
+        public Vector3 right => attachedBrain.transform.right;
+        public Vector3 up => attachedBrain.transform.up;
+        public Vector3 forward => attachedBrain.transform.forward;
+
+        public Transform cameraTarget {
+            get => attachedCamera.Follow;
+            set {
+                attachedCamera.Follow = value;
+                attachedCamera.LookAt = value;
+
+                if (!value) {
+                    onTargetGone.Invoke(gameObject);
+                }
+            }
+        }
 
         void Awake() {
             OnValidate();
@@ -20,7 +37,10 @@ namespace Game.Avatar {
         [ContextMenu(nameof(OnValidate))]
         void OnValidate() {
             if (!attachedCamera) {
-                attachedCamera = FindObjectOfType<CinemachineBrain>();
+                TryGetComponent(out attachedCamera);
+            }
+            if (!attachedBrain) {
+                attachedBrain = FindObjectOfType<CinemachineBrain>();
             }
         }
 
@@ -41,9 +61,9 @@ namespace Game.Avatar {
         }
 
         public Vector3 TranslateInput(in Vector3 input) {
-            var right = attachedCamera.transform.right * input.x;
-            var up = attachedCamera.transform.up * input.y;
-            var forward = attachedCamera.transform.forward * input.z;
+            var right = attachedBrain.transform.right * input.x;
+            var up = attachedBrain.transform.up * input.y;
+            var forward = attachedBrain.transform.forward * input.z;
             return (right + up + forward).normalized * input.magnitude;
         }
     }

@@ -54,6 +54,14 @@ namespace Game.Avatar {
                     attachedController.intendsJumpStart = false;
                 }
             }
+
+            if (attachedController.intendsDashStart) {
+                if (dashBufferTimer >= 0) {
+                    dashBufferTimer -= Time.deltaTime;
+                } else {
+                    attachedController.intendsDashStart = false;
+                }
+            }
         }
 
         public void OnJump(InputAction.CallbackContext context) {

@@ -629,36 +629,6 @@ PrefabInstance:
       propertyPath: m_YAxis.m_InvertInput
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[0].m_Height
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[0].m_Radius
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[1].m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[1].m_Radius
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[2].m_Height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8226463696689904834, guid: 586256901ddee7d479d48793d3dcf2e4,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[2].m_Radius
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 1112546742139695482, guid: 586256901ddee7d479d48793d3dcf2e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,7 +748,7 @@ PrefabInstance:
         type: 3}
       propertyPath: attachedCamera
       value: 
-      objectReference: {fileID: 8929789375435492313}
+      objectReference: {fileID: 8518917982869555004}
     - target: {fileID: 6256934494796125815, guid: 586256901ddee7d479d48793d3dcf2e4,
         type: 3}
       propertyPath: m_FollowOffset.y

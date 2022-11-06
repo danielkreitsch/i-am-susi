@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cca2d4cf56c4934f923b2c1ad592669, type: 3}
   m_Name: E_Game_Exit
   m_EditorClassIdentifier: 
-  asset: {fileID: 0}
+  asset: {fileID: 11400000}
+  waitUntilInvoke: 0
+  waitTimer: 1
   method: 0

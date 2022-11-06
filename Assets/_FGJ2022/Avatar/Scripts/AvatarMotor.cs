@@ -26,9 +26,9 @@ namespace Game.Avatar {
         [SerializeField]
         public Vector3 velocity = Vector3.zero;
         [SerializeField]
-        public Vector3 dragDirection = Vector3.zero;
-        [SerializeField]
         public Vector3 dragVelocity = Vector3.zero;
+        [SerializeField]
+        public Vector3 dragAcceleration = Vector3.zero;
         [SerializeField]
         public Quaternion targetRotation = Quaternion.identity;
 
@@ -91,7 +91,8 @@ namespace Game.Avatar {
                 ? Physics.gravity.magnitude * deltaTime * -groundNormal
                 : Physics.gravity * deltaTime;
 
-            velocity = Vector3.SmoothDamp(velocity, dragDirection, ref dragVelocity, dragTime);
+            velocity = Vector3.SmoothDamp(velocity, dragVelocity, ref dragAcceleration, dragTime);
+            dragVelocity = Vector3.zero;
 
             var totalVelocity = velocity + movement;
             var direction = totalVelocity.normalized;
