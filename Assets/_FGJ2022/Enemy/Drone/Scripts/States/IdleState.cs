@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Game.Utility;
+using UnityEngine;
 
 namespace FGJ2022.Drone
 {
@@ -21,6 +22,12 @@ namespace FGJ2022.Drone
         {
             var myPos = agent.Drone.Model.transform.position;
             var path = agent.Drone.IdlePath;
+            
+            if (path == null)
+            {
+                Debug.LogError("No idle path set", agent.gameObject);
+                return;
+            }
             
             if (this.currentWaypoint == null)
             {

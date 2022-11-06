@@ -21,7 +21,13 @@ namespace FGJ2022.Drone
 
         public void Update(DroneAgent agent)
         {
-            var avatarPos = agent.Avatar.transform.position;
+            if (agent.LaserTarget == null)
+            {
+                agent.StateMachine.ChangeState(DroneStateId.Idle);
+                return;
+            }
+            
+            var avatarPos = agent.LaserTarget.transform.position;
             var myPos = this.model.WeaponTransform.position;
             var horizontalDistance = Vector2.Distance(new Vector2(myPos.x, myPos.z), new Vector2(avatarPos.x, avatarPos.z));
             var moveTarget = avatarPos; //myPos + (myPos - avatarPos);//.normalized * (1 - horizontalDistance);

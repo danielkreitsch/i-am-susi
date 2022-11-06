@@ -12,6 +12,7 @@ namespace FGJ2022.Cleaner
         {
             if (other.TryGetComponent<IVacuumTarget>(out var vacuumTarget))
             {
+                this.cleanerAgent.VacuumTarget = vacuumTarget;
                 this.cleanerAgent.StateMachine.ChangeState(CleanerStateId.FocusTarget);
             }
         }

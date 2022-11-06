@@ -253,7 +253,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8929789373931572381}
-  - component: {fileID: 8929789373931572383}
   - component: {fileID: 8929789373931572380}
   m_Layer: 0
   m_Name: IntroCamera
@@ -278,18 +277,6 @@ Transform:
   m_Father: {fileID: 8929789374402758946}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8929789373931572383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8929789373931572370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d4ca1595fe9624584d70f986dbee61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8929789373931572380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +408,11 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 8929789374402758956}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 8518917982869555004}
+  - {fileID: 8201868628866114874}
+  - {fileID: 8929789373931572380}
+  - {fileID: 7582146561868759309}
   m_Instructions:
   - m_FullHash: -1668886256
     m_VirtualCamera: {fileID: 8518917982869555004}
@@ -580,8 +571,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8929789375435492306}
-  m_LocalRotation: {x: 0.059366688, y: -0.67239165, z: 0.054249678, w: 0.73581386}
-  m_LocalPosition: {x: -73.380974, y: 15.64, z: 5.8021426}
+  m_LocalRotation: {x: 0.052079286, y: 0.15681924, z: -0.008281161, w: 0.9862185}
+  m_LocalPosition: {x: 5.6754007, y: 113, z: 206.12239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
