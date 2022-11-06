@@ -4,7 +4,7 @@ using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Game.Effects {
-    abstract class EffectBase : ScriptableObject {
+    public abstract class EffectBase : ScriptableObject {
         sealed class CoroutineInvoker : MonoBehaviour {
         }
         [SerializeField, ReadOnly]
