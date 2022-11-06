@@ -17,16 +17,10 @@ namespace FGJ2022.Cleaner
         {
             var avatarPos = agent.Avatar.transform.position;
             var myPos = agent.Cleaner.transform.position;
-            var horizontalDistance = Vector2.Distance(new Vector2(myPos.x, myPos.z), new Vector2(avatarPos.x, avatarPos.z));
             var moveTarget = avatarPos;//myPos + (myPos - avatarPos);//.normalized * (1 - horizontalDistance);
             agent.Cleaner.Controller.SetMoveTarget(moveTarget);
 
             //agent.Cleaner.Model.UpAngle = Mathf.Atan2(avatarPos.x - myPos.x, avatarPos.z - myPos.z) * Mathf.Rad2Deg;
-
-            if (horizontalDistance < agent.OptimalDistanceToShoot)
-            {
-                agent.StateMachine.ChangeState(CleanerStateId.Shoot);
-            }
         }
 
         public void Exit(CleanerAgent agent)

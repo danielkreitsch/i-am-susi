@@ -16,6 +16,7 @@ namespace FGJ2022.Cleaner
 
         public void Enter(CleanerAgent agent)
         {
+            agent.Cleaner.Model.SpotAvatarTrigger.gameObject.SetActive(true);
         }
 
         public void Update(CleanerAgent agent)
@@ -41,6 +42,7 @@ namespace FGJ2022.Cleaner
 
         public void Exit(CleanerAgent agent)
         {
+            agent.Cleaner.Model.SpotAvatarTrigger.gameObject.SetActive(false);
         }
     }
 }
