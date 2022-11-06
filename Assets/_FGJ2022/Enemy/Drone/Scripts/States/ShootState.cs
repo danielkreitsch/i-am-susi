@@ -56,7 +56,7 @@ namespace FGJ2022.Drone
             agent.gameObject.Tween("Shoot", 0f, 1f, 1f, TweenScaleFunctions.Linear, t =>
             {
                 this.model.WeaponPosition = 0.37f + 0.2f * t.CurrentValue;
-                this.model.WeaponRingAngle = t.CurrentValue * 360 * 3;
+                this.model.WeaponRingAngle = t.CurrentValue * 360 * 2;
                 this.model.Laser.Thickness = 0.005f - t.CurrentValue * 0.005f;
             });
             yield return new WaitForSeconds(1f);
