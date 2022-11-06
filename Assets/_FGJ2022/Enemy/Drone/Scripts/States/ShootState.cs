@@ -64,7 +64,7 @@ namespace FGJ2022.Drone
             this.model.Laser.IsDeadly = true;
             agent.gameObject.Tween("Shoot", 0f, 1f, 0.5f, TweenScaleFunctions.Linear, t =>
             {
-                this.model.Laser.Thickness = 0.2f - t.CurrentValue * 0.2f;
+                this.model.Laser.Thickness = 0.1f - t.CurrentValue * 0.1f;
             });
             yield return new WaitForSeconds(0.5f);
             this.model.Laser.IsDeadly = false;

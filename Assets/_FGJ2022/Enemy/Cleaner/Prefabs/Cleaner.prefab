@@ -407,7 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8422204964007800850}
   - component: {fileID: 383862631589490992}
-  - component: {fileID: 8042948218479378635}
+  - component: {fileID: 5212574715171209382}
   m_Layer: 0
   m_Name: DeathTrigger
   m_TagString: Untagged
@@ -443,7 +443,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16, y: 8, z: 8}
   m_Center: {x: 0, y: -2, z: 14}
---- !u!114 &8042948218479378635
+--- !u!114 &5212574715171209382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,6 +452,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3381457552887953485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324d7c449b0c9a44f96ff2072143dc98, type: 3}
+  m_Script: {fileID: 11500000, guid: 55b1e8c7fd3d4e6899d580b20569601f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

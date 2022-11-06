@@ -20,6 +20,9 @@ namespace FGJ2022.Drone
         private DroneModel model;
 
         [SerializeField]
+        private LayerMask avatarLayer;
+        
+        [SerializeField]
         private LayerMask solidLayer;
         
         [SerializeField]
@@ -33,6 +36,8 @@ namespace FGJ2022.Drone
 
         public DroneModel Model => this.model;
 
+        public LayerMask AvatarLayer => this.avatarLayer;
+        
         public LayerMask SolidLayer => this.solidLayer;
 
         public bool ShootIsOnCooldown => this.lastShoot + this.shootCooldown > Time.realtimeSinceStartup;
