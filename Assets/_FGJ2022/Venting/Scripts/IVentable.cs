@@ -1,5 +1,5 @@
 namespace Game.Venting {
-    interface IVentable {
+    public interface IVentable {
         void StartVenting(IVent inVent, IVent outVent);
     }
 }
