@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 013f0aeca6d77fa41bcd5a7aceb0be80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fensterrahmen
+    second: {fileID: 2100000, guid: 9d5e02264926b1f42b03d386767d83a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: wand
     second: {fileID: 2100000, guid: 44601847c7ff6e74e9fd8ee5379550fc, type: 2}
   - first:

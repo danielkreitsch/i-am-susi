@@ -7,9 +7,17 @@ using FMOD.Studio;
 using FMODUnity;
 using MyBox;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace AssemblyCSharp {
-    sealed class EnemyManager : MonoBehaviour {
+    sealed class EnemyManager : MonoBehaviour
+    {
+        [SerializeField]
+        private Volume volume;
+        
+        private ChromaticAberration chromaticEffect;
+        
         [SerializeField, ParamRef]
         string enemyCountParameter = string.Empty;
         RESULT enemyCountResult = RESULT.ERR_UNINITIALIZED;
@@ -34,6 +42,7 @@ namespace AssemblyCSharp {
 
         void Awake() {
             OnValidate();
+            this.volume.profile.TryGet(out this.chromaticEffect);
         }
         [ContextMenu(nameof(OnValidate))]
         void OnValidate() {
@@ -42,8 +51,11 @@ namespace AssemblyCSharp {
         }
         void Start() {
             enemyCountResult = RuntimeManager.StudioSystem.getParameterDescriptionByName(enemyCountParameter, out enemyCountDescription);
+            
         }
         void Update() {
+            this.chromaticEffect.intensity.value = (1 + Mathf.Sin(Time.timeSinceLevelLoad) / 2) * this.currentEnemyCount / 10f;
+            
             if (enemyCountResult == RESULT.OK) {
                 currentEnemyCount = enemyCountOffset + aggroCleaners + aggroDrones;
                 RuntimeManager.StudioSystem.setParameterByID(enemyCountDescription.id, currentEnemyCount);

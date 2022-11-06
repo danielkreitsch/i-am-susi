@@ -23,7 +23,7 @@ namespace FGJ2022.Drone {
             var avatarPos = agent.LaserTarget.transform.position;
             var myPos = model.WeaponTransform.position;
             float horizontalDistance = Vector2.Distance(new Vector2(myPos.x, myPos.z), new Vector2(avatarPos.x, avatarPos.z));
-            var moveTarget = avatarPos; //myPos + (myPos - avatarPos);//.normalized * (1 - horizontalDistance);
+            var moveTarget = myPos + (myPos - avatarPos).normalized * (10 - horizontalDistance);
             agent.Drone.Controller.SetMoveTarget(moveTarget);
 
             bool wasHit = Physics.Raycast(myPos, avatarPos - myPos, out var solidHit, Vector3.Distance(avatarPos, myPos), agent.Drone.SolidLayer);
