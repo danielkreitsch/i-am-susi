@@ -15,6 +15,9 @@ namespace FGJ2022.Drone
 
         [SerializeField]
         private Transform laserRaycastOriginTransform;
+
+        [SerializeField]
+        private SpotAvatarTrigger spotAvatarTrigger;
         
         private float _localY;
         private float _upAngle;
@@ -27,6 +30,8 @@ namespace FGJ2022.Drone
 
         public Transform LaserRaycastOriginTransform => this.laserRaycastOriginTransform;
 
+        public SpotAvatarTrigger SpotAvatarTrigger => this.spotAvatarTrigger;
+        
         public float LocalY
         {
             get => this._localY;

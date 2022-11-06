@@ -34,7 +34,7 @@ namespace FGJ2022.Drone
 
         public void ChangeState(DroneStateId newState)
         {
-            Debug.Log("[" + this.Agent.gameObject.name + "] Change state from " + this.CurrentState + " to " + newState);
+            //Debug.Log("[" + this.Agent.gameObject.name + "] Change state from " + this.CurrentState + " to " + newState);
             this.GetState(this.CurrentState)?.Exit(this.Agent);
             this.CurrentState = newState;
             this.variableDisplay.Set(this.Agent.gameObject.name, "State", this.CurrentState);

@@ -17,11 +17,9 @@ namespace FGJ2022.Cleaner
             set => this.navAgent.isStopped = value;
         }
         
-        public void SetTarget(Vector3 target)
+        public void SetMoveTarget(Vector3 target)
         {
-            //target.y = 0;
             this.navAgent.SetDestination(target);
-            //Debug.Log("Destination: " + target);
         }
     }
 }

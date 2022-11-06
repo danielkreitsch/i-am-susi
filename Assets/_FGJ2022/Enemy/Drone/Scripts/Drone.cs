@@ -12,7 +12,7 @@ namespace FGJ2022.Drone
 
         [SerializeField]
         private DroneAgent agent;
-        
+
         [SerializeField]
         private DroneController controller;
 
@@ -21,12 +21,15 @@ namespace FGJ2022.Drone
 
         [SerializeField]
         private LayerMask avatarLayer;
-        
+
         [SerializeField]
         private LayerMask solidLayer;
-        
+
         [SerializeField]
         private float shootCooldown;
+
+        [SerializeField]
+        private Path idlePath;
 
         private float lastShoot;
 
@@ -37,18 +40,21 @@ namespace FGJ2022.Drone
         public DroneModel Model => this.model;
 
         public LayerMask AvatarLayer => this.avatarLayer;
-        
+
         public LayerMask SolidLayer => this.solidLayer;
 
         public bool ShootIsOnCooldown => this.lastShoot + this.shootCooldown > Time.realtimeSinceStartup;
-
+        
+        public Path IdlePath => this.idlePath;
+        
         public void ResetShootCooldown()
         {
             this.lastShoot = Time.realtimeSinceStartup;
         }
 
-        private void Start() {
-            onStart.Invoke(gameObject);
+        private void Start()
+        {
+            this.onStart.Invoke(this.gameObject);
         }
 
         [SerializeField]

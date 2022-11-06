@@ -41,6 +41,8 @@ namespace FGJ2022.Drone
         private Vector3 targetLookPosition;*/
         private Vector3 modelRotationVelocity;
 
+        private Vector3 previousPosition;
+
         public bool IsStopped
         {
             get => this.navAgent.isStopped;
@@ -66,9 +68,21 @@ namespace FGJ2022.Drone
 
                 var myPos = this.drone.Model.transform.position;
                 var avatarPos = this.drone.Agent.Avatar.transform.position + 0.75f * Vector3.up;
+
+                var lookDirection = avatarPos - myPos;
+                if (this.drone.Agent.StateMachine.CurrentState == DroneStateId.Idle)
+                {
+                    var deltaPosition = myPos - this.previousPosition;
+                    if (!Mathf.Approximately(deltaPosition.magnitude, 0))
+                    {
+                        lookDirection = deltaPosition;
+                    }
+                }
+                this.previousPosition = myPos;
+                
                 this.drone.Model.transform.rotation = QuaternionUtility.SmoothDampQuaternion(
                     this.drone.Model.transform.rotation,
-                    Quaternion.LookRotation(avatarPos - myPos),
+                    Quaternion.LookRotation(lookDirection),
                     ref this.modelRotationVelocity,
                     currentState == DroneStateId.Shoot ? this.rotationSmoothTimePointing : this.rotationSmoothTime
                 );

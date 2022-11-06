@@ -39,7 +39,7 @@ namespace FGJ2022.Drone
             this.StateMachine = new DroneStateMachine(this, this.variableDisplay);
             this.StateMachine.RegisterState(new FocusTargetState());
             this.StateMachine.RegisterState(new ShootState());
-            this.StateMachine.RegisterState(new TargetKilledState());
+            this.StateMachine.RegisterState(new IdleState());
             this.StateMachine.ChangeState(this.initialState);
         }
         

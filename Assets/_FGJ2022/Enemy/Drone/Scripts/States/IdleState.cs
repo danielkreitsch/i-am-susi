@@ -1,27 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Game.Utility;
-using UnityEngine;
 
-namespace FGJ2022.Cleaner
+namespace FGJ2022.Drone
 {
-    public class CleanRoomState : CleanerState
+    public class IdleState: DroneState
     {
         private Waypoint currentWaypoint;
         
-        public CleanerStateId GetId()
+        public DroneStateId GetId()
         {
-            return CleanerStateId.CleanRoom;
+            return DroneStateId.Idle;
         }
 
-        public void Enter(CleanerAgent agent)
+        public void Enter(DroneAgent agent)
         {
+            agent.Drone.Model.SpotAvatarTrigger.gameObject.SetActive(true);
         }
 
-        public void Update(CleanerAgent agent)
+        public void Update(DroneAgent agent)
         {
-            var myPos = agent.Cleaner.transform.position;
-            var path = agent.Cleaner.CleaningPath;
+            var myPos = agent.Drone.Model.transform.position;
+            var path = agent.Drone.IdlePath;
             
             if (this.currentWaypoint == null)
             {
@@ -30,17 +29,18 @@ namespace FGJ2022.Cleaner
 
             var distanceToWaypoint = myPos.FlatDistanceTo(this.currentWaypoint.Position);
 
-            if (distanceToWaypoint < 10)
+            if (distanceToWaypoint < 30)
             {
                 this.currentWaypoint = path.Waypoints[(path.Waypoints.IndexOf(this.currentWaypoint) + 1) % path.Waypoints.Count];
             }
             
             var moveTarget = this.currentWaypoint.Position;
-            agent.Cleaner.Controller.SetMoveTarget(moveTarget);
+            agent.Drone.Controller.SetMoveTarget(moveTarget);
         }
 
-        public void Exit(CleanerAgent agent)
+        public void Exit(DroneAgent agent)
         {
+            agent.Drone.Model.SpotAvatarTrigger.gameObject.SetActive(false);
         }
     }
 }
