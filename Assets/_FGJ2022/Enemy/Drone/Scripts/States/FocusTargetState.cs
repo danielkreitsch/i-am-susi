@@ -29,10 +29,12 @@ namespace FGJ2022.Drone
             agent.Drone.Controller.SetMoveTarget(moveTarget);
             
             var aimsAtAvatar = Physics.Raycast(myPos, avatarPos, agent.OptimalDistanceToShoot * 2, Layers.Player);
-            var isOnCooldown = agent.Drone.ShootIsOnCooldown;
+            var isOnCooldown = agent.Drone.ShootIsOnCooldown || agent.ApplicationManager.ShootIsOnGlobalCooldown;
             var isCloseEnough = horizontalDistance < agent.OptimalDistanceToShoot;
             if (!isOnCooldown && isCloseEnough && aimsAtAvatar)
             {
+                agent.Drone.ResetShootCooldown();
+                agent.ApplicationManager.ResetShootCooldown();
                 agent.StateMachine.ChangeState(DroneStateId.Shoot);
             }
         }

@@ -7,6 +7,9 @@ namespace FGJ2022.Drone
     public class DroneAgent : MonoBehaviour
     {
         [Inject]
+        private ApplicationManager applicationManager;
+        
+        [Inject]
         private VariableDisplay variableDisplay;
         
         [SerializeField]
@@ -21,6 +24,8 @@ namespace FGJ2022.Drone
         [SerializeField]
         private float optimalDistanceToShoot;
 
+        public ApplicationManager ApplicationManager => this.applicationManager;
+        
         public Drone Drone => this.drone;
 
         public GameObject Avatar => this.avatar;
