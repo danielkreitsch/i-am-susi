@@ -5,11 +5,13 @@ namespace FGJ2022.Cleaner
     public class CleanerModel : MonoBehaviour
     {
         [SerializeField]
-        private Transform weaponTransform;
+        private SpotAvatarTrigger spotAvatarTrigger;
         
         private float _upAngle;
         private float _weaponPosition;
 
+        public SpotAvatarTrigger SpotAvatarTrigger => this.spotAvatarTrigger;
+        
         public float UpAngle
         {
             get => this._upAngle;
@@ -19,18 +21,6 @@ namespace FGJ2022.Cleaner
                 var eulerAngles = this.transform.eulerAngles;
                 eulerAngles.y = this._upAngle;
                 this.transform.eulerAngles = eulerAngles;
-            }
-        }
-
-        public float WeaponPosition
-        {
-            get => this._weaponPosition;
-            set
-            {
-                this._weaponPosition = value;
-                var localPosition = this.weaponTransform.localPosition;
-                localPosition.z = this._weaponPosition;
-                this.weaponTransform.localPosition = localPosition;
             }
         }
     }
