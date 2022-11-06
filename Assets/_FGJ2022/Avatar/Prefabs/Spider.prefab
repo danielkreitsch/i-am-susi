@@ -4176,7 +4176,7 @@ MonoBehaviour:
   forwardNormalAdjustSpeed: 2
   walkableLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 1073741889
   gravityOffDistance: 0.2
   root: {fileID: 8634589292710360741}
   rootOffsetHeight: 0

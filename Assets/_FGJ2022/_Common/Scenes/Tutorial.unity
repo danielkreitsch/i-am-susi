@@ -697,16 +697,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 727898520}
     m_Modifications:
-    - target: {fileID: 805152845987370413, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2252142569512170672, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2252142570579685785, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -767,31 +757,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cleaner2
       objectReference: {fileID: 0}
-    - target: {fileID: 2252142570579685786, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2252142570579685789, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2252142570913042429, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3187437627581845171, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: cleaningPath
-      value: 
-      objectReference: {fileID: 2031048132}
-    - target: {fileID: 8250378962570302105, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: avatar
-      value: 
-      objectReference: {fileID: 2143743710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6, type: 3}
 --- !u!1 &417825997 stripped
@@ -3808,7 +3773,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 10
+  m_VoxelSize: 2
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: a1102a8b4cb22cd4684e7e5320cd0c0f, type: 2}
 --- !u!4 &1212334574
@@ -5361,12 +5326,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2125010223}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2143743710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8634589293781861511, guid: 0f80abe9758af794c94d829c20727117,
-    type: 3}
-  m_PrefabInstance: {fileID: 914485427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &556386077791365237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5434,16 +5393,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cleaner1
       objectReference: {fileID: 0}
-    - target: {fileID: 3187437627581845171, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: cleaningPath
-      value: 
-      objectReference: {fileID: 2031048132}
-    - target: {fileID: 8250378962570302105, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6,
-        type: 3}
-      propertyPath: avatar
-      value: 
-      objectReference: {fileID: 2143743710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b79b4f8ca67cbb47bf1a120c5df78d6, type: 3}
 --- !u!1001 &1591188151613281848
