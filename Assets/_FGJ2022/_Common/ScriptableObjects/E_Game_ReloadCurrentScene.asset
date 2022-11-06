@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000}
   waitUntilInvoke: 1
-  waitTimer: 1
+  waitTimer: 5
   method: 1
