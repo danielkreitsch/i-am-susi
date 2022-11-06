@@ -12,6 +12,7 @@ namespace FGJ2022.Drone
         {
             if (other.TryGetComponent<ILaserTarget>(out var laserTarget))
             {
+                this.droneAgent.LaserTarget = laserTarget;
                 this.droneAgent.StateMachine.ChangeState(DroneStateId.FocusTarget);
             }
         }

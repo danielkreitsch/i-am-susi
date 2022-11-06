@@ -67,7 +67,7 @@ namespace FGJ2022.Drone
                 this.drone.Model.LocalY = Mathf.SmoothDamp(this.drone.Model.LocalY, this.targetY, ref this.verticalVelocity, this.verticalSmoothTime);
 
                 var myPos = this.drone.Model.transform.position;
-                var avatarPos = this.drone.Agent.Avatar.transform.position + 0.75f * Vector3.up;
+                var avatarPos = this.drone.Agent.LaserTarget.transform.position + 0.75f * Vector3.up;
 
                 var lookDirection = avatarPos - myPos;
                 if (this.drone.Agent.StateMachine.CurrentState == DroneStateId.Idle)

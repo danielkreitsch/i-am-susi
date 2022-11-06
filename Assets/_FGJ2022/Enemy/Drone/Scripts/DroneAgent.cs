@@ -1,3 +1,4 @@
+using Game;
 using Glowdragon.VariableDisplay;
 using UnityEngine;
 using Zenject;
@@ -16,9 +17,6 @@ namespace FGJ2022.Drone
         private Drone drone;
 
         [SerializeField]
-        private GameObject avatar;
-        
-        [SerializeField]
         private DroneStateId initialState;
 
         [SerializeField]
@@ -28,7 +26,7 @@ namespace FGJ2022.Drone
         
         public Drone Drone => this.drone;
 
-        public GameObject Avatar => this.avatar;
+        public ILaserTarget LaserTarget { get; set; }
 
         public float OptimalDistanceToShoot => this.optimalDistanceToShoot;
 

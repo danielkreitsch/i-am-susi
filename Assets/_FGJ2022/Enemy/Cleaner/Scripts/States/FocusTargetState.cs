@@ -15,7 +15,13 @@ namespace FGJ2022.Cleaner
 
         public void Update(CleanerAgent agent)
         {
-            var avatarPos = agent.Avatar.transform.position;
+            if (agent.VacuumTarget == null)
+            {
+                agent.StateMachine.ChangeState(CleanerStateId.CleanRoom);
+                return;
+            }
+            
+            var avatarPos = agent.VacuumTarget.transform.position;
             var myPos = agent.Cleaner.transform.position;
             var moveTarget = avatarPos;//myPos + (myPos - avatarPos);//.normalized * (1 - horizontalDistance);
             agent.Cleaner.Controller.SetMoveTarget(moveTarget);

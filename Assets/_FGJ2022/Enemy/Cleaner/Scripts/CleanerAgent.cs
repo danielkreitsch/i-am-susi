@@ -1,3 +1,4 @@
+using Game;
 using Glowdragon.VariableDisplay;
 using UnityEngine;
 using Zenject;
@@ -13,9 +14,6 @@ namespace FGJ2022.Cleaner
         private Cleaner cleaner;
 
         [SerializeField]
-        private GameObject avatar;
-        
-        [SerializeField]
         private CleanerStateId initialState;
 
         [SerializeField]
@@ -23,7 +21,7 @@ namespace FGJ2022.Cleaner
 
         public Cleaner Cleaner => this.cleaner;
 
-        public GameObject Avatar => this.avatar;
+        public IVacuumTarget VacuumTarget { get; set; }
 
         public float OptimalDistanceToShoot => this.optimalDistanceToShoot;
 
