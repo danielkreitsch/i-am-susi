@@ -1,4 +1,3 @@
-using System;
 using Glowdragon.VariableDisplay;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,7 +25,7 @@ namespace FGJ2022.Drone
         [SerializeField]
         private float shootCooldown;
 
-        private float shootCooldownTimer;
+        private float lastShoot;
 
         public DroneAgent Agent => this.agent;
 
@@ -36,24 +35,15 @@ namespace FGJ2022.Drone
 
         public LayerMask SolidLayer => this.solidLayer;
 
-        public bool ShootIsOnCooldown => this.shootCooldownTimer < this.shootCooldown;
+        public bool ShootIsOnCooldown => this.lastShoot + this.shootCooldown > Time.realtimeSinceStartup;
 
         public void ResetShootCooldown()
         {
-            this.shootCooldownTimer = 0;
+            this.lastShoot = Time.realtimeSinceStartup;
         }
 
         private void Start() {
             onStart.Invoke(gameObject);
-        }
-
-        private void Update()
-        {
-            if (this.shootCooldownTimer < this.shootCooldown)
-            {
-                this.shootCooldownTimer += Time.deltaTime;
-                this.variableDisplay.Set(this.gameObject.name, "Shoot CD", Mathf.Max(0, this.shootCooldown - this.shootCooldownTimer));
-            }
         }
 
         [SerializeField]
