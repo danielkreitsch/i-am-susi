@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 399354517}
   - component: {fileID: 399354516}
   - component: {fileID: 399354515}
-  m_Layer: 0
+  - component: {fileID: 399354519}
+  m_Layer: 6
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399354514}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 4, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1612078134629813189}
@@ -92,11 +93,54 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399354514}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &399354519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399354514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324d7c449b0c9a44f96ff2072143dc98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &661100093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661100094}
+  m_Layer: 6
+  m_Name: LaserRaycastOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661100094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661100093}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1612078134629813189}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612078133911775945
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,9 +480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9758f49788eaa4b8021b423b1211ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 1612078134162208165}
   controller: {fileID: 1612078134162208166}
   model: {fileID: 1612078134629813177}
-  shootCooldown: 0
+  shootCooldown: 2
   onStart:
     m_PersistentCalls:
       m_Calls:
@@ -483,9 +528,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navAgent: {fileID: 1612078134162208164}
   drone: {fileID: 1612078134162208167}
-  offsetY: 0
-  minY: 0
-  verticalSmoothTime: 1
+  offsetY: -10
+  minY: 15
+  verticalSmoothTime: 0.1
+  rotationSmoothTime: 0.1
+  rotationSmoothTimePointing: 0.2
 --- !u!114 &1612078134162208165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,8 +559,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 7.5
-  m_Speed: 100
-  m_Acceleration: 8
+  m_Speed: 50
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 0
@@ -753,6 +800,7 @@ Transform:
   - {fileID: 1612078135242174606}
   - {fileID: 1612078135254845785}
   - {fileID: 399354518}
+  - {fileID: 661100094}
   m_Father: {fileID: 1612078134162208160}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -832,9 +880,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc3405618dcef64b873e15286a90942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laser: {fileID: 0}
+  laser: {fileID: 399354519}
   weaponTransform: {fileID: 1612078135242174606}
   weaponRingTransform: {fileID: 1612078135254845785}
+  laserRaycastOriginTransform: {fileID: 661100094}
 --- !u!1 &1612078134658509256
 GameObject:
   m_ObjectHideFlags: 0

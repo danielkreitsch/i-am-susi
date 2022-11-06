@@ -24,7 +24,17 @@ namespace FGJ2022.Drone
 
         public void Update(DroneAgent agent)
         {
-            this.model.Laser.Length = Vector3.Distance(this.model.transform.position, agent.Avatar.transform.position);
+            RaycastHit solidHit;
+            var ray = new Ray(this.model.LaserRaycastOriginTransform.position, this.model.LaserRaycastOriginTransform.forward);
+            Physics.Raycast(ray, out solidHit, 10000, agent.Drone.SolidLayer);
+            if (solidHit.collider != null)
+            {
+                this.model.Laser.Length = Vector3.Distance(solidHit.point, this.model.LaserRaycastOriginTransform.position) + 12;
+            }
+            else
+            {
+                this.model.Laser.Length = 1000;
+            }
         }
 
         public void Exit(DroneAgent agent)
