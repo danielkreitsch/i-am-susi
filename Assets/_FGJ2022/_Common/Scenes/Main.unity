@@ -1893,6 +1893,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 681887083371189910, guid: 157730c598e6ec64f960954a71eb5a1d,
+        type: 3}
+      propertyPath: enemyCountOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4029522912712793687, guid: 157730c598e6ec64f960954a71eb5a1d,
         type: 3}
       propertyPath: m_RootOrder
