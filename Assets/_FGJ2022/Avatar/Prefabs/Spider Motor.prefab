@@ -52,7 +52,7 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 1073741879
-  dragTime: 0.2
+  dragTime: 1
   turnSpeed: 5
   movement: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
@@ -78,6 +78,7 @@ MonoBehaviour:
   movementTime: 0.2
   jumpSpeed: 40
   dashSpeed: 60
+  dashCooldown: 1
   movementInput: {x: 0, y: 0}
   movementAcceleration: {x: 0, y: 0, z: 0}
   intendsJump: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
   canDash: 0
   intendsDash: 0
   intendsDashStart: 0
+  lastDashTime: 0
   cameraInput: {x: 0, y: 0, z: 0}
   motorInput: {x: 0, y: 0, z: 0}
   onJump:

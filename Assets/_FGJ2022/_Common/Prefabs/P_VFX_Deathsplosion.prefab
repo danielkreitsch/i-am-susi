@@ -42,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197528863457431259}
   serializedVersion: 8
-  lengthInSec: 30
+  lengthInSec: 10
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 0
@@ -117,8 +117,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 30
-      minScalar: 30
+      scalar: 8
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2407,7 +2407,7 @@ ParticleSystem:
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     multiplierCurve:
       serializedVersion: 2
       minMaxState: 0
@@ -4946,3 +4946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a3abcea107907408dc25b19aed2991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGetSuckedInBy:
+    m_PersistentCalls:
+      m_Calls: []
