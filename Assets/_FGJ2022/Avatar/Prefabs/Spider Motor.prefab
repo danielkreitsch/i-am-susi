@@ -51,7 +51,7 @@ MonoBehaviour:
   attachedCollider: {fileID: 0}
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1073741879
+    m_Bits: 1073741889
   dragTime: 1
   turnSpeed: 5
   movement: {x: 0, y: 0, z: 0}
