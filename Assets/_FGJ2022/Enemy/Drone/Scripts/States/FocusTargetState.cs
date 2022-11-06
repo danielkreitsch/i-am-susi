@@ -1,5 +1,4 @@
-﻿using Game.Utility;
-using UnityConstants;
+﻿using UnityConstants;
 using UnityEngine;
 
 namespace FGJ2022.Drone
@@ -30,13 +29,13 @@ namespace FGJ2022.Drone
             
             RaycastHit solidHit;
             bool wasHit = Physics.Raycast(myPos, avatarPos - myPos, out solidHit, Vector3.Distance(avatarPos, myPos), agent.Drone.SolidLayer);
-            var opaqeueObstacleInTheWay = wasHit && !solidHit.collider.gameObject.CompareTag(Tags.Transparent);
+            var opaqueObstacleInTheWay = wasHit && !solidHit.collider.gameObject.CompareTag(Tags.Transparent);
 
             var aimsAtAvatar = Physics.Raycast(myPos, avatarPos - myPos, agent.OptimalDistanceToShoot * 2, agent.Drone.AvatarLayer);
             var isOnCooldown = agent.Drone.ShootIsOnCooldown || agent.ApplicationManager.ShootIsOnGlobalCooldown;
             var isCloseEnough = horizontalDistance < agent.OptimalDistanceToShoot;
             
-            if (!isOnCooldown && isCloseEnough && aimsAtAvatar && !opaqeueObstacleInTheWay)
+            if (!isOnCooldown && isCloseEnough && aimsAtAvatar && !opaqueObstacleInTheWay)
             {
                 agent.Drone.ResetShootCooldown();
                 agent.ApplicationManager.ResetShootCooldown();

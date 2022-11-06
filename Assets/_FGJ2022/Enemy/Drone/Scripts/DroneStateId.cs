@@ -2,8 +2,8 @@
 {
     public enum DroneStateId
     {
+        Idle,
         FocusTarget,
-        Shoot,
-        TargetKilled
+        Shoot
     }
 }
