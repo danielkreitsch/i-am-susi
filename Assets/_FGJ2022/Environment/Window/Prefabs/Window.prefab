@@ -45,6 +45,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_WinZone
       objectReference: {fileID: 0}
+    - target: {fileID: 671177023250681060, guid: 02a386a42e5d264449fd1000e7ec3449,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2164199819416651608, guid: 02a386a42e5d264449fd1000e7ec3449,
         type: 3}
       propertyPath: m_RootOrder
@@ -53,17 +58,17 @@ PrefabInstance:
     - target: {fileID: 2164199819416651608, guid: 02a386a42e5d264449fd1000e7ec3449,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.451277
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2164199819416651608, guid: 02a386a42e5d264449fd1000e7ec3449,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 156.9
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2164199819416651608, guid: 02a386a42e5d264449fd1000e7ec3449,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -96.399994
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 2164199819416651608, guid: 02a386a42e5d264449fd1000e7ec3449,
         type: 3}
