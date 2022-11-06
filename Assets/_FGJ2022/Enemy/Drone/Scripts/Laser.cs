@@ -1,3 +1,4 @@
+using System;
 using Game;
 using UnityEngine;
 
@@ -5,12 +6,19 @@ public class Laser : MonoBehaviour
 {
     private float thickness;
     private float length;
+
+    private bool _isDeadly;
     
     public bool IsDeadly
     {
-        set => this.GetComponent<BoxCollider>().enabled = value;
+        get => this._isDeadly;
+        set
+        {
+            this._isDeadly = value;
+            this.GetComponent<BoxCollider>().enabled = this._isDeadly;
+        }
     }
-    
+
     public float Thickness
     {
         get => this.thickness;
@@ -32,13 +40,18 @@ public class Laser : MonoBehaviour
             this.length = value;
                 
             var localScale = this.transform.localScale;
-            localScale.x = this.length;
+            localScale.x = this.length / 12;
             this.transform.localScale = localScale;
                 
             var localPosition = this.transform.localPosition;
-            localPosition.z = this.length / 2;
+            localPosition.z = this.length / 12 / 2;
             this.transform.localPosition = localPosition;
         }
+    }
+
+    private void Start()
+    {
+        this.IsDeadly = false;
     }
 
     private void OnTriggerEnter(Collider other)

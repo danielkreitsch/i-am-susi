@@ -10,22 +10,32 @@ namespace FGJ2022.Drone
     {
         [Inject]
         private VariableDisplay variableDisplay;
+
+        [SerializeField]
+        private DroneAgent agent;
         
         [SerializeField]
         private DroneController controller;
 
         [SerializeField]
         private DroneModel model;
+
+        [SerializeField]
+        private LayerMask solidLayer;
         
         [SerializeField]
         private float shootCooldown;
 
         private float shootCooldownTimer;
 
+        public DroneAgent Agent => this.agent;
+
         public DroneController Controller => this.controller;
 
         public DroneModel Model => this.model;
-        
+
+        public LayerMask SolidLayer => this.solidLayer;
+
         public bool ShootIsOnCooldown => this.shootCooldownTimer < this.shootCooldown;
 
         public void ResetShootCooldown()

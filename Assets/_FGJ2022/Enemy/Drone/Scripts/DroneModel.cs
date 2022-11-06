@@ -12,6 +12,9 @@ namespace FGJ2022.Drone
 
         [SerializeField]
         private Transform weaponRingTransform;
+
+        [SerializeField]
+        private Transform laserRaycastOriginTransform;
         
         private float _localY;
         private float _upAngle;
@@ -19,6 +22,10 @@ namespace FGJ2022.Drone
         private float _weaponRingAngle;
 
         public Laser Laser => this.laser;
+
+        public Transform WeaponTransform => this.weaponTransform;
+
+        public Transform LaserRaycastOriginTransform => this.laserRaycastOriginTransform;
 
         public float LocalY
         {
@@ -66,6 +73,12 @@ namespace FGJ2022.Drone
                 eulerAngles.z = this._weaponRingAngle;
                 this.weaponRingTransform.eulerAngles = eulerAngles;
             }
+        }
+        
+        private void OnDrawGizmos()
+        {
+            var ray = new Ray(this.LaserRaycastOriginTransform.position, this.LaserRaycastOriginTransform.forward);
+            Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 1000);
         }
     }
 }
