@@ -98,6 +98,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: OutletVent
       objectReference: {fileID: 0}
+    - target: {fileID: 3012814268834610102, guid: 46f39a72af0bfc24f830f8f9d034c6ae,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826724259137129014, guid: 46f39a72af0bfc24f830f8f9d034c6ae,
+        type: 3}
+      propertyPath: m_Parameters.m_DirectionCurveZ.scalar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f39a72af0bfc24f830f8f9d034c6ae, type: 3}
 --- !u!1 &7445941537197330745 stripped
