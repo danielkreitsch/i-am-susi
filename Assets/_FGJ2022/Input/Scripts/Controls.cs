@@ -43,7 +43,7 @@ namespace Game.Input
                     ""type"": ""PassThrough"",
                     ""id"": ""d69ec418-6bd8-4311-81dc-72cf48b371e9"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=5,y=5)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
