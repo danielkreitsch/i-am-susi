@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: E_LoadScene_Avatar
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000}
+  waitUntilInvoke: 0
+  waitTimer: 1
   scene:
     Scene: {fileID: 102900000, guid: 4f83bec358932784cba30dfc1f57dd0f, type: 3}
     SceneName: Attic Scene
