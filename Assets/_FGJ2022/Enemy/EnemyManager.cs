@@ -14,6 +14,10 @@ namespace AssemblyCSharp {
         string enemyCountParameter = string.Empty;
         RESULT enemyCountResult = RESULT.ERR_UNINITIALIZED;
         PARAMETER_DESCRIPTION enemyCountDescription;
+        [SerializeField]
+        int enemyCountOffset = 0;
+        [SerializeField, ReadOnly]
+        int currentEnemyCount = 0;
 
         [Space]
         [SerializeField, ReadOnly]
@@ -41,9 +45,8 @@ namespace AssemblyCSharp {
         }
         void Update() {
             if (enemyCountResult == RESULT.OK) {
-                int enemyCount = aggroCleaners + aggroDrones;
-                UnityEngine.Debug.Log(enemyCount);
-                RuntimeManager.StudioSystem.setParameterByID(enemyCountDescription.id, enemyCount);
+                currentEnemyCount = enemyCountOffset + aggroCleaners + aggroDrones;
+                RuntimeManager.StudioSystem.setParameterByID(enemyCountDescription.id, currentEnemyCount);
             }
         }
     }
