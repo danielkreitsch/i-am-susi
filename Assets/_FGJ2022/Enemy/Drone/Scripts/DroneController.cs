@@ -57,6 +57,9 @@ namespace FGJ2022.Drone
 
         private void Update()
         {
+            var myPosition = this.drone.Model.transform.position;
+            var deltaPosition = myPosition - this.previousPosition;
+
             var currentState = this.drone.Agent.StateMachine.CurrentState;
 
             if (currentState == DroneStateId.Shoot && this.drone.Model.Laser.IsDeadly)
@@ -66,20 +69,18 @@ namespace FGJ2022.Drone
             {
                 this.drone.Model.LocalY = Mathf.SmoothDamp(this.drone.Model.LocalY, this.targetY, ref this.verticalVelocity, this.verticalSmoothTime);
 
-                var myPos = this.drone.Model.transform.position;
-                var avatarPos = this.drone.Agent.LaserTarget.transform.position + 0.75f * Vector3.up;
+                var lookDirection = Vector3.zero;
 
-                var lookDirection = avatarPos - myPos;
-                if (this.drone.Agent.StateMachine.CurrentState == DroneStateId.Idle)
+                if (this.drone.Agent.LaserTarget != null)
                 {
-                    var deltaPosition = myPos - this.previousPosition;
-                    if (!Mathf.Approximately(deltaPosition.magnitude, 0))
-                    {
-                        lookDirection = deltaPosition;
-                    }
+                    var chaseTargetPos = this.drone.Agent.LaserTarget.transform.position + 0.75f * Vector3.up;
+                    lookDirection = chaseTargetPos - myPosition;
                 }
-                this.previousPosition = myPos;
-                
+                else if (!Mathf.Approximately(deltaPosition.magnitude, 0))
+                {
+                    lookDirection = deltaPosition;
+                }
+
                 this.drone.Model.transform.rotation = QuaternionUtility.SmoothDampQuaternion(
                     this.drone.Model.transform.rotation,
                     Quaternion.LookRotation(lookDirection),
@@ -87,7 +88,8 @@ namespace FGJ2022.Drone
                     currentState == DroneStateId.Shoot ? this.rotationSmoothTimePointing : this.rotationSmoothTime
                 );
             }
-           
+
+            this.previousPosition = myPosition;
         }
     }
 }
