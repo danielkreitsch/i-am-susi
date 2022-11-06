@@ -1,5 +1,8 @@
-﻿public enum CameraState
+﻿namespace FGJ2022.CameraManager
 {
-    Spider,
-    Drone
+    public enum CameraState
+    {
+        Spider,
+        Drone
+    }
 }
