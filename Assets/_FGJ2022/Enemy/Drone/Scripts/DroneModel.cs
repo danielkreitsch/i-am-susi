@@ -56,6 +56,12 @@ namespace FGJ2022.Drone
             get => this._weaponPosition;
             set
             {
+                if (this.weaponTransform == null)
+                {
+                    Debug.LogWarning("Weapon position cannot be changed due to missing transform");
+                    return;
+                }
+                
                 this._weaponPosition = value;
                 var localPosition = this.weaponTransform.localPosition;
                 localPosition.z = this._weaponPosition;
@@ -68,6 +74,12 @@ namespace FGJ2022.Drone
             get => this._weaponRingAngle;
             set
             {
+                if (this.weaponTransform == null)
+                {
+                    Debug.LogWarning("Weapon ring angle cannot be changed due to missing transform");
+                    return;
+                }
+                
                 this._weaponRingAngle = value;
                 var eulerAngles = this.weaponRingTransform.eulerAngles;
                 eulerAngles.z = this._weaponRingAngle;

@@ -14,8 +14,15 @@ public class Laser : MonoBehaviour
         get => this._isDeadly;
         set
         {
-            this._isDeadly = value;
-            this.GetComponent<BoxCollider>().enabled = this._isDeadly;
+            if (this.TryGetComponent<BoxCollider>(out var boxCollider))
+            {
+                this._isDeadly = value;
+                this.GetComponent<BoxCollider>().enabled = this._isDeadly;
+            }
+            else
+            {
+                Debug.LogWarning("Variable \"IsDeadly\" cannot be changed due to missing component");
+            }
         }
     }
 
@@ -24,6 +31,12 @@ public class Laser : MonoBehaviour
         get => this.thickness;
         set
         {
+            if (this.transform == null)
+            {
+                Debug.LogWarning("Laser thickness cannot be changed due to missing transform");
+                return;
+            }
+            
             this.thickness = value;
             var localScale = this.transform.localScale;
             localScale.y = this.thickness;
@@ -37,6 +50,12 @@ public class Laser : MonoBehaviour
         get => this.length;
         set
         {
+            if (this.transform == null)
+            {
+                Debug.LogWarning("Laser length cannot be changed due to missing transform");
+                return;
+            }
+            
             this.length = value;
                 
             var localScale = this.transform.localScale;
