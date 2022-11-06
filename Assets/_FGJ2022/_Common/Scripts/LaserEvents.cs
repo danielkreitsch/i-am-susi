@@ -8,6 +8,8 @@ namespace Game.Common {
 
         public void GetHitBy(GameObject laser) => onReceiveLaser.Invoke(gameObject);
 
+        public bool isAvatar => false;
+
 #if UNITY_EDITOR
         [ContextMenu(nameof(ReceiveLaserNow))]
         public void ReceiveLaserNow() => GetHitBy(gameObject);
