@@ -79,7 +79,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    m_ColorMin: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.5019608}
-    m_ColorMax: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_ColorMin: {r: 0.6603774, g: 0.55475426, b: 0.22116414, a: 1}
+    m_ColorMax: {r: 0.6886792, g: 0.1721698, b: 0.1721698, a: 1}
   useMeshShape: 1
   meshShapeType: 2
