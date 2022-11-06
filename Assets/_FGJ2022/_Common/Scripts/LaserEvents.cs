@@ -6,11 +6,11 @@ namespace Game.Common {
         [SerializeField]
         UnityEvent<GameObject> onReceiveLaser = new();
 
-        public void ReceiveLaser(GameObject laser) => onReceiveLaser.Invoke(gameObject);
+        public void GetHitBy(GameObject laser) => onReceiveLaser.Invoke(gameObject);
 
 #if UNITY_EDITOR
         [ContextMenu(nameof(ReceiveLaserNow))]
-        public void ReceiveLaserNow() => ReceiveLaser(gameObject);
+        public void ReceiveLaserNow() => GetHitBy(gameObject);
 #endif
     }
 }
