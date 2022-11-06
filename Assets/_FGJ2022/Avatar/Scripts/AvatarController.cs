@@ -22,6 +22,8 @@ namespace Game.Avatar {
         float jumpSpeed = 5;
         [SerializeField]
         float dashSpeed = 5;
+        [SerializeField]
+        private float dashCooldown = 1;
 
         [Header("Input")]
         [SerializeField]
@@ -48,6 +50,8 @@ namespace Game.Avatar {
         public bool intendsDash = false;
         [SerializeField, ReadOnly]
         public bool intendsDashStart = false;
+        [SerializeField, ReadOnly]
+        public float lastDashTime;
         public bool TryConsumeDashStart() {
             if (intendsDashStart) {
                 intendsDashStart = false;
@@ -61,10 +65,7 @@ namespace Game.Avatar {
             set => attachedMotor.movement = value;
         }
 
-        bool isOnCooldown
-        {
-            
-        }
+        bool dashIsOnCooldown => lastDashTime + dashCooldown < Time.realtimeSinceStartup;
 
         void Awake() {
             OnValidate();
@@ -126,7 +127,7 @@ namespace Game.Avatar {
 
             velocity = Vector3.SmoothDamp(velocity, movement, ref movementAcceleration, movementTime);
 
-            if (attachedMotor.isGrounded && isOnCooldown) {
+            if (attachedMotor.isGrounded && dashIsOnCooldown) {
                 canDash = true;
             }
 
@@ -137,6 +138,7 @@ namespace Game.Avatar {
 
             if (canDash && TryConsumeDashStart()) {
                 canDash = false;
+                lastDashTime = Time.realtimeSinceStartup;
                 velocity = motorInput == Vector3.zero
                     ? spider.transform.forward * dashSpeed
                     : motorInput.normalized * dashSpeed;
