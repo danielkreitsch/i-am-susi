@@ -31,14 +31,14 @@ namespace AssemblyCSharp {
         [SerializeField, ReadOnly]
         CleanerAgent[] cleaners = Array.Empty<CleanerAgent>();
         int aggroCleaners => cleaners
-            .Where(d => d)
+            .Where(d => d && d.enabled)
             .Count(c => c.StateMachine.CurrentState == CleanerStateId.FocusTarget || c.StateMachine.CurrentState == CleanerStateId.Shoot);
 
         [SerializeField, ReadOnly]
         DroneAgent[] drones = Array.Empty<DroneAgent>();
         int aggroDrones => drones
-            .Where(d => d)
-            .Count(d => d.StateMachine.CurrentState == DroneStateId.FocusTarget || d.StateMachine.CurrentState == DroneStateId.Shoot);
+            .Where(d => d && d.enabled)
+            .Count(d =>  d.StateMachine.CurrentState == DroneStateId.FocusTarget || d.StateMachine.CurrentState == DroneStateId.Shoot);
 
         void Awake() {
             OnValidate();
