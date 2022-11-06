@@ -1,3 +1,4 @@
+using FGJ2022.CameraManager;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
