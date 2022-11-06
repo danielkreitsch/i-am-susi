@@ -1,95 +1,85 @@
+using Game.Common;
 using Game.Utility;
 using Glowdragon.VariableDisplay;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-namespace FGJ2022.Drone
-{
-    public class DroneController : MonoBehaviour
-    {
+namespace FGJ2022.Drone {
+    public class DroneController : MonoBehaviour {
         [Inject]
-        private VariableDisplay variableDisplay;
+        VariableDisplay variableDisplay;
 
         [SerializeField]
         [NotNull]
-        private NavMeshAgent navAgent;
+        NavMeshAgent navAgent;
 
         [SerializeField]
         [NotNull]
-        private Drone drone;
+        Drone drone;
 
         [SerializeField]
-        private float offsetY;
+        float offsetY;
 
         [SerializeField]
-        private float minY;
+        float minY;
 
         [SerializeField]
-        private float verticalSmoothTime;
+        float verticalSmoothTime;
 
         [SerializeField]
-        private float rotationSmoothTime;
+        float rotationSmoothTime;
 
         [SerializeField]
-        private float rotationSmoothTimePointing;
+        float rotationSmoothTimePointing;
 
-        private float targetY;
-        private float verticalVelocity;
+        float targetY;
+        float verticalVelocity;
 
         /*private Vector3 lookPosition;
         private Vector3 targetLookPosition;*/
-        private Vector3 modelRotationVelocity;
+        Vector3 modelRotationVelocity;
 
-        private Vector3 previousPosition;
+        Vector3 previousPosition;
 
-        public bool IsStopped
-        {
-            get => this.navAgent.isStopped;
-            set => this.navAgent.isStopped = value;
+        public bool IsStopped {
+            get => navAgent.isStopped;
+            set => navAgent.isStopped = value;
         }
 
-        public void SetMoveTarget(Vector3 target)
-        {
-            this.navAgent.SetDestination(target);
-            this.targetY = Mathf.Max(target.y + this.offsetY, this.minY);
+        public void SetMoveTarget(Vector3 target) {
+            navAgent.SetDestination(target);
+            targetY = Mathf.Max(target.y + offsetY, minY);
         }
 
-        private void Update()
-        {
-            var myPosition = this.drone.Model.transform.position;
-            var deltaPosition = myPosition - this.previousPosition;
+        void Update() {
+            var myPosition = drone.Model.transform.position;
+            var deltaPosition = myPosition - previousPosition;
 
-            var currentState = this.drone.Agent.StateMachine.CurrentState;
+            var currentState = drone.Agent.StateMachine.CurrentState;
 
-            if (currentState == DroneStateId.Shoot && this.drone.Model.Laser.IsDeadly)
-            {
-            }
-            else
-            {
-                this.drone.Model.LocalY = Mathf.SmoothDamp(this.drone.Model.LocalY, this.targetY, ref this.verticalVelocity, this.verticalSmoothTime);
+            if (currentState == DroneStateId.Shoot && drone.Model.Laser.IsDeadly) {
+            } else {
+                drone.Model.LocalY = Mathf.SmoothDamp(drone.Model.LocalY, targetY, ref verticalVelocity, verticalSmoothTime);
 
                 var lookDirection = Vector3.zero;
 
-                if (this.drone.Agent.LaserTarget != null)
-                {
-                    var chaseTargetPos = this.drone.Agent.LaserTarget.transform.position + 0.75f * Vector3.up;
+                if (drone.Agent.LaserTarget.IsValid()) {
+                    var chaseTargetPos = drone.Agent.LaserTarget.transform.position + 0.75f * Vector3.up;
                     lookDirection = chaseTargetPos - myPosition;
-                }
-                else if (!Mathf.Approximately(deltaPosition.magnitude, 0))
-                {
+                } else if (!Mathf.Approximately(deltaPosition.magnitude, 0)) {
                     lookDirection = deltaPosition;
                 }
 
-                this.drone.Model.transform.rotation = QuaternionUtility.SmoothDampQuaternion(
-                    this.drone.Model.transform.rotation,
+                drone.Model.transform.rotation = QuaternionUtility.SmoothDampQuaternion(
+                    drone.Model.transform.rotation,
                     Quaternion.LookRotation(lookDirection),
-                    ref this.modelRotationVelocity,
-                    currentState == DroneStateId.Shoot ? this.rotationSmoothTimePointing : this.rotationSmoothTime
+                    ref modelRotationVelocity,
+                    currentState == DroneStateId.Shoot ? rotationSmoothTimePointing : rotationSmoothTime
                 );
             }
 
-            this.previousPosition = myPosition;
+            previousPosition = myPosition;
         }
     }
 }

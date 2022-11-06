@@ -1,83 +1,68 @@
-using System;
 using Game;
+using Game.Common;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
-{
-    private float thickness;
-    private float length;
+public sealed class Laser : MonoBehaviour {
+    float thickness;
+    float length;
 
-    private bool _isDeadly;
-    
-    public bool IsDeadly
-    {
-        get => this._isDeadly;
-        set
-        {
-            if (this.TryGetComponent<BoxCollider>(out var boxCollider))
-            {
-                this._isDeadly = value;
-                this.GetComponent<BoxCollider>().enabled = this._isDeadly;
-            }
-            else
-            {
+    bool _isDeadly;
+
+    public bool IsDeadly {
+        get => _isDeadly;
+        set {
+            if (TryGetComponent<BoxCollider>(out var boxCollider)) {
+                _isDeadly = value;
+                GetComponent<BoxCollider>().enabled = _isDeadly;
+            } else {
                 Debug.LogWarning("Variable \"IsDeadly\" cannot be changed due to missing component");
             }
         }
     }
 
-    public float Thickness
-    {
-        get => this.thickness;
-        set
-        {
-            if (this.transform == null)
-            {
+    public float Thickness {
+        get => thickness;
+        set {
+            if (transform == null) {
                 Debug.LogWarning("Laser thickness cannot be changed due to missing transform");
                 return;
             }
-            
-            this.thickness = value;
-            var localScale = this.transform.localScale;
-            localScale.y = this.thickness;
-            localScale.z = this.thickness;
-            this.transform.localScale = localScale;
+
+            thickness = value;
+            var localScale = transform.localScale;
+            localScale.y = thickness;
+            localScale.z = thickness;
+            transform.localScale = localScale;
         }
     }
-        
-    public float Length
-    {
-        get => this.length;
-        set
-        {
-            if (this.transform == null)
-            {
+
+    public float Length {
+        get => length;
+        set {
+            if (transform == null) {
                 Debug.LogWarning("Laser length cannot be changed due to missing transform");
                 return;
             }
-            
-            this.length = value;
-                
-            var localScale = this.transform.localScale;
-            localScale.x = this.length / 12;
-            this.transform.localScale = localScale;
-                
-            var localPosition = this.transform.localPosition;
-            localPosition.z = this.length / 12 / 2;
-            this.transform.localPosition = localPosition;
+
+            length = value;
+
+            var localScale = transform.localScale;
+            localScale.x = length / 12;
+            transform.localScale = localScale;
+
+            var localPosition = transform.localPosition;
+            localPosition.z = length / 12 / 2;
+            transform.localPosition = localPosition;
         }
     }
 
-    private void Start()
-    {
-        this.IsDeadly = false;
+    void Start() {
+        IsDeadly = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<ILaserTarget>(out var target))
-        {
-            target.ReceiveLaser(this.gameObject);
+    void OnTriggerEnter(Collider other) {
+        if (IsDeadly && other.TryGetComponent<ILaserTarget>(out var target) && target.IsValid()) {
+            target.GetHitBy(gameObject);
         }
     }
 }
