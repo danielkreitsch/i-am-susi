@@ -24,16 +24,19 @@ namespace FGJ2022.Drone
 
         public void Update(DroneAgent agent)
         {
-            RaycastHit solidHit;
-            var ray = new Ray(this.model.LaserRaycastOriginTransform.position, this.model.LaserRaycastOriginTransform.forward);
-            Physics.Raycast(ray, out solidHit, 10000, agent.Drone.SolidLayer);
-            if (solidHit.collider != null)
+            if (!this.model.Laser.IsDeadly)
             {
-                this.model.Laser.Length = Vector3.Distance(solidHit.point, this.model.LaserRaycastOriginTransform.position) + 12;
-            }
-            else
-            {
-                this.model.Laser.Length = 1000;
+                RaycastHit solidHit;
+                var ray = new Ray(this.model.LaserRaycastOriginTransform.position, this.model.LaserRaycastOriginTransform.forward);
+                Physics.Raycast(ray, out solidHit, 10000, agent.Drone.SolidLayer);
+                if (solidHit.collider != null)
+                {
+                    this.model.Laser.Length = Vector3.Distance(solidHit.point, this.model.LaserRaycastOriginTransform.position) + 12;
+                }
+                else
+                {
+                    this.model.Laser.Length = 1000;
+                }
             }
         }
 
@@ -67,7 +70,6 @@ namespace FGJ2022.Drone
             this.model.Laser.IsDeadly = false;
 
             yield return new WaitForSeconds(0.2f);
-            agent.Drone.ResetShootCooldown();
             agent.StateMachine.ChangeState(DroneStateId.FocusTarget);
         }
     }

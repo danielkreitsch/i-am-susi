@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4236cfacb6d29db489a529a50aec1616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalShootCooldown: 0
+  globalShootCooldown: 0.5
 --- !u!1 &32494980167820869
 GameObject:
   m_ObjectHideFlags: 0

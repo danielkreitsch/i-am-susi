@@ -61,6 +61,11 @@ namespace Game.Avatar {
             set => attachedMotor.movement = value;
         }
 
+        bool isOnCooldown
+        {
+            
+        }
+
         void Awake() {
             OnValidate();
         }
@@ -121,7 +126,7 @@ namespace Game.Avatar {
 
             velocity = Vector3.SmoothDamp(velocity, movement, ref movementAcceleration, movementTime);
 
-            if (attachedMotor.isGrounded) {
+            if (attachedMotor.isGrounded && isOnCooldown) {
                 canDash = true;
             }
 
