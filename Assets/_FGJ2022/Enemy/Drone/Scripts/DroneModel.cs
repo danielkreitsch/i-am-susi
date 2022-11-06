@@ -56,7 +56,7 @@ namespace FGJ2022.Drone
             get => this._weaponPosition;
             set
             {
-                if (this.weaponTransform == null)
+                if (!this.weaponTransform)
                 {
                     Debug.LogWarning("Weapon position cannot be changed due to missing transform");
                     return;
@@ -74,7 +74,7 @@ namespace FGJ2022.Drone
             get => this._weaponRingAngle;
             set
             {
-                if (this.weaponTransform == null)
+                if (!this.weaponTransform)
                 {
                     Debug.LogWarning("Weapon ring angle cannot be changed due to missing transform");
                     return;
@@ -87,7 +87,7 @@ namespace FGJ2022.Drone
             }
         }
         
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             var ray = new Ray(this.LaserRaycastOriginTransform.position, this.LaserRaycastOriginTransform.forward);
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 1000);

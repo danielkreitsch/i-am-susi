@@ -21,11 +21,13 @@ namespace Game.Avatar {
         public Transform cameraTarget {
             get => attachedCamera.Follow;
             set {
-                attachedCamera.Follow = value;
-                attachedCamera.LookAt = value;
+                if (attachedCamera) {
+                    attachedCamera.Follow = value;
+                    attachedCamera.LookAt = value;
 
-                if (!value) {
-                    onTargetGone.Invoke(gameObject);
+                    if (!value) {
+                        onTargetGone.Invoke(gameObject);
+                    }
                 }
             }
         }
