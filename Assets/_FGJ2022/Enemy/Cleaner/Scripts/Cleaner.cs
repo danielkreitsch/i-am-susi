@@ -11,7 +11,6 @@ namespace FGJ2022.Cleaner
         private CleanerModel model;
 
         [SerializeField]
-        [NotNull]
         private Path cleaningPath;
 
         public CleanerController Controller => this.controller;

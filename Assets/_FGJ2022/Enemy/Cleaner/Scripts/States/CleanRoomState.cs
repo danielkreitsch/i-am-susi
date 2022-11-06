@@ -23,6 +23,12 @@ namespace FGJ2022.Cleaner
         {
             var myPos = agent.Cleaner.transform.position;
             var path = agent.Cleaner.CleaningPath;
+
+            if (path == null)
+            {
+                Debug.LogError("No cleaning path set", agent.gameObject);
+                return;
+            }
             
             if (this.currentWaypoint == null)
             {

@@ -29,7 +29,6 @@ namespace FGJ2022.Drone
         private float shootCooldown;
 
         [SerializeField]
-        [NotNull]
         private Path idlePath;
 
         private float lastShoot;
