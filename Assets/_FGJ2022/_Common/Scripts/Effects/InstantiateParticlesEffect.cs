@@ -38,7 +38,7 @@ namespace Game.Effects {
                 var shape = particlesInstance.shape;
                 shape.mesh = mesh;
                 shape.shapeType = ParticleSystemShapeType.Mesh;
-                shape.meshShapeType = ParticleSystemMeshShapeType.Triangle;
+                shape.meshShapeType = meshShapeType;
                 shape.scale = context.transform.lossyScale;
                 shape.rotation = context.transform.eulerAngles;
             }

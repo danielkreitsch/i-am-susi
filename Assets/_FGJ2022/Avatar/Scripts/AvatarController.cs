@@ -1,3 +1,4 @@
+using System;
 using Game.Avatar.SpiderImpl;
 using MyBox;
 using Slothsoft.UnityExtensions;
@@ -9,7 +10,7 @@ namespace Game.Avatar {
         [SerializeField]
         Spider spider;
         [SerializeField]
-        AvatarMotor attachedMotor;
+        public AvatarMotor attachedMotor;
         [SerializeField]
         AvatarCamera attachedCamera;
 
@@ -23,7 +24,7 @@ namespace Game.Avatar {
         [SerializeField]
         float dashSpeed = 5;
         [SerializeField]
-        private float dashCooldown = 1;
+        float dashCooldown = 1;
 
         [Header("Input")]
         [SerializeField]
@@ -116,7 +117,14 @@ namespace Game.Avatar {
             Gizmos.DrawLine(transform.position, transform.position + direction);
         }
 
+        public Func<Vector3, float, Vector3> customVelocityCalculator = null;
+
         void FixedUpdate() {
+            if (customVelocityCalculator != null) {
+                velocity = customVelocityCalculator(velocity, Time.deltaTime);
+                return;
+            }
+
             attachedMotor.targetRotation = Quaternion.FromToRotation(Vector3.up, attachedMotor.groundNormal);
 
             cameraInput = attachedCamera.TranslateInput(movementInput);
