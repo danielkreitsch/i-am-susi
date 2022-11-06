@@ -3,21 +3,34 @@ using UnityEngine;
 
 namespace Game.Venting {
     public class VentingManager : MonoBehaviour {
-        IVent _currentVent;
+        IVent _currentIntakeVent;
+        IVent _currentOutletVent;
+        
+        public Action OnCurrentIntakeVentChanged;
+        
+        public Action OnCurrentOutletVentChanged;
 
-        //public bool IsVenting { get; set; }
-
-        public Action OnCurrentVentChanged;
-
-        public IVent CurrentVent {
-            get => _currentVent;
+        public IVent CurrentIntakeVent {
+            get => this._currentIntakeVent;
             set {
-                if (_currentVent == value) {
+                if (this._currentIntakeVent == value) {
                     return;
                 }
 
-                _currentVent = value;
-                OnCurrentVentChanged?.Invoke();
+                this._currentIntakeVent = value;
+                this.OnCurrentIntakeVentChanged?.Invoke();
+            }
+        }
+        
+        public IVent CurrentOutletVent {
+            get => this._currentOutletVent;
+            set {
+                if (this._currentOutletVent == value) {
+                    return;
+                }
+
+                this._currentOutletVent = value;
+                this.OnCurrentOutletVentChanged?.Invoke();
             }
         }
     }

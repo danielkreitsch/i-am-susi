@@ -1,10 +1,18 @@
 using System.Collections;
+using FGJ2022.CameraManager;
 using Game.Venting;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Avatar {
     sealed class AvatarVenting : MonoBehaviour, IVentable {
+        [Inject]
+        VentingManager ventingManager;
+
+        [Inject]
+        CameraManager cameraManager;
+        
         [SerializeField]
         AvatarMotor motor = default;
 
@@ -36,7 +44,12 @@ namespace Game.Avatar {
             StartCoroutine(Vent_Co(inVent, outVent));
         }
 
-        IEnumerator Vent_Co(IVent inVent, IVent outVent) {
+        IEnumerator Vent_Co(IVent inVent, IVent outVent)
+        {
+            ventingManager.CurrentIntakeVent = inVent;
+            ventingManager.CurrentOutletVent = outVent;
+            cameraManager.TransitionToState(CameraState.VentingIn);
+
             motor.attachedRigidbody.velocity = motor.velocity;
             motor.attachedRigidbody.isKinematic = false;
             motor.attachedRigidbody.detectCollisions = false;
@@ -47,6 +60,10 @@ namespace Game.Avatar {
                 motor.attachedRigidbody.AddForce(inVent.VentDirection * inForce, ForceMode.Acceleration);
                 yield return null;
             }
+            
+            cameraManager.TransitionToState(CameraState.VentingOut);
+            yield return new WaitForSeconds(1f);
+            cameraManager.TransitionToState(CameraState.Avatar);
 
             motor.attachedRigidbody.velocity = Vector3.zero;
             motor.attachedRigidbody.position = outVent.Transform.position;
