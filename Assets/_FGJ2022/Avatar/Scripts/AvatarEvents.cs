@@ -13,8 +13,7 @@ namespace Game.Avatar {
         [SerializeField]
         UnityEvent<GameObject> onReceiveVacuum = new();
 
-        [SerializeField]
-        float pullStrength = 1;
+        public bool isAvatar => true;
 
         void Awake() {
             OnValidate();
