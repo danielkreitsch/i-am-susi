@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/_FGJ2022/_Common/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/_FGJ2022/Avatar/Scenes/Attic Scene.unity
-    guid: 4f83bec358932784cba30dfc1f57dd0f
-  - enabled: 1
-    path: Assets/_FGJ2022/Enemy/_Common/Scenes/EnemyPrototype.unity
-    guid: 9afad9ad3d778f0419060494439af194
+    path: Assets/_FGJ2022/_Common/Scenes/Tutorial.unity
+    guid: 88bf6d8d12ab6cb4995f518319a657db
   - enabled: 1
     path: Assets/_FGJ2022/_Common/Scenes/Game.unity
     guid: b2ff94005204fa741a5dc054f0939cf3
