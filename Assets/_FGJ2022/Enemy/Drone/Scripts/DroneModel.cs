@@ -1,3 +1,4 @@
+using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace FGJ2022.Drone
@@ -96,6 +97,20 @@ namespace FGJ2022.Drone
         {
             var ray = new Ray(this.LaserRaycastOriginTransform.position, this.LaserRaycastOriginTransform.forward);
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 1000);
+        }
+
+        protected void Awake() {
+            OnValidate();
+        }
+
+        [ContextMenu(nameof(OnValidate))]
+        protected void OnValidate() {
+            if (!spotAvatarTrigger) {
+                transform.TryGetComponentInChildren(out spotAvatarTrigger);
+            }
+            if (!laser) {
+                transform.TryGetComponentInChildren(out laser);
+            }
         }
     }
 }
