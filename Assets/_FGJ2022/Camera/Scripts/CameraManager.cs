@@ -1,19 +1,20 @@
-using FGJ2022.CameraManager;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+namespace  FGJ2022.CameraManager
 {
-    [SerializeField]
-    [NotNull(IgnorePrefab = true)]
-    private new Camera camera;
-    
-    [SerializeField]
-    private Animator animator;
-
-    public Camera Camera => this.camera;
-
-    public void TransitionToState(CameraState state)
+    public class CameraManager : MonoBehaviour
     {
-        this.animator.Play(state.ToString());
+        [SerializeField]
+        private new Camera camera;
+    
+        [SerializeField]
+        private Animator animator;
+
+        public Camera Camera => this.camera;
+
+        public void TransitionToState(CameraState state)
+        {
+            this.animator.Play(state.ToString());
+        }
     }
 }

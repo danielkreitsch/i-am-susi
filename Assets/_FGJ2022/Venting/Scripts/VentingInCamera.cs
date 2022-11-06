@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 
 namespace Game.Venting {
-    public sealed class VentingCamera : MonoBehaviour {
+    public sealed class VentingInCamera : MonoBehaviour {
         [Inject]
         VentingManager ventingManager;
 
@@ -11,11 +11,11 @@ namespace Game.Venting {
         CinemachineVirtualCamera cinemachineVirtualCamera;
 
         void Start() {
-            ventingManager.OnCurrentVentChanged += OnCurrentVentChanged;
+            ventingManager.OnCurrentIntakeVentChanged += OnCurrentVentChanged;
         }
 
         void OnCurrentVentChanged() {
-            var currentVent = ventingManager.CurrentVent;
+            var currentVent = ventingManager.CurrentIntakeVent;
             cinemachineVirtualCamera.Follow = currentVent.CameraTransform;
             cinemachineVirtualCamera.LookAt = currentVent.Transform;
         }

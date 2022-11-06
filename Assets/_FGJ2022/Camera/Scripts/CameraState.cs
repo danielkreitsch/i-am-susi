@@ -2,7 +2,10 @@
 {
     public enum CameraState
     {
-        Spider,
-        Drone
+        Avatar,
+        VentingIn,
+        VentingOut,
+        Intro,
+        Ending
     }
 }

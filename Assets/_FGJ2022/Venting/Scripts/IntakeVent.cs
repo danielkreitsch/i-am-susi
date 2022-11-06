@@ -10,7 +10,7 @@ namespace Game.Venting {
 
         public Transform Transform => transform;
 
-        public Transform CameraTransform => CameraTransform;
+        public Transform CameraTransform => this.cameraTransform;
 
         public Vector3 VentDirection => -transform.forward;
     }
