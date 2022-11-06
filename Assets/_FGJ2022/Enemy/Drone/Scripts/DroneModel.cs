@@ -69,9 +69,9 @@ namespace FGJ2022.Drone
                 }
                 
                 this._weaponPosition = value;
-                var localPosition = this.weaponTransform.localPosition;
+                /*var localPosition = this.weaponTransform.localPosition;
                 localPosition.z = this._weaponPosition;
-                this.weaponTransform.localPosition = localPosition;
+                this.weaponTransform.localPosition = localPosition;*/
             }
         }
 

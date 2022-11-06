@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4696023517523995151}
   - component: {fileID: -7782402860098128726}
   - component: {fileID: 6184913453861242699}
+  - component: {fileID: 2163575850229408006}
   m_Layer: 8
   m_Name: P_WinZone
   m_TagString: Untagged
@@ -102,9 +103,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2163575850229408006}
+        m_TargetAssemblyTypeName: Game.Avatar.SpiderDance, Game.Avatar
+        m_MethodName: StartDance
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2163575850229408006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671177023250681060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71bf62ef9e55483abd72a48aa21e81a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
