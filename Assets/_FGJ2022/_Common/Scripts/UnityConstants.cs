@@ -40,6 +40,10 @@ namespace UnityConstants
         /// Name of tag 'Cover'.
         /// </summary>
         public const string Cover = "Cover";
+        /// <summary>
+        /// Name of tag 'Transparent'.
+        /// </summary>
+        public const string Transparent = "Transparent";
     }
 
     public static class SortingLayers
@@ -77,6 +81,10 @@ namespace UnityConstants
         /// </summary>
         public const int Enemy = 6;
         /// <summary>
+        /// Index of layer 'WinZone'.
+        /// </summary>
+        public const int WinZone = 8;
+        /// <summary>
         /// Index of layer 'LevelBorder'.
         /// </summary>
         public const int LevelBorder = 30;
@@ -109,6 +117,10 @@ namespace UnityConstants
         /// Bitmask of layer 'Enemy'.
         /// </summary>
         public const int EnemyMask = 1 << 6;
+        /// <summary>
+        /// Bitmask of layer 'WinZone'.
+        /// </summary>
+        public const int WinZoneMask = 1 << 8;
         /// <summary>
         /// Bitmask of layer 'LevelBorder'.
         /// </summary>

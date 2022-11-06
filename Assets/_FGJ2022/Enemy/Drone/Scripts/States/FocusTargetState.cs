@@ -29,14 +29,14 @@ namespace FGJ2022.Drone
             agent.Drone.Controller.SetMoveTarget(moveTarget);
             
             RaycastHit solidHit;
-            Physics.Raycast(myPos, avatarPos - myPos, out solidHit, Vector3.Distance(avatarPos, myPos), agent.Drone.SolidLayer);
-            var obstacleInTheWay = solidHit.collider != null && !solidHit.collider.gameObject.CompareTag(Tags.Cover);
+            bool wasHit = Physics.Raycast(myPos, avatarPos - myPos, out solidHit, Vector3.Distance(avatarPos, myPos), agent.Drone.SolidLayer);
+            var opaqeueObstacleInTheWay = wasHit && !solidHit.collider.gameObject.CompareTag(Tags.Transparent);
 
             var aimsAtAvatar = Physics.Raycast(myPos, avatarPos - myPos, agent.OptimalDistanceToShoot * 2, agent.Drone.AvatarLayer);
             var isOnCooldown = agent.Drone.ShootIsOnCooldown || agent.ApplicationManager.ShootIsOnGlobalCooldown;
             var isCloseEnough = horizontalDistance < agent.OptimalDistanceToShoot;
             
-            if (!isOnCooldown && isCloseEnough && aimsAtAvatar && !obstacleInTheWay)
+            if (!isOnCooldown && isCloseEnough && aimsAtAvatar && !opaqeueObstacleInTheWay)
             {
                 agent.Drone.ResetShootCooldown();
                 agent.ApplicationManager.ResetShootCooldown();
