@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfe0f7711cc89e46840e136efdcd3e8, type: 3}
+  m_Name: E_Audio_Enemy_Drone
+  m_EditorClassIdentifier: 
+  asset: {fileID: 11400000}
+  soundEvent:
+    Guid:
+      Data1: -1850306710
+      Data2: 1273771629
+      Data3: -504575588
+      Data4: 1744319789
+    Path: event:/Enemy/Drone

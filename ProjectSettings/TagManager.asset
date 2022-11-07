@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Cover
+  - Transparent
   layers:
   - Default
   - TransparentFX
@@ -11,6 +14,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Enemy
+  - 
+  - PlayerTrigger
   - 
   - 
   - 
@@ -32,11 +38,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - LevelBorder
+  - Player
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca2e0bf1e589e749b239e2166f15f3d, type: 3}
+  m_Name: E_LoadScene_Tutorial
+  m_EditorClassIdentifier: 
+  asset: {fileID: 11400000}
+  waitUntilInvoke: 0
+  waitTimer: 1
+  scene:
+    Scene: {fileID: 102900000, guid: 88bf6d8d12ab6cb4995f518319a657db, type: 3}
+    SceneName: Tutorial
+    sceneIndex: 1
+    sceneEnabled: 1
+  loadSceneMode: 0

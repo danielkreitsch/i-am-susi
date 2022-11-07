@@ -94,7 +94,7 @@ namespace Glowdragon.VariableDisplay
 
         private void UpdateDisplay(bool spaceBetweenCategories)
         {
-            string leftText = "Variable Display\n";
+            string leftText = "";
             if (this.Active)
             {
                 foreach (KeyValuePair<string, Dictionary<string, string>> categoryVariablesMapEntry in this.variablesByCategory)
