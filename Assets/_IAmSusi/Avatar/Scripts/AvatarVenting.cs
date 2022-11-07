@@ -11,7 +11,7 @@ namespace Game.Avatar {
         VentingManager ventingManager;
 
         [Inject]
-        CameraManager cameraManager;
+        CameraManager.CameraManager cameraManager;
         
         [SerializeField]
         AvatarMotor motor = default;
