@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_FGJ2022/_Common/Scenes/Main.unity
+    path: Assets/_IAmSusi/_Common/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/_FGJ2022/_Common/Scenes/Tutorial.unity
+    path: Assets/_IAmSusi/_Common/Scenes/Tutorial.unity
     guid: 88bf6d8d12ab6cb4995f518319a657db
   - enabled: 1
-    path: Assets/_FGJ2022/_Common/Scenes/Game.unity
+    path: Assets/_IAmSusi/_Common/Scenes/Game.unity
     guid: b2ff94005204fa741a5dc054f0939cf3
   m_configObjects: {}
