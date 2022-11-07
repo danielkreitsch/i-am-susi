@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-namespace FGJ2022.Drone {
+namespace Game.Drone {
     public class DroneController : MonoBehaviour {
         [Inject]
         VariableDisplay variableDisplay;

@@ -1,4 +1,4 @@
-﻿namespace FGJ2022.Cleaner
+﻿namespace Game.Cleaner
 {
     public enum CleanerStateId
     {

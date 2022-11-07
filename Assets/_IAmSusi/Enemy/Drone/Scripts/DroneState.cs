@@ -1,4 +1,4 @@
-﻿namespace FGJ2022.Drone
+﻿namespace Game.Drone
 {
     public interface DroneState
     {

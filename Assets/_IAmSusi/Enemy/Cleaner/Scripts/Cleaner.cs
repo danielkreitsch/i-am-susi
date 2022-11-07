@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FGJ2022.Cleaner
+namespace Game.Cleaner
 {
     public class Cleaner : MonoBehaviour
     {

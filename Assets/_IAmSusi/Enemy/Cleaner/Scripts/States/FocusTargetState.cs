@@ -1,6 +1,6 @@
 ﻿using Game.Common;
 
-namespace FGJ2022.Cleaner {
+namespace Game.Cleaner {
     public class FocusTargetState : CleanerState {
         public CleanerStateId GetId() {
             return CleanerStateId.FocusTarget;

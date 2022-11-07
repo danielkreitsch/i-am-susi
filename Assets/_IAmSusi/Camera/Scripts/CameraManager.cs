@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace  FGJ2022.CameraManager
+namespace  Game.CameraManager
 {
     public class CameraManager : MonoBehaviour
     {

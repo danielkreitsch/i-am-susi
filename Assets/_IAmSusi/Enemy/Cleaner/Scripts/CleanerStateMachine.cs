@@ -1,7 +1,7 @@
 ﻿using Glowdragon.VariableDisplay;
 using UnityEngine;
 
-namespace FGJ2022.Cleaner
+namespace Game.Cleaner
 {
     public class CleanerStateMachine
     {

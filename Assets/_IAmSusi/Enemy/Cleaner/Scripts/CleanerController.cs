@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace FGJ2022.Cleaner
+namespace Game.Cleaner
 {
     public class CleanerController : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using Game;
 using Game.Common;
 using UnityEngine;
 
-namespace FGJ2022.Drone {
+namespace Game.Drone {
     public sealed class SpotAvatarTrigger : MonoBehaviour {
         [SerializeField]
         DroneAgent droneAgent;

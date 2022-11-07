@@ -1,4 +1,4 @@
-﻿namespace FGJ2022.CameraManager
+﻿namespace Game.CameraManager
 {
     public enum CameraState
     {

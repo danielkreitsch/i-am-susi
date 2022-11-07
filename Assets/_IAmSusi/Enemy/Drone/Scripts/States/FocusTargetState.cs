@@ -2,7 +2,7 @@
 using UnityConstants;
 using UnityEngine;
 
-namespace FGJ2022.Drone {
+namespace Game.Drone {
     public class FocusTargetState : DroneState {
         DroneModel model;
 

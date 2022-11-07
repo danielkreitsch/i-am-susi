@@ -2,7 +2,7 @@
 using Game.Utility;
 using UnityEngine;
 
-namespace FGJ2022.Drone
+namespace Game.Drone
 {
     public class IdleState: DroneState
     {

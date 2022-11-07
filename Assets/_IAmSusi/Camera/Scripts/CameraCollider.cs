@@ -1,7 +1,7 @@
 ﻿using Cinemachine;
 using UnityEngine;
 
-namespace FGJ2022
+namespace Game
 {
     /// <summary>
     /// </summary>

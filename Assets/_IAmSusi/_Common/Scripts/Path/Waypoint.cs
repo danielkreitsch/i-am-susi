@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FGJ2022 {
+namespace Game {
     public class Waypoint {
         Vector3 position;
 

@@ -3,7 +3,7 @@ using Glowdragon.VariableDisplay;
 using UnityEngine;
 using Zenject;
 
-namespace FGJ2022.Drone
+namespace Game.Drone
 {
     public class DroneAgent : MonoBehaviour
     {

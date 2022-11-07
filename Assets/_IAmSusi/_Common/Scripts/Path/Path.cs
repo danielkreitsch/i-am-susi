@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FGJ2022 {
+namespace Game {
     public class Path : MonoBehaviour {
         List<Waypoint> waypoints = new();
 

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using FGJ2022.Cleaner;
-using FGJ2022.Drone;
+using Game.Cleaner;
+using Game.Drone;
 using FMOD;
 using FMOD.Studio;
 using FMODUnity;

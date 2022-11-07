@@ -3,7 +3,7 @@ using System.Linq;
 using Game.Utility;
 using UnityEngine;
 
-namespace FGJ2022.Cleaner
+namespace Game.Cleaner
 {
     public class CleanRoomState : CleanerState
     {

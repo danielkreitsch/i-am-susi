@@ -3,7 +3,7 @@ using Glowdragon.VariableDisplay;
 using UnityEngine;
 using Zenject;
 
-namespace FGJ2022.Cleaner
+namespace Game.Cleaner
 {
     public class CleanerAgent : MonoBehaviour
     {

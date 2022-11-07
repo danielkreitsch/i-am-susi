@@ -1,5 +1,5 @@
 using System.Collections;
-using FGJ2022.CameraManager;
+using Game.CameraManager;
 using Game.Venting;
 using Slothsoft.UnityExtensions;
 using UnityEngine;

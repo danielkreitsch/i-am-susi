@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
-namespace FGJ2022.Drone
+namespace Game.Drone
 {
     public class Drone : MonoBehaviour
     {
