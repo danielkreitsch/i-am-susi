@@ -14,12 +14,10 @@ namespace Game.Avatar {
         [SerializeField, Range(0, 10)]
         float dashBufferDuration = 0;
         float dashBufferTimer;
-
         Controls controls;
 
         void Awake() {
             OnValidate();
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         void OnValidate() {
