@@ -1,12 +1,8 @@
-# Franken Game Jam 2022 Game
-
-A game that was created within 48 hours during the Franken Game Jam 2022
-
-# Orbital
-A game about capturing planets with friends.
+# I am Susi
+A game about migration and annihilation.
 
 ## Jam Details
-Franken Game Jam 2019
+Franken Game Jam 2022
 - Date: 04.11.2022 - 06.11.2022
 - Site: Universität Bayreuth
 - Theme: "Two Worlds"
