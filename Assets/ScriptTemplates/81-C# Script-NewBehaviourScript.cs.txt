@@ -3,6 +3,6 @@ using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
 namespace #NAMESPACE# {
-    sealed class #SCRIPTNAME# : UnityObject {
+    sealed class #SCRIPTNAME# : MonoBehaviour {
     }
 }
