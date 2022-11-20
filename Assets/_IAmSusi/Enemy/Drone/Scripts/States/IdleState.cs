@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DigitalRuby.Tween;
 using Game.Utility;
 using UnityEngine;
 
@@ -48,6 +49,9 @@ namespace Game.Drone
         public void Exit(DroneAgent agent)
         {
             agent.Drone.Model.SpotAvatarTrigger.gameObject.SetActive(false);
+        }
+
+        public void Dispose() {
         }
     }
 }

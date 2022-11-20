@@ -45,5 +45,9 @@ namespace Game.Drone
         {
             this.StateMachine.Update();
         }
+
+        private void OnDestroy() {
+            StateMachine?.Dispose();
+        }
     }
 }

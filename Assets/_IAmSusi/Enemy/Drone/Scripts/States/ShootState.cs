@@ -8,6 +8,7 @@ namespace Game.Drone
     {
         private DroneController controller;
         private DroneModel model;
+        private ITween currentTween;
 
         public DroneStateId GetId()
         {
@@ -53,24 +54,31 @@ namespace Game.Drone
 
             agent.Drone.onShoot.Invoke(agent.gameObject);
 
-            agent.gameObject.Tween("Shoot", 0f, 1f, 1f, TweenScaleFunctions.Linear, t =>
+            currentTween = agent.gameObject.Tween("Shoot", 0f, 1f, 1f, TweenScaleFunctions.Linear, t =>
             {
                 this.model.WeaponPosition = 0.37f + 0.2f * t.CurrentValue;
                 this.model.WeaponRingAngle = t.CurrentValue * 360 * 2;
                 this.model.Laser.Thickness = 0.005f - t.CurrentValue * 0.005f;
             });
             yield return new WaitForSeconds(1f);
+            currentTween = null;
 
             this.model.Laser.IsDeadly = true;
-            agent.gameObject.Tween("Shoot", 0f, 1f, 0.5f, TweenScaleFunctions.Linear, t =>
+            currentTween = agent.gameObject.Tween("Shoot", 0f, 1f, 0.5f, TweenScaleFunctions.Linear, t =>
             {
                 this.model.Laser.Thickness = 0.1f - t.CurrentValue * 0.1f;
             });
             yield return new WaitForSeconds(0.5f);
+            currentTween = null;
+
             this.model.Laser.IsDeadly = false;
 
             yield return new WaitForSeconds(0.2f);
             agent.StateMachine.ChangeState(DroneStateId.FocusTarget);
+        }
+
+        public void Dispose() {
+            currentTween?.Stop(TweenStopBehavior.DoNotModify);
         }
     }
 }

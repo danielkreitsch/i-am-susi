@@ -1,9 +1,10 @@
-﻿using Glowdragon.VariableDisplay;
+﻿using System;
+using Glowdragon.VariableDisplay;
 using UnityEngine;
 
 namespace Game.Drone
 {
-    public class DroneStateMachine
+    public class DroneStateMachine : IDisposable
     {
         public DroneState[] States;
         public DroneAgent Agent;
@@ -44,6 +45,12 @@ namespace Game.Drone
         public void Update()
         {
             this.GetState(this.CurrentState)?.Update(this.Agent);
+        }
+
+        public void Dispose() {
+            for (int i = 0; i < States.Length; i++) {
+                States[i]?.Dispose();
+            }
         }
     }
 }

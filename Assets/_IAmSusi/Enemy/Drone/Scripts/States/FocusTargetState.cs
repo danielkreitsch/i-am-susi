@@ -42,5 +42,8 @@ namespace Game.Drone {
 
         public void Exit(DroneAgent agent) {
         }
+
+        public void Dispose() {
+        }
     }
 }

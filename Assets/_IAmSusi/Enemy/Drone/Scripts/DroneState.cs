@@ -1,6 +1,8 @@
-﻿namespace Game.Drone
+﻿using System;
+
+namespace Game.Drone
 {
-    public interface DroneState
+    public interface DroneState : IDisposable
     {
         DroneStateId GetId();
         void Enter(DroneAgent agent);
